@@ -17,13 +17,30 @@ export default function Hero() {
     setAddons(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const handleCheckout = (e) => {
+  const handleCheckout = async (e) => {
     e.preventDefault();
     const domain = productData.storeDomain;
-    // En lugar del carrito (que usa AJAX inestable), mandamos al cliente directo a la página de la crema
-    // con el tratamiento específico ya pre-seleccionado, para que Releasit nunca desaparezca.
-    const productUrl = `https://${domain}.myshopify.com/products/crema-realce-de-gluteos-reafirmante?variant=${selectedVariant.shopifyId}`;
-    window.location.href = productUrl;
+    
+    try {
+      // 1. Vaciar el carrito silenciosamente
+      await fetch(`https://${domain}.myshopify.com/cart/clear.js`, { method: 'POST' });
+      
+      // 2. Añadir el nuevo producto silenciosamente
+      const formData = new FormData();
+      formData.append('id', selectedVariant.shopifyId);
+      formData.append('quantity', quantity);
+      
+      await fetch(`https://${domain}.myshopify.com/cart/add.js`, {
+        method: 'POST',
+        body: formData
+      });
+      
+      // 3. Ir al carrito limpio (Releasit cargará perfecto sin confundirse)
+      window.location.href = `https://${domain}.myshopify.com/cart`;
+    } catch (error) {
+      // Fallback seguro
+      window.location.href = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${selectedVariant.shopifyId}%26quantity=${quantity}`;
+    }
   };
 
   const [activeImg, setActiveImg] = useState(0);
