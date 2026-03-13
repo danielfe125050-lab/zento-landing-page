@@ -20,9 +20,9 @@ export default function Hero() {
   const handleCheckout = (e) => {
     e.preventDefault();
     const domain = productData.storeDomain;
-    // Link de checkout directo de Shopify para activar Releasit
-    const checkoutUrl = `https://${domain}.myshopify.com/cart/${selectedVariant.shopifyId}:${quantity}`;
-    window.location.href = checkoutUrl;
+    // Usamos el flujo de "Añadir al carrito" para que Releasit detecte el pedido
+    const cartUrl = `https://${domain}.myshopify.com/cart/add?id=${selectedVariant.shopifyId}&quantity=${quantity}`;
+    window.location.href = cartUrl;
   };
 
   const [activeImg, setActiveImg] = useState(0);

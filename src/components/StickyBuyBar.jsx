@@ -27,8 +27,8 @@ export default function StickyBuyBar() {
   const handleCheckout = (e) => {
     e.preventDefault();
     const domain = productData.storeDomain;
-    const checkoutUrl = `https://${domain}.myshopify.com/cart/${selectedVariant.shopifyId}:1`;
-    window.location.href = checkoutUrl;
+    const cartUrl = `https://${domain}.myshopify.com/cart/add?id=${selectedVariant.shopifyId}&quantity=1`;
+    window.location.href = cartUrl;
   };
 
   return (
