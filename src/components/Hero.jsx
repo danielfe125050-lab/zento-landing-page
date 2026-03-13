@@ -20,8 +20,8 @@ export default function Hero() {
   const handleCheckout = (e) => {
     e.preventDefault();
     const domain = productData.storeDomain;
-    // Usamos el flujo de "Añadir al carrito" para que Releasit detecte el pedido
-    const cartUrl = `https://${domain}.myshopify.com/cart/add?id=${selectedVariant.shopifyId}&quantity=${quantity}`;
+    // Limpiamos el carrito primero y luego agregamos el producto seleccionado
+    const cartUrl = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${selectedVariant.shopifyId}%26quantity=${quantity}`;
     window.location.href = cartUrl;
   };
 

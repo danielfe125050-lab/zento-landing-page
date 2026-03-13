@@ -27,7 +27,8 @@ export default function StickyBuyBar() {
   const handleCheckout = (e) => {
     e.preventDefault();
     const domain = productData.storeDomain;
-    const cartUrl = `https://${domain}.myshopify.com/cart/add?id=${selectedVariant.shopifyId}&quantity=1`;
+    // Limpiamos el carrito y agregamos 1 unidad del variant seleccionado
+    const cartUrl = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${selectedVariant.shopifyId}%26quantity=1`;
     window.location.href = cartUrl;
   };
 
