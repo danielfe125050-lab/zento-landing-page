@@ -207,9 +207,32 @@ export default function Hero() {
             {/* Contador de Urgencia */}
             <CheckoutCountdown />
 
-            <button onClick={handleCheckout} className="btn-primary py-4 text-xl w-full text-center mt-4 text-main">
-              COMPRAR AHORA →
-            </button>
+            {/* Selector de Cantidad (Estético y funcional) */}
+            <div className="flex items-center gap-4 mt-6">
+              <div className="flex items-center bg-surface border border-primary/20 rounded-xl overflow-hidden h-14">
+                <button 
+                  type="button"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="px-4 h-full text-main font-bold hover:bg-primary/10 hover:text-primary transition-colors flex items-center justify-center"
+                >
+                  <Minus size={18} />
+                </button>
+                <div className="w-12 text-center text-main font-black text-lg">
+                  {quantity}
+                </div>
+                <button 
+                  type="button"
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="px-4 h-full text-main font-bold hover:bg-primary/10 hover:text-primary transition-colors flex items-center justify-center"
+                >
+                  <Plus size={18} />
+                </button>
+              </div>
+              
+              <button onClick={handleCheckout} className="btn-primary py-4 text-xl flex-1 text-center text-main h-14">
+                COMPRAR AHORA →
+              </button>
+            </div>
 
             {/* Sellos de Confianza (Trust Badges) */}
             <div className="grid grid-cols-2 gap-4 mt-6">

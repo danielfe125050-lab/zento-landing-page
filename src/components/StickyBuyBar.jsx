@@ -5,6 +5,7 @@ import { productData } from '../data/product';
 export default function StickyBuyBar() {
   const [show, setShow] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState(productData.variants[0]); // Lite default para la barra
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,10 +33,10 @@ export default function StickyBuyBar() {
       // 1. Vaciar el carrito silenciosamente
       await fetch(`https://${domain}.myshopify.com/cart/clear.js`, { method: 'POST' });
       
-      // 2. Añadir 1 unidad silenciosamente (StickyBar siempre es 1 en cantidad base)
+      // 2. Añadir la cantidad elegida silenciosamente
       const formData = new FormData();
       formData.append('id', selectedVariant.shopifyId);
-      formData.append('quantity', 1);
+      formData.append('quantity', quantity);
       
       await fetch(`https://${domain}.myshopify.com/cart/add.js`, {
         method: 'POST',
@@ -46,7 +47,7 @@ export default function StickyBuyBar() {
       window.location.href = `https://${domain}.myshopify.com/cart`;
     } catch (error) {
       // Fallback seguro
-      window.location.href = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${selectedVariant.shopifyId}%26quantity=1`;
+      window.location.href = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${selectedVariant.shopifyId}%26quantity=${quantity}`;
     }
   };
 
@@ -69,11 +70,31 @@ export default function StickyBuyBar() {
             </div>
           </div>
 
-          {/* Dropdown y Botón */}
-          <div className="flex w-full sm:w-auto items-center gap-3">
-             <div className="relative">
+            <div className="flex w-full sm:w-auto items-center gap-3">
+              {/* Selector de Cantidad Sticky */}
+              <div className="flex items-center bg-surface border border-primary/20 rounded-lg overflow-hidden h-full">
+                <button 
+                  type="button"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="px-3 py-3 text-main font-bold hover:bg-primary/10 transition-colors"
+                >
+                  -
+                </button>
+                <div className="w-6 text-center text-main font-bold text-sm">
+                  {quantity}
+                </div>
+                <button 
+                  type="button"
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="px-3 py-3 text-main font-bold hover:bg-primary/10 transition-colors"
+                >
+                  +
+                </button>
+              </div>
+
+             <div className="relative h-full">
                 <select 
-                  className="appearance-none bg-surface border border-primary/20 text-main text-xs font-bold rounded-lg pl-4 pr-10 py-3 focus:outline-none focus:ring-2 focus:ring-primary h-full cursor-pointer"
+                  className="appearance-none bg-surface border border-primary/20 text-main text-xs font-bold rounded-lg pl-3 pr-8 py-3 focus:outline-none focus:ring-2 focus:ring-primary h-full cursor-pointer"
                   value={selectedVariant.id}
                   onChange={(e) => setSelectedVariant(productData.variants.find(v => v.id === e.target.value))}
                 >
@@ -88,7 +109,7 @@ export default function StickyBuyBar() {
 
             <button 
               onClick={handleCheckout}
-              className="bg-primary hover:bg-primary-hover text-white font-bold py-3 px-6 rounded-lg shadow-lg flex-1 sm:flex-none transition-colors flex items-center justify-center gap-2 animate-pulse-soft"
+              className="bg-primary hover:bg-primary-hover text-white font-bold py-3 px-6 rounded-lg shadow-lg flex-1 sm:flex-none transition-colors flex items-center justify-center gap-2 animate-pulse-soft whitespace-nowrap"
             >
               COMPRAR AHORA
             </button>
