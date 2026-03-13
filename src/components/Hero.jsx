@@ -20,9 +20,10 @@ export default function Hero() {
   const handleCheckout = (e) => {
     e.preventDefault();
     const domain = productData.storeDomain;
-    // Limpiamos el carrito primero y luego agregamos el producto seleccionado
-    const cartUrl = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${selectedVariant.shopifyId}%26quantity=${quantity}`;
-    window.location.href = cartUrl;
+    // En lugar del carrito (que usa AJAX inestable), mandamos al cliente directo a la página de la crema
+    // con el tratamiento específico ya pre-seleccionado, para que Releasit nunca desaparezca.
+    const productUrl = `https://${domain}.myshopify.com/products/crema-realce-de-gluteos-reafirmante?variant=${selectedVariant.shopifyId}`;
+    window.location.href = productUrl;
   };
 
   const [activeImg, setActiveImg] = useState(0);
