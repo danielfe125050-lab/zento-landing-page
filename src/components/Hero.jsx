@@ -8,14 +8,9 @@ import CheckoutCountdown from './CheckoutCountdown';
 export default function Hero() {
   const [selectedVariant, setSelectedVariant] = useState(productData.variants[1]); // Default to PRO
   const [quantity, setQuantity] = useState(1);
-  const [addons, setAddons] = useState({ 'addon-modos': true, 'addon-regulador': true });
   const [openHeroFaq, setOpenHeroFaq] = useState(null);
 
   const formatCurrency = (val) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(val);
-
-  const toggleAddon = (id) => {
-    setAddons(prev => ({ ...prev, [id]: !prev[id] }));
-  };
 
   const handleCheckout = async (e) => {
     e.preventDefault();
@@ -180,29 +175,7 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* Addons Section */}
-            <div className="bg-surface p-4 rounded-xl border border-primary/10">
-              <div className="text-xs font-bold text-accent uppercase mb-3 flex items-center gap-2">
-                <Zap size={14} fill="currentColor" /> Oferta Exclusiva
-              </div>
-              {productData.addons.map((addon) => (
-                <div key={addon.id} className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <img src={addon.image} alt={addon.name} className="w-10 h-10 rounded-lg object-cover" />
-                    <div>
-                      <div className="font-bold text-main text-sm">{addon.name}</div>
-                      <div className="text-accent font-bold text-[10px] px-2 bg-white rounded-full border border-primary/20 inline-block">GRATIS SOLO HOY</div>
-                    </div>
-                  </div>
-                  <button 
-                    onClick={() => toggleAddon(addon.id)}
-                    className={`w-10 h-5 rounded-full p-0.5 transition-colors ${addons[addon.id] ? 'bg-accent' : 'bg-gray-200'}`}
-                  >
-                    <div className={`bg-white w-4 h-4 rounded-full shadow-sm transform transition-transform ${addons[addon.id] ? 'translate-x-5' : 'translate-x-0'}`}></div>
-                  </button>
-                </div>
-              ))}
-            </div>
+
 
             {/* Contador de Urgencia */}
             <CheckoutCountdown />
