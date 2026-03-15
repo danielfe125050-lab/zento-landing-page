@@ -4,8 +4,8 @@ export const productData = {
   price: 70000,
   compareAtPrice: 100000,
   discount: "40%",
-  storeDomain: "1u6mxj-j0",
-  checkoutUrl: "https://1u6mxj-j0.myshopify.com/cart/",
+  storeDomain: "zentobuy",
+  checkoutUrl: "https://zentobuy.myshopify.com/cart/",
   variants: [
     {
       id: "1-tubo",
