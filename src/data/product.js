@@ -1,18 +1,18 @@
 export const productData = {
   name: "Combo Truly + Uro: Cuidado Íntimo Integral",
   subtitle: "Una rutina íntima, integral, diseñada por mujeres y para mujeres. Este combo combina el poder del aceite hidratante/despigmentante con un suplemento especializado en fortalecer tu salud urinaria.",
-  price: 140000,
-  compareAtPrice: 190000,
-  discount: "26%",
+  price: 109900,
+  compareAtPrice: 239900,
+  discount: "54%",
   storeDomain: "zentobuy",
   checkoutUrl: "https://zentobuy.myshopify.com/cart/",
   variants: [
     {
       id: "combo-truly-uro",
       name: "Combo Truly + Uro (Cuidado Integral)",
-      price: 140000,
-      compareAtPrice: 190000,
-      shopifyId: "7991346430070"
+      price: 109900,
+      compareAtPrice: 239900,
+      shopifyId: "43200208207990"
     }
   ],
   addons: [],
