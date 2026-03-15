@@ -113,12 +113,12 @@ export default function Hero() {
           </button>
 
           {/* Payment Badges */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10 opacity-70">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard" className="h-6 object-contain" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" className="h-4 object-contain mt-1" />
-            <img src="https://seeklogo.com/images/M/mercado-pago-logo-62C0D43339-seeklogo.com.png" alt="Mercado Pago" className="h-6 object-contain" />
-            <img src="https://seeklogo.com/images/B/bancolombia-logo-646C0B820D-seeklogo.com.png" alt="Bancolombia" className="h-6 object-contain" />
-            <img src="https://seeklogo.com/images/N/nequi-logo-0E9E609C6F-seeklogo.com.png" alt="Nequi" className="h-6 object-contain" />
+          <div className="flex flex-wrap justify-center gap-4 mb-10 opacity-80">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/200px-MasterCard_Logo.svg.png" alt="Mastercard" className="h-6 object-contain" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png" alt="Visa" className="h-4 object-contain mt-1" />
+            <img src="https://logotiposenvector.com/wp-content/uploads/2023/11/mercado-pago-logo.webp" alt="Mercado Pago" className="h-6 object-contain" />
+            <img src="https://brandingforyou.com/wp-content/uploads/2023/04/Logo-Bancolombia-Secundario.png" alt="Bancolombia" className="h-6 object-contain" />
+            <img src="https://www.nequi.com.co/wp-content/uploads/2023/02/nequi-logo.png" alt="Nequi" className="h-6 object-contain" />
           </div>
 
           {/* Guarantee Section */}
