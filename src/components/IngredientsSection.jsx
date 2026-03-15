@@ -4,24 +4,24 @@ import { motion } from 'framer-motion';
 export default function IngredientsSection() {
   const ingredients = [
     {
-      name: "Cafeína Pura",
-      benefit: "Estimula la circulación y quema de grasa localizada.",
-      icon: "☕"
+      name: "Aceite de Coco y Vitamina E",
+      benefit: "Hidratación profunda y suavidad para tu piel.",
+      icon: "🥥"
     },
     {
-      name: "Colágeno Hidrolizado",
-      benefit: "Devuelve la elasticidad y firmeza a las capas profundas.",
-      icon: "🧬"
+      name: "Peptidos y Ácido Hialurónico",
+      benefit: "Fortalece la barrera de la piel y mejora su elasticidad.",
+      icon: "💧"
     },
     {
-      name: "Elastina",
-      benefit: "Tensa los tejidos para ese efecto 'push-up' inmediato.",
-      icon: "✨"
+      name: "Probióticos Activos",
+      benefit: "Equilibra la flora natural y protege desde adentro.",
+      icon: "🌸"
     },
     {
-      name: "Extractos Naturales",
-      benefit: "Hidratación intensa y nutrición celular sin químicos agresivos.",
-      icon: "🌿"
+      name: "Arándano Rojo (Cranberry)",
+      benefit: "Prevención natural y bienestar para tu sistema urinario.",
+      icon: "🍒"
     }
   ];
 

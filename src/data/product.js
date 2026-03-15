@@ -1,8 +1,10 @@
 export const productData = {
-  name: "Combo Truly + Uro: Cuidado Íntimo Integral",
-  subtitle: "Una rutina íntima, integral, diseñada por mujeres y para mujeres. Este combo combina el poder del aceite hidratante/despigmentante con un suplemento especializado en fortalecer tu salud urinaria.",
+  name: "Truly Soft Serve 🍓 URO Probiotics 🌸",
+  subtitle: "Cuidado íntimo completo por dentro y por fuera. Piel sedosa y radiante, aclara zonas íntimas oscuras y elimina olores no deseados.",
+  socialProof: "+36.953 CLIENTES SATISFECHOS",
   price: 109900,
   compareAtPrice: 239900,
+  savings: 130000,
   discount: "54%",
   storeDomain: "zentobuy",
   checkoutUrl: "https://zentobuy.myshopify.com/cart/",

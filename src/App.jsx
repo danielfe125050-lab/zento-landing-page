@@ -28,13 +28,10 @@ function App() {
       <LogisticsSection />
       <EmotionalSection />
       <IngredientsSection />
-      <ResultsSection />
       <UsageSection />
       <HowItWorks />
       <ComparisonSection />
       <Benefits />
-      <BonusOffer />
-      <UGCGallery />
       <Testimonials />
       <FaqSection />
       <GuaranteeSection />

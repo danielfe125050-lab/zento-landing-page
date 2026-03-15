@@ -33,17 +33,17 @@ export default function EmotionalSection() {
             className="w-full md:w-1/2"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Recupera la firmeza y siéntete <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">increíble en tu propia piel</span>
+              Siente la frescura y <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">la confianza que mereces</span>
             </h2>
-            <div className="space-y-6 text-main-muted text-lg leading-relaxed">
+            <div className="space-y-6 text-main-muted text-lg leading-relaxed text-left">
               <p>
-                Hay noches en las que solo quieres desconectar del ruido, bajar el ritmo y sentir paz de verdad.
+                Tu bienestar íntimo es fundamental para sentirte bien contigo misma todos los días. Un equilibrio que viene desde adentro y se refleja afuera.
               </p>
               <p>
-                Zento transforma tu rutina diaria en un momento de autocuidado, mejorando la firmeza y textura de tu piel.
+                El combo Truly + Uro ha sido diseñado por mujeres para mujeres, entendiendo que el cuidado de nuestra zona más delicada requiere ingredientes puros y suaves.
               </p>
               <p>
-                No es solo una crema — es esa sensación de cuidarte, nutrir tu cuerpo y ver resultados reales. Un pequeño ritual que te da confianza todos los días.
+                No es solo una rutina — es un acto de amor propio que te brinda frescura prolongada y una piel más uniforme y equilibrada.
               </p>
             </div>
           </motion.div>

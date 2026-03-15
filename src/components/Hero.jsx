@@ -1,248 +1,199 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, Star, Plus, Minus, ShieldCheck, Zap, Monitor, Wrench, Truck, Headset, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, ShieldCheck, Truck, ShoppingCart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { productData } from '../data/product';
-import CheckoutCountdown from './CheckoutCountdown';
-
 
 export default function Hero() {
-  const [selectedVariant, setSelectedVariant] = useState(productData.variants[0]); // Default to PRO
   const [quantity, setQuantity] = useState(1);
-  const [openHeroFaq, setOpenHeroFaq] = useState(null);
 
   const formatCurrency = (val) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(val);
 
   const handleCheckout = async (e) => {
     e.preventDefault();
     const domain = productData.storeDomain;
+    const variantId = productData.variants[0].shopifyId;
     
     try {
-      // 1. Vaciar el carrito silenciosamente
       await fetch(`https://${domain}.myshopify.com/cart/clear.js`, { method: 'POST' });
-      
-      // 2. Añadir el nuevo producto silenciosamente
       const formData = new FormData();
-      formData.append('id', selectedVariant.shopifyId);
+      formData.append('id', variantId);
       formData.append('quantity', quantity);
       
       await fetch(`https://${domain}.myshopify.com/cart/add.js`, {
         method: 'POST',
         body: formData
       });
-      
-      // 3. Ir al carrito limpio (Releasit cargará perfecto sin confundirse)
       window.location.href = `https://${domain}.myshopify.com/cart`;
     } catch (error) {
-      // Fallback seguro
-      window.location.href = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${selectedVariant.shopifyId}%26quantity=${quantity}`;
+      window.location.href = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${variantId}%26quantity=${quantity}`;
     }
   };
 
-  const [activeImg, setActiveImg] = useState(0);
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 8, seconds: 9 });
 
-  const nextImg = () => setActiveImg((prev) => (prev + 1) % productData.images.length);
-  const prevImg = () => setActiveImg((prev) => (prev - 1 + productData.images.length) % productData.images.length);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        if (prev.hours > 0) return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        return prev;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden pt-0 pb-12 bg-white">
-      {/* Soft Pink Background Glows */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2"></div>
-
-      <div className="container relative z-10 flex flex-col lg:flex-row items-center gap-12">
-        {/* Carousel Visual Element - Left on Desktop */}
-        <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="w-full lg:w-1/2 relative group"
-        >
-           <div className="relative aspect-[4/5] md:aspect-[2/3] max-h-[60vh] md:max-h-none overflow-hidden">
-              <motion.img 
-                key={activeImg}
-                src={productData.images[activeImg]} 
-                alt={productData.name} 
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="w-full h-full object-cover"
-              />
-              
-              {/* Navigation Arrows */}
-              <button 
-                onClick={prevImg}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg text-primary transition-all opacity-0 group-hover:opacity-100"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                onClick={nextImg}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg text-primary transition-all opacity-0 group-hover:opacity-100"
-              >
-                <ChevronRight size={24} />
-              </button>
-
-              {/* Badges Overlay */}
-              <div className="absolute bottom-4 left-4 flex flex-col gap-2">
-                <div className="bg-primary text-main text-[10px] font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
-                  Envío Gratis
-                </div>
-                <div className="bg-white/90 text-main text-[10px] font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
-                  Resultados Reales
-                </div>
-              </div>
-           </div>
-
-           {/* Thumbnails */}
-           <div className="flex gap-2 mt-4 justify-center overflow-x-auto py-2">
-              {productData.images.map((img, idx) => (
-                <button 
-                  key={idx}
-                  onClick={() => setActiveImg(idx)}
-                  className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${activeImg === idx ? 'border-primary scale-110 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'}`}
-                >
-                  <img src={img} alt="Thumb" className="w-full h-full object-contain p-1 bg-white" />
-                </button>
-              ))}
-           </div>
-        </motion.div>
-
-        {/* Text and Purchase Content */}
-        <motion.div 
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full lg:w-1/2 flex flex-col gap-6"
-        >
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-accent border border-primary/20 px-4 py-1.5 rounded-full text-sm font-bold w-max mb-2 mt-4">
-            <Star size={16} fill="currentColor" /> MÁS VENDIDO EN COLOMBIA
+    <section className="bg-[#fcfaf2] pt-8 pb-16">
+      <div className="container px-4 flex flex-col lg:flex-row items-start gap-12">
+        
+        {/* Left: Image Box */}
+        <div className="w-full lg:w-1/2 flex justify-center">
+          <div className="relative w-full max-w-lg aspect-square bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 p-8">
+            <img 
+              src={productData.images[0]} 
+              alt={productData.name} 
+              className="w-full h-full object-contain"
+            />
           </div>
-          
-          <div className="flex flex-col items-center lg:items-start pt-12 md:pt-0">
-            <h1 className="text-4xl sm:text-6xl font-black mb-1 leading-tight tracking-tight text-main text-center lg:text-left">
-              {productData.name}
-            </h1>
-          </div>
-          
-          <p className="text-lg sm:text-xl text-main-muted font-medium mb-2 leading-relaxed">
-            {productData.subtitle}
-          </p>
+        </div>
 
-          <div className="flex items-center gap-2 mb-4">
-            <div className="flex text-accent">
-              <Star fill="currentColor" size={18} /><Star fill="currentColor" size={18} /><Star fill="currentColor" size={18} /><Star fill="currentColor" size={18} /><Star fill="currentColor" size={18} />
+        {/* Right: Info Box */}
+        <div className="w-full lg:w-1/2 flex flex-col">
+          <h1 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-4 tracking-tight">
+            Truly Soft Serve 🍓 URO Probiotics 🌸
+          </h1>
+
+          <div className="flex items-center gap-2 mb-6">
+            <div className="flex text-yellow-500">
+              <Star fill="currentColor" size={16} />
+              <Star fill="currentColor" size={16} />
+              <Star fill="currentColor" size={16} />
+              <Star fill="currentColor" size={16} />
+              <Star fill="currentColor" size={16} />
             </div>
-            <span className="text-main font-bold">4.9/5</span>
-            <span className="text-main-muted text-sm font-medium">(+5,000 Clientes Felices)</span>
+            <span className="text-[11px] font-black text-gray-700 uppercase tracking-wider">
+              {productData.socialProof}
+            </span>
           </div>
 
-          {/* Interactive Pricing/Variant Box */}
-          <div className="glass p-6 rounded-2xl border border-primary/10 relative space-y-5">
-            {/* Variants */}
-            <div className="space-y-3">
-              <label className="text-sm font-bold text-main-muted uppercase tracking-wider">Selecciona tu tratamiento:</label>
-              {productData.variants.map((variant) => (
-                <div 
-                  key={variant.id}
-                  onClick={() => setSelectedVariant(variant)}
-                  className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all flex justify-between items-center ${
-                    selectedVariant.id === variant.id 
-                      ? 'border-primary bg-primary/5 shadow-md' 
-                      : 'border-gray-100 bg-white hover:border-primary/30'
-                  }`}
-                >
-                  {variant.popular && (
-                    <div className="absolute -top-3 right-4 bg-accent text-main text-[10px] font-bold px-3 py-1 rounded shadow-lg uppercase">
-                      Más Popular
-                    </div>
-                  )}
-                  <div className="flex items-center gap-3">
-                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedVariant.id === variant.id ? 'border-primary' : 'border-gray-300'}`}>
-                      {selectedVariant.id === variant.id && <div className="w-2.5 h-2.5 bg-primary rounded-full"></div>}
-                    </div>
-                    <div>
-                      <div className="font-bold text-main">
-                        {variant.name}
-                      </div>
-                      {variant.description && <div className="text-xs text-main-muted">{variant.description}</div>}
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="font-bold text-main">{formatCurrency(variant.price)}</div>
-                    <div className="text-xs text-main-muted line-through">{formatCurrency(variant.compareAtPrice)}</div>
-                  </div>
-                </div>
-              ))}
+          <div className="space-y-2 mb-8 text-left">
+            <div className="flex items-center gap-2 text-sm font-bold text-gray-800">
+              <span className="text-pink-400">💗</span> Piel sedosa y radiante
             </div>
-
-
-
-            {/* Contador de Urgencia */}
-            <CheckoutCountdown />
-
-            {/* Selector de Cantidad (Estético y funcional) */}
-            <div className="flex items-center gap-4 mt-6">
-              <div className="flex items-center bg-surface border border-primary/20 rounded-xl overflow-hidden h-14">
-                <button 
-                  type="button"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-4 h-full text-main font-bold hover:bg-primary/10 hover:text-primary transition-colors flex items-center justify-center"
-                >
-                  <Minus size={18} />
-                </button>
-                <div className="w-12 text-center text-main font-black text-lg">
-                  {quantity}
-                </div>
-                <button 
-                  type="button"
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="px-4 h-full text-main font-bold hover:bg-primary/10 hover:text-primary transition-colors flex items-center justify-center"
-                >
-                  <Plus size={18} />
-                </button>
-              </div>
-              
-              <button onClick={handleCheckout} className="btn-primary py-4 text-xl flex-1 text-center text-main h-14">
-                COMPRAR AHORA →
-              </button>
+            <div className="flex items-center gap-2 text-sm font-bold text-gray-800">
+              <span className="text-yellow-500">✨</span> Aclara zonas íntimas oscuras
             </div>
-
-            {/* Sellos de Confianza (Trust Badges) */}
-            <div className="grid grid-cols-2 gap-4 mt-6">
-              <div className="flex items-center gap-3 bg-surface-light/50 p-3 rounded-xl border border-primary/10">
-                <div className="text-primary"><ShieldCheck size={20} /></div>
-                <span className="text-[10px] font-bold text-main uppercase leading-tight">Pago Contra Entrega</span>
-              </div>
-              <div className="flex items-center gap-3 bg-surface-light/50 p-3 rounded-xl border border-primary/10">
-                <div className="text-primary"><Truck size={20} /></div>
-                <span className="text-[10px] font-bold text-main uppercase leading-tight">Envío Gratis</span>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-center gap-2 mt-2 text-xs text-main-muted">
-              <ShieldCheck size={16} className="text-accent" />
-              <span>Garantía de Satisfacción. Pago Contra Entrega.</span>
+            <div className="flex items-center gap-2 text-sm font-bold text-gray-800">
+              <span className="text-green-500">🍃</span> Elimina olores no deseados
             </div>
           </div>
 
-          {/* Mini FAQ Block */}
-          <div className="space-y-2 mt-2">
-            {productData.heroFaqs.slice(0, 3).map((faq) => (
-              <div key={faq.id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-surface transition-colors cursor-pointer group" onClick={() => setOpenHeroFaq(openHeroFaq === faq.id ? null : faq.id)}>
-                <div className="p-2 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                  <Star size={16} />
+          <div className="flex items-center gap-4 mb-8">
+            <span className="text-4xl font-black text-[#22c55e]">
+              {formatCurrency(productData.price)}
+            </span>
+            <span className="text-xl font-bold text-gray-400 line-through">
+              {formatCurrency(productData.compareAtPrice)}
+            </span>
+            <div className="bg-red-600 text-white text-[10px] font-black px-3 py-1.5 rounded flex items-center gap-1 uppercase italic shadow-sm">
+              <ShoppingCart size={12} fill="currentColor" /> AHORRA {formatCurrency(productData.savings)}
+            </div>
+          </div>
+
+          {/* Green CTA Button */}
+          <button 
+            onClick={handleCheckout}
+            className="w-full bg-[#16da16] hover:bg-[#12b912] text-white py-4 rounded-xl shadow-lg transition-all transform hover:scale-[1.02] flex flex-col items-center justify-center gap-1 mb-8"
+          >
+            <span className="text-xl font-black uppercase tracking-wide flex items-center gap-2">
+              <ShoppingCart size={24} fill="white" /> PEDIR CONTRAENTREGA
+            </span>
+            <span className="text-xs font-bold opacity-90">👉 ¡Envío Gratis! 👈</span>
+          </button>
+
+          {/* Payment Badges */}
+          <div className="flex flex-wrap justify-center gap-3 mb-10 opacity-70">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard" className="h-6 object-contain" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" className="h-4 object-contain mt-1" />
+            <img src="https://seeklogo.com/images/M/mercado-pago-logo-62C0D43339-seeklogo.com.png" alt="Mercado Pago" className="h-6 object-contain" />
+            <img src="https://seeklogo.com/images/B/bancolombia-logo-646C0B820D-seeklogo.com.png" alt="Bancolombia" className="h-6 object-contain" />
+            <img src="https://seeklogo.com/images/N/nequi-logo-0E9E609C6F-seeklogo.com.png" alt="Nequi" className="h-6 object-contain" />
+          </div>
+
+          {/* Guarantee Section */}
+          <div className="flex items-center gap-4 mb-10 border-t border-gray-200 pt-8">
+            <img 
+              src="https://cdn-icons-png.flaticon.com/512/2150/2150150.png" 
+              alt="Garantía" 
+              className="w-16 h-16 object-contain"
+            />
+            <p className="text-xs leading-relaxed text-gray-700 font-medium text-left">
+              <strong className="text-gray-900 block mb-1 uppercase tracking-tighter">Garantía de 30 días</strong>
+              Tu compra es <span className="underline font-bold text-gray-900">100% segura</span>, si el producto no satisface tus necesidades o tiene reacciones inesperadas (en 30 días), <span className="underline font-bold text-gray-900 cursor-pointer">Te devolvemos tu dinero</span>
+            </p>
+          </div>
+
+          {/* Timeline Section */}
+          <div className="relative mb-12 px-2">
+            <div className="absolute top-5 left-10 right-10 h-0.5 bg-gray-200 -z-0"></div>
+            <div className="relative z-10 flex justify-between gap-2">
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center">
+                  <ShoppingCart size={18} />
                 </div>
-                <div>
-                  <div className="font-bold text-sm text-main flex items-center justify-between">
-                    {faq.question}
-                    <ChevronDown size={14} className={`transition-transform ${openHeroFaq === faq.id ? 'rotate-180' : ''}`} />
-                  </div>
-                  {openHeroFaq === faq.id && <p className="text-xs text-main-muted mt-1 animate-fade">{faq.answer}</p>}
+                <div className="text-center">
+                  <div className="text-[10px] font-bold text-gray-900 leading-tight">Domingo, 15. Mar</div>
+                  <div className="text-[9px] text-gray-500 uppercase font-black">Ordenado</div>
                 </div>
               </div>
-            ))}
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center">
+                  <Truck size={18} />
+                </div>
+                <div className="text-center">
+                  <div className="text-[10px] font-bold text-gray-900 leading-tight">Lunes, 16. Mar</div>
+                  <div className="text-[9px] text-gray-500 uppercase font-black tracking-tighter">Orden Despachada</div>
+                </div>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center">
+                  <ShieldCheck size={18} />
+                </div>
+                <div className="text-center">
+                  <div className="text-[10px] font-bold text-gray-900 leading-tight">Viernes, 20. Mar</div>
+                  <div className="text-[9px] text-gray-500 uppercase font-black">Entregado</div>
+                </div>
+              </div>
+            </div>
           </div>
-        </motion.div>
+
+          {/* Final Countdown Section */}
+          <div className="flex flex-col items-center gap-4 bg-gray-100/50 p-6 rounded-2xl border border-gray-200/50">
+            <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">La oferta termina en:</p>
+            <div className="flex gap-4">
+              <div className="flex flex-col items-center">
+                <div className="w-14 h-14 rounded-full bg-gray-600 flex flex-col items-center justify-center text-white font-black leading-none shadow-lg">
+                  <span className="text-2xl tracking-tighter">00</span>
+                </div>
+                <span className="text-[8px] font-bold text-gray-400 mt-2 uppercase">horas</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-14 h-14 rounded-full bg-gray-600 flex flex-col items-center justify-center text-white font-black leading-none shadow-lg">
+                  <span className="text-2xl tracking-tighter">{timeLeft.minutes.toString().padStart(2, '0')}</span>
+                </div>
+                <span className="text-[8px] font-bold text-gray-400 mt-2 uppercase">minutos</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-14 h-14 rounded-full bg-gray-600 flex flex-col items-center justify-center text-white font-black leading-none shadow-lg">
+                  <span className="text-2xl tracking-tighter">{timeLeft.seconds.toString().padStart(2, '0')}</span>
+                </div>
+                <span className="text-[8px] font-bold text-gray-400 mt-2 uppercase">segundos</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

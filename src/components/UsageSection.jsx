@@ -5,18 +5,18 @@ export default function UsageSection() {
   const steps = [
     {
       step: "01",
-      title: "Limpia y Seca",
-      desc: "Asegúrate que la piel esté limpia después de tu ducha diaria."
+      title: "Truly: Exterior",
+      desc: "Aplica diariamente el aceite Truly en tu zona íntima externa tras el baño para hidratar y tonificar."
     },
     {
       step: "02",
-      title: "Masaje Circular",
-      desc: "Aplica una cantidad generosa y masajea de forma circular ascendente."
+      title: "Uro: Interior",
+      desc: "Toma 1 o 2 cápsulas de Uro al día con abundante agua para fortalecer tu sistema urinario."
     },
     {
       step: "03",
-      title: "Deja Absorber",
-      desc: "Su fórmula de rápida absorción no mancha tu ropa. ¡Lista para brillar!"
+      title: "Bienestar Total",
+      desc: "Siente la frescura prolongada y la confianza de un cuidado íntimo completo y natural."
     }
   ];
 
