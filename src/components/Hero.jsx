@@ -6,7 +6,7 @@ import CheckoutCountdown from './CheckoutCountdown';
 
 
 export default function Hero() {
-  const [selectedVariant, setSelectedVariant] = useState(productData.variants[1]); // Default to PRO
+  const [selectedVariant, setSelectedVariant] = useState(productData.variants[0]); // Default to PRO
   const [quantity, setQuantity] = useState(1);
   const [openHeroFaq, setOpenHeroFaq] = useState(null);
 
