@@ -18,12 +18,12 @@ export default function ComparisonSection() {
             className="w-full md:w-1/2 text-center md:text-left mt-8"
           >
             <h2 className="text-3xl md:text-4xl font-extrabold mb-6">
-              ¿Qué hace tan especial a Zento?
+              ¿Qué hace tan especial central a Grip Gym Pro?
             </h2>
             <div className="space-y-4 text-main-muted text-sm md:text-base mb-8 md:mb-0">
-              <p>La mayoría de cremas solo hidratan superficialmente.</p>
+              <p>La mayoría de los guantes o espumas se rompen y huelen mal.</p>
               <p>
-                Zento está formulada para penetrar profundamente, estimular el colágeno y proporcionar un efecto lifting real.
+                Grip Gym Pro está diseñado con materiales de alta resistencia que protegen tus manos en cada levantamiento sin limitar tu movimiento.
               </p>
             </div>
           </motion.div>
@@ -41,9 +41,9 @@ export default function ComparisonSection() {
               <div className="grid grid-cols-5 text-center items-end pb-3 pt-6 px-4">
                 <div className="col-span-2"></div>
                 <div className="col-span-2 font-black text-primary flex flex-col items-center justify-center">
-                   <div className="text-xl">Zento™</div>
+                   <div className="text-xl">Grip Gym Pro™</div>
                 </div>
-                <div className="col-span-1 font-bold text-main-muted text-sm italic">Otras Marcas</div>
+                <div className="col-span-1 font-bold text-main-muted text-sm italic">Otras Opciones</div>
               </div>
               
               {/* Rows */}

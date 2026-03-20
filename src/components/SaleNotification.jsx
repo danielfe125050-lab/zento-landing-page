@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart } from 'lucide-react';
 
 const cities = ["Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena", "Cúcuta", "Bucaramanga", "Pereira", "Santa Marta", "Ibagué", "Manizales"];
-const names = ["Claudia", "Marcela", "Yuliana", "Sandra", "Valentina", "Paola", "Ximena", "Lorena", "Andrea", "Camila", "Jessica"];
+const names = ["Carlos", "Daniel", "Mateo", "Sebastián", "Alejandro", "Andrés", "Juan", "Diego", "David", "Camilo", "Santiago"];
 
 export default function SaleNotification() {
   const [currentSale, setCurrentSale] = useState(null);
@@ -13,7 +13,9 @@ export default function SaleNotification() {
     const showNotification = () => {
       const name = names[Math.floor(Math.random() * names.length)];
       const city = cities[Math.floor(Math.random() * cities.length)];
-      const treatment = Math.random() > 0.5 ? "Tratamiento 3 Meses" : "Tratamiento 1 Mes";
+      
+      const rand = Math.random();
+      const treatment = rand > 0.7 ? "3 Pares de Grip Gym Pro" : (rand > 0.3 ? "2 Pares de Grip Gym Pro" : "1 Par de Grip Gym Pro");
       
       setCurrentSale({ name, city, treatment });
       setIsVisible(true);

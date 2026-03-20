@@ -6,13 +6,17 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'heading': ['"Fredoka"', 'sans-serif'],
+        'body': ['"Outfit"', 'sans-serif'],
+      },
       colors: {
-        primary: { DEFAULT: 'var(--primary)', hover: 'var(--primary-hover)' },
-        bg: 'var(--bg)',
-        surface: { DEFAULT: 'var(--surface)', light: 'var(--surface-light)' },
-        main: { DEFAULT: 'var(--text)', muted: 'var(--text-muted)' },
-        accent: 'var(--accent)',
-        danger: 'var(--danger)'
+        primary: { DEFAULT: '#000000', hover: '#333333' },
+        bg: '#ffffff',
+        surface: { DEFAULT: '#f7f7f7', light: '#e5e5e5' },
+        main: { DEFAULT: '#000000', muted: '#666666' },
+        accent: '#cccccc',
+        danger: '#ff4d4d'
       }
     },
   },

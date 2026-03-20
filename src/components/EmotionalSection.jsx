@@ -33,17 +33,17 @@ export default function EmotionalSection() {
             className="w-full md:w-1/2"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Siente la frescura y <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">la confianza que mereces</span>
+              Entrena al máximo y <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">olvídate del dolor</span>
             </h2>
             <div className="space-y-6 text-main-muted text-lg leading-relaxed text-left">
               <p>
-                Tu bienestar íntimo es fundamental para sentirte bien contigo misma todos los días. Un equilibrio que viene desde adentro y se refleja afuera.
+                Tus manos son tu principal herramienta en el gimnasio. Protegerlas es fundamental para rendir mejor y evitar lesiones en la piel.
               </p>
               <p>
-                El combo Truly + Uro ha sido diseñado por mujeres para mujeres, entendiendo que el cuidado de nuestra zona más delicada requiere ingredientes puros y suaves.
+                Grip Gym Pro ha sido diseñado por atletas para atletas, entendiendo que el agarre perfecto requiere protección total y ergonomía.
               </p>
               <p>
-                No es solo una rutina — es un acto de amor propio que te brinda frescura prolongada y una piel más uniforme y equilibrada.
+                No dejes que los callos limiten tus repeticiones — entrena más duro, por más tiempo, sin sacrificar tus manos.
               </p>
             </div>
           </motion.div>

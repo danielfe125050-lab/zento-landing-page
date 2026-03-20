@@ -58,14 +58,14 @@ export default function StickyBuyBar() {
           
           {/* Info del producto */}
           <div className="hidden sm:flex items-center gap-4">
-            <img src={productData.images[0]} alt={productData.name} className="w-12 h-12 object-cover rounded-lg border border-primary/10" />
+            <img src={selectedVariant.image || productData.images[0]} alt={productData.name} className="w-12 h-12 object-contain rounded-lg border border-primary/10" />
             <div>
-              <div className="font-bold text-main flex items-center gap-2 text-sm">
-                Zento™ <span className="bg-accent text-white text-[8px] uppercase font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm"><Zap size={8} fill="currentColor"/> SAVE 40%</span>
+              <div className="font-heading font-black text-black flex items-center gap-2 text-sm uppercase tracking-tight">
+                GRIP GYM PRO <span className="bg-black text-white text-[8px] uppercase font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm"><Zap size={8} fill="currentColor"/> SAVE {productData.discount}</span>
               </div>
-              <div className="flex items-center gap-2 text-xs">
-                <span className="font-bold text-accent">{formatCurrency(selectedVariant.price)}</span>
-                <span className="text-main-muted line-through">{formatCurrency(selectedVariant.compareAtPrice)}</span>
+              <div className="flex items-center gap-2 text-xs font-bold">
+                <span className="text-black">{formatCurrency(selectedVariant.price)}</span>
+                <span className="text-gray-400 line-through">{formatCurrency(selectedVariant.compareAtPrice)}</span>
               </div>
             </div>
           </div>

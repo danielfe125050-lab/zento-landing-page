@@ -13,37 +13,37 @@ import SaleNotification from './components/SaleNotification';
 import GuaranteeSection from './components/GuaranteeSection';
 import Navbar from './components/Navbar';
 import ResultsSection from './components/ResultsSection';
-import UsageSection from './components/UsageSection';
-import IngredientsSection from './components/IngredientsSection';
 import BonusOffer from './components/BonusOffer';
 import LogisticsSection from './components/LogisticsSection';
 import UGCGallery from './components/UGCGallery';
+import VideoSection from './components/VideoSection';
+import ExitIntentPopup from './components/ExitIntentPopup';
 
 function App() {
   return (
-    <div className="min-h-screen relative font-sans scroll-smooth text-main">
+    <div className="min-h-screen relative font-body scroll-smooth text-main bg-white">
+      <ExitIntentPopup />
       <UrgencyBar />
       <Navbar />
       <Hero />
-      <LogisticsSection />
+      <VideoSection />
       <EmotionalSection />
-      <IngredientsSection />
-      <UsageSection />
       <HowItWorks />
-      <ComparisonSection />
       <Benefits />
       <Testimonials />
+      <UGCGallery />
       <FaqSection />
+      <ComparisonSection />
       <GuaranteeSection />
       
-      {/* Footer minimalista */}
-      <footer className="relative z-10 bg-surface-light/50 pt-24 pb-12 text-center text-main-muted text-sm px-4">
-        <img src="/img/zento/logo_zento.png" alt="Zento Logo" className="w-32 mx-auto mb-4" />
-        <p>© {new Date().getFullYear()} Todos los derechos reservados.</p>
-        <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs opacity-70">
-          <a href="#" className="hover:text-primary transition-colors">Políticas de Privacidad</a>
-          <a href="#" className="hover:text-primary transition-colors">Términos de Servicio</a>
-          <a href="#" className="hover:text-primary transition-colors">Políticas de Reembolso</a>
+      {/* Footer */}
+      <footer className="relative z-10 bg-black pt-24 pb-12 text-center text-white px-4 border-t border-gray-800">
+        <h2 className="text-4xl md:text-5xl font-heading font-black mb-6">GRIP GYM PRO</h2>
+        <p className="font-medium">© {new Date().getFullYear()} Grip Gym Pro. All rights reserved.</p>
+        <div className="flex flex-wrap justify-center gap-8 mt-8 text-sm font-bold uppercase tracking-widest opacity-80">
+          <a href="#" className="hover:opacity-60 transition-opacity">Privacy Policy</a>
+          <a href="#" className="hover:opacity-60 transition-opacity">Terms of Service</a>
+          <a href="#" className="hover:opacity-60 transition-opacity">Refund Policy</a>
         </div>
       </footer>
 

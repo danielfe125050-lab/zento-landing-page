@@ -4,9 +4,9 @@ import { Instagram, Heart } from 'lucide-react';
 
 export default function UGCGallery() {
   const photos = [
-    { src: "/img/zento/ugc_1.png", label: "@daniela_r" },
-    { src: "/img/zento/ugc_2.png", label: "Pedido recibido" },
-    { src: "/img/zento/ugc_3.png", label: "Día 15: Amando Zento" }
+    { src: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=500&h=500&fit=crop", label: "@camilo_lift" },
+    { src: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&h=500&fit=crop", label: "Envío recibido 🙌" },
+    { src: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=500&h=500&fit=crop", label: "Nuevo PR: 100kg" }
   ];
 
   return (
@@ -14,9 +14,9 @@ export default function UGCGallery() {
       <div className="container px-4">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1 rounded-full text-xs font-bold uppercase mb-4">
-            <Instagram size={14} /> Prueba Social Reales
+            <Instagram size={14} /> Atletas Reales
           </div>
-          <h2 className="text-3xl font-extrabold text-main uppercase tracking-tighter">Más de 5,000 Clientas Felices</h2>
+          <h2 className="text-3xl font-extrabold text-main uppercase tracking-tighter">Más de 10,000 Atletas Felices</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -40,7 +40,7 @@ export default function UGCGallery() {
         </div>
         
         <div className="mt-12 text-center">
-            <p className="text-main-muted text-sm italic italic">"Unete a la comunidad #ZentoLovers y comparte tus resultados"</p>
+            <p className="text-main-muted text-sm italic italic">"Unete a la comunidad #GripGymPro y cuida de tus manos"</p>
         </div>
       </div>
     </section>

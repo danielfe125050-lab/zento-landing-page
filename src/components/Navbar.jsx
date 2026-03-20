@@ -1,16 +1,30 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { User, ShoppingCart } from 'lucide-react';
 
 export default function Navbar() {
   return (
-    <nav className="bg-[#f0ede6]/50 border-b border-gray-200/50 py-3 overflow-x-auto whitespace-nowrap">
-      <div className="container px-4 flex justify-between items-center gap-8 text-[9px] md:text-[11px] font-bold text-gray-700 uppercase tracking-tighter">
-        <span>PRODUCTOS DE CALIDAD</span>
-        <span>100% NATURALES</span>
-        <span>30 DÍAS DE GARANTÍA</span>
-        <span>RECOMENDADO POR DERMATÓLOGOS</span>
-        <span className="hidden lg:inline">VIGILADOS POR LA DIAN - INVIMA - CAMARA DE COMERCIO</span>
-        <span className="text-gray-400">+9.000</span>
+    <nav className="bg-white py-4 px-6 sticky top-0 z-50 border-b border-gray-100">
+      <div className="max-w-[1400px] mx-auto flex justify-between items-center">
+        {/* Left Links */}
+        <div className="hidden md:flex items-center gap-8 text-black font-heading font-medium text-lg">
+          <a href="#" className="hover:opacity-70 transition-opacity">Shop</a>
+          <a href="#" className="hover:opacity-70 transition-opacity">Learn</a>
+          <a href="#" className="hover:opacity-70 transition-opacity">Subscribe</a>
+        </div>
+
+        {/* Center Logo */}
+        <div className="flex-shrink-0">
+          <h1 className="text-4xl md:text-5xl font-heading font-black text-black tracking-tight">
+            GRIP GYM PRO
+          </h1>
+        </div>
+
+        {/* Right Icons */}
+        <div className="flex items-center gap-6 text-black">
+          <a href="#" className="hidden md:block font-heading font-medium text-lg hover:opacity-70">Find In Store</a>
+          <a href="#" className="hover:opacity-70"><User size={24} /></a>
+          <a href="#" className="hover:opacity-70"><ShoppingCart size={24} /></a>
+        </div>
       </div>
     </nav>
   );

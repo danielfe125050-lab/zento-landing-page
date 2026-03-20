@@ -14,7 +14,7 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-main">¿Qué dicen nuestras clientas sobre Zento?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-main">¿Qué dicen nuestros clientes sobre Grip Gym Pro?</h2>
           <div className="flex items-center justify-center gap-2 text-xl font-medium">
             <span className="text-4xl font-black">4.9</span>
             <div className="flex text-accent">
