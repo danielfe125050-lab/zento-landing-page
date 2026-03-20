@@ -20,7 +20,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/orders', {
+      const response = await fetch('https://ai-dropshipping-ruddy.vercel.app/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
