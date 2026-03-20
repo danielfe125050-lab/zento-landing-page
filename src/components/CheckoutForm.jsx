@@ -68,19 +68,19 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
   }
 
   return (
-    <div className="bg-white p-8 rounded-[32px] shadow-2xl border border-gray-100">
+    <div className="bg-white p-5 sm:p-8 rounded-[32px] shadow-2xl border border-gray-100 w-full overflow-hidden">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-black text-black">CONFIRMA TU PEDIDO</h2>
+        <h2 className="text-xl sm:text-2xl font-black text-black">CONFIRMA TU PEDIDO</h2>
         <button onClick={onCancel} className="text-gray-400 hover:text-black">✖</button>
       </div>
 
-      <div className="bg-gray-50 p-4 rounded-2xl mb-8 flex justify-between items-center">
-        <div>
-          <p className="text-xs font-bold text-gray-400 uppercase">Paquete Seleccionado</p>
-          <p className="font-black text-black">{bundleTitle}</p>
+      <div className="bg-gray-50 p-4 rounded-2xl mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+        <div className="w-full">
+          <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase">Paquete Seleccionado</p>
+          <p className="font-black text-black truncate w-full">{bundleTitle}</p>
         </div>
-        <div className="text-right">
-          <p className="text-xs font-bold text-gray-400 uppercase">Total a Pagar</p>
+        <div className="text-left sm:text-right shrink-0">
+          <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase">Total a Pagar</p>
           <p className="font-black text-primary text-xl">{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(price)}</p>
         </div>
       </div>
@@ -134,7 +134,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
            <input 
              required
              type="text" 

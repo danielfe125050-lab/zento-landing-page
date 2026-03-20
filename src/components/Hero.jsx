@@ -114,7 +114,7 @@ export default function Hero() {
                 initial={{ x: 50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: -50, opacity: 0 }}
-                className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl max-w-[550px] w-full border border-gray-100"
+                className="bg-white rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-12 shadow-2xl max-w-full sm:max-w-[550px] w-full border border-gray-100 overflow-hidden box-border mx-auto"
               >
                 <h2 className="text-4xl md:text-5xl font-heading font-black text-black mb-2 leading-tight">
                   {productData.name}
@@ -165,24 +165,24 @@ export default function Hero() {
                       <button
                         key={bundle.id}
                         onClick={() => setSelectedBundle(bundle.id)}
-                        className={`relative w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center justify-between ${selectedBundle === bundle.id ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-gray-300'}`}
+                        className={`relative w-full text-left p-3 sm:p-4 rounded-2xl border-2 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-4 ${selectedBundle === bundle.id ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-gray-300'}`}
                       >
                         {bundle.isPopular && (
-                          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider whitespace-nowrap">
                             Más Popular
                           </div>
                         )}
-                        <div className="flex items-center gap-4">
-                          <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedBundle === bundle.id ? 'border-primary' : 'border-gray-300'}`}>
-                            {selectedBundle === bundle.id && <div className="w-3 h-3 bg-primary rounded-full"></div>}
+                        <div className="flex items-center gap-3 w-full sm:w-auto">
+                          <div className={`w-5 h-5 sm:w-6 sm:h-6 shrink-0 rounded-full border-2 flex items-center justify-center ${selectedBundle === bundle.id ? 'border-primary' : 'border-gray-300'}`}>
+                            {selectedBundle === bundle.id && <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-primary rounded-full"></div>}
                           </div>
-                          <div>
-                            <h3 className="font-bold text-black text-lg">{bundle.title}</h3>
-                            <p className="text-sm text-gray-500">{bundle.subtitle}</p>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-bold text-black text-base sm:text-lg truncate">{bundle.title}</h3>
+                            <p className="text-xs sm:text-sm text-gray-500 leading-tight truncate">{bundle.subtitle}</p>
                           </div>
                         </div>
-                        <div className="text-right">
-                           <span className="font-black text-lg text-black">{formatCurrency(bundle.price)}</span>
+                        <div className="text-left sm:text-right pl-8 sm:pl-0">
+                           <span className="font-black text-base sm:text-lg text-black">{formatCurrency(bundle.price)}</span>
                         </div>
                       </button>
                     ))}
