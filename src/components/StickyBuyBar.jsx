@@ -70,9 +70,9 @@ export default function StickyBuyBar() {
             </div>
           </div>
 
-            <div className="flex w-full sm:w-auto items-center gap-3">
+             <div className="flex w-full sm:w-auto items-center gap-2">
               {/* Selector de Cantidad Sticky */}
-              <div className="flex items-center bg-surface border border-primary/20 rounded-lg overflow-hidden h-full">
+              <div className="hidden sm:flex items-center bg-surface border border-primary/20 rounded-lg overflow-hidden h-full">
                 <button 
                   type="button"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -92,9 +92,9 @@ export default function StickyBuyBar() {
                 </button>
               </div>
 
-             <div className="relative h-full">
+             <div className="relative h-full flex-1 sm:flex-none">
                 <select 
-                  className="appearance-none bg-surface border border-primary/20 text-main text-xs font-bold rounded-lg pl-3 pr-8 py-3 focus:outline-none focus:ring-2 focus:ring-primary h-full cursor-pointer"
+                  className="appearance-none bg-surface border w-full border-primary/20 text-main text-xs font-bold rounded-lg pl-3 pr-8 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary h-full cursor-pointer"
                   value={selectedVariant.id}
                   onChange={(e) => setSelectedVariant(productData.variants.find(v => v.id === e.target.value))}
                 >
@@ -109,7 +109,7 @@ export default function StickyBuyBar() {
 
             <button 
               onClick={handleCheckout}
-              className="bg-primary hover:bg-primary-hover text-white font-bold py-3 px-6 rounded-lg shadow-lg flex-1 sm:flex-none transition-colors flex items-center justify-center gap-2 animate-pulse-soft whitespace-nowrap"
+              className="bg-primary hover:bg-primary-hover text-white font-bold py-3 px-4 sm:px-6 rounded-lg shadow-lg flex-1 sm:flex-none transition-colors flex items-center justify-center gap-2 animate-pulse-soft whitespace-nowrap text-sm sm:text-base"
             >
               COMPRAR AHORA
             </button>
