@@ -6,16 +6,20 @@ export const productData = {
   compareAtPrice: 69900,
   savings: 20000,
   discount: "28%",
-  storeDomain: "grip-gym", 
+  storeDomain: "zentobuy", 
   checkoutUrl: "/cart/",
   images: [
+    "/5.jpeg",
     "/1.jpeg",
     "/2.jpeg",
     "/3.jpeg",
-    "/4.jpeg"
+    "/4.jpeg",
+    "/6.jpeg"
   ],
   variants: [
-    { id: "black", name: "Negro", color: "#000000", price: 49900, compareAtPrice: 69900, image: "/1.jpeg", shopifyId: "123456789" }
+    { id: "1-unit", name: "1 Par", price: 49900, compareAtPrice: 69900, shopifyId: "43213863551094" },
+    { id: "2-units", name: "2 Pares", price: 84800, compareAtPrice: 139800, shopifyId: "43213863583862" },
+    { id: "3-units", name: "3 Pares", price: 112000, compareAtPrice: 209700, shopifyId: "43213863616630" }
   ],
   howItWorks: [
     { step: "🛡️", title: "Protección Total", description: "Superficie de goma que actúa como escudo entre la barra y tu piel." },
@@ -43,10 +47,10 @@ export const productData = {
   },
   heroFaqs: [],
   comparisonTable: [
-    { feature: "Agarre Perfecto sin Deslizos", zento: true, others: false },
-    { feature: "Cero Callos y Ampollas", zento: true, others: false },
-    { feature: "Ergonomía Extrema", zento: true, others: false },
-    { feature: "Evita el Mal Olor", zento: true, others: false }
+    { feature: "Agarre Perfecto sin Deslizos", ours: true, others: false },
+    { feature: "Cero Callos y Ampollas", ours: true, others: false },
+    { feature: "Ergonomía Extrema", ours: true, others: false },
+    { feature: "Evita el Mal Olor", ours: true, others: false }
   ],
   addons: [],
   urgency: { stockLeft: 18, viewers: 124, countdownMinutes: 12 }

@@ -18,7 +18,7 @@ export default function ComparisonSection() {
             className="w-full md:w-1/2 text-center md:text-left mt-8"
           >
             <h2 className="text-3xl md:text-4xl font-extrabold mb-6">
-              ¿Qué hace tan especial central a Grip Gym Pro?
+              ¿Qué hace tan especial a Grip Gym Pro?
             </h2>
             <div className="space-y-4 text-main-muted text-sm md:text-base mb-8 md:mb-0">
               <p>La mayoría de los guantes o espumas se rompen y huelen mal.</p>
@@ -54,7 +54,7 @@ export default function ComparisonSection() {
                       {row.feature}
                     </div>
                     <div className="col-span-2 flex items-center justify-center py-4 bg-white border-r border-gray-100 shadow-[inset_5px_0px_10px_rgba(248,173,186,0.05)]">
-                      {row.zento ? <Check className="text-accent drop-shadow-sm" size={24} /> : <X className="text-gray-300" size={24} />}
+                      {row.ours ? <Check className="text-accent drop-shadow-sm" size={24} /> : <X className="text-gray-300" size={24} />}
                     </div>
                     <div className="col-span-1 flex items-center justify-center py-4 bg-gray-50">
                       {row.others ? <Check className="text-green-500" size={20} /> : <X className="text-gray-900" size={20} />}

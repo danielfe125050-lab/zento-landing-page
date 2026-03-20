@@ -19,7 +19,7 @@ export default function EmotionalSection() {
              <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full z-0"></div>
              <img 
               src={productData.images[1]} 
-              alt="Relaxing Room" 
+              alt="Grip Gym Pro Protection" 
               className="relative z-10 w-full rounded-2xl shadow-2xl border border-white/5"
             />
           </motion.div>

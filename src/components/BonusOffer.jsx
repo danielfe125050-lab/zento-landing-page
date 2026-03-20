@@ -19,28 +19,28 @@ export default function BonusOffer() {
                 ¡Tu compra incluye un <span className="text-primary italic">Regalo VIP!</span>
               </h2>
               <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                No solo te llevas la crema, te llevas el sistema completo. Recibe totalmente <span className="text-white font-bold underline">GRATIS</span> nuestra guía digital para acelerar tus resultados.
+                No solo te llevas tus Grip Gym Pro, te llevas el sistema completo para dominar el gimnasio. Recibe totalmente <span className="text-white font-bold underline">GRATIS</span> nuestra guía digital de élite.
               </p>
               
               <ul className="space-y-4 mb-10">
                 <li className="flex items-center gap-3 justify-center lg:justify-start">
                   <CheckCircle size={20} className="text-primary" />
-                  <span className="text-sm font-medium">Rutina de 15 min para Glúteos</span>
+                  <span className="text-sm font-medium">Guía de Agarre de Élite: Técnica Pro</span>
                 </li>
                 <li className="flex items-center gap-3 justify-center lg:justify-start">
                   <CheckCircle size={20} className="text-primary" />
-                  <span className="text-sm font-medium">Plan de Alimentación Anti-Celulitis</span>
+                  <span className="text-sm font-medium">Rutina de 15 min de Antebrazo y Fuerza</span>
                 </li>
                 <li className="flex items-center gap-3 justify-center lg:justify-start">
                   <CheckCircle size={20} className="text-primary" />
-                  <span className="text-sm font-medium">Secretos de Hidratación Pro</span>
+                  <span className="text-sm font-medium">Secretos de Suplementación para Atletas</span>
                 </li>
               </ul>
               
               <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
                 <div className="text-center">
                     <p className="text-xs uppercase text-gray-400 font-bold mb-1">Valor Comercial</p>
-                    <p className="text-2xl font-black text-gray-500 line-through">$45.000</p>
+                    <p className="text-2xl font-black text-gray-500 line-through">$59.900</p>
                 </div>
                 <div className="text-center bg-primary/20 border border-primary/30 px-6 py-2 rounded-2xl">
                     <p className="text-xs uppercase text-primary font-bold mb-1">Para ti hoy</p>
@@ -53,9 +53,9 @@ export default function BonusOffer() {
                 <motion.img 
                   initial={{ rotate: -5, scale: 0.9 }}
                   whileInView={{ rotate: 0, scale: 1 }}
-                  src="/img/zento/ebook_bonus.png" 
-                  alt="E-book Guía Glúteos de Acero Zento" 
-                  className="w-full max-w-md mx-auto drop-shadow-[0_35px_35px_rgba(248,173,186,0.3)]"
+                  src="/ebook_bonus.png" 
+                  alt="E-book Guía de Agarre de Élite Grip Gym Pro" 
+                  className="w-full max-w-md mx-auto drop-shadow-[0_35px_35px_rgba(34,197,94,0.3)]"
                 />
             </div>
           </div>

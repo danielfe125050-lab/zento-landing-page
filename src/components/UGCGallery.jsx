@@ -4,7 +4,7 @@ import { Instagram, Heart } from 'lucide-react';
 
 export default function UGCGallery() {
   const photos = [
-    { src: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=500&h=500&fit=crop", label: "@camilo_lift" },
+    { src: "/7.jpeg", label: "@camilo_lift" },
     { src: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&h=500&fit=crop", label: "Envío recibido 🙌" },
     { src: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=500&h=500&fit=crop", label: "Nuevo PR: 100kg" }
   ];

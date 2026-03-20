@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { productData } from '../data/product';
 import { Check, ShieldCheck, Truck } from 'lucide-react';
+import CheckoutForm from './CheckoutForm';
 
 export default function Hero() {
+  const [showForm, setShowForm] = useState(false);
   const [selectedBundle, setSelectedBundle] = useState(1);
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
   const [timeLeft, setTimeLeft] = useState(15 * 60 + 24); // 15:24
@@ -29,29 +31,12 @@ export default function Hero() {
 
   const activeBundle = bundles.find(b => b.id === selectedBundle);
 
-  const handleCheckout = async (e) => {
+  const handleCheckout = (e) => {
     e.preventDefault();
-    const domain = productData.storeDomain;
-    
-    try {
-      // 1. Vaciar el carrito silenciosamente
-      await fetch(`https://${domain}.myshopify.com/cart/clear.js`, { method: 'POST' });
-      
-      // 2. Añadir la cantidad elegida silenciosamente
-      const formData = new FormData();
-      formData.append('id', productData.variants[0].shopifyId || "123456789");
-      formData.append('quantity', activeBundle.quantity);
-      
-      await fetch(`https://${domain}.myshopify.com/cart/add.js`, {
-        method: 'POST',
-        body: formData
-      });
-      
-      // 3. Ir al carrito limpio (Releasit funcionará perfecto)
-      window.location.href = `https://${domain}.myshopify.com/cart`;
-    } catch (error) {
-      window.location.href = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${productData.variants[0].shopifyId}%26quantity=${activeBundle.quantity}`;
-    }
+    setShowForm(true);
+    // Hacemos scroll suave al formulario si es necesario
+    const element = document.getElementById('checkout-area');
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   const formatCurrency = (val) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(val);
@@ -105,107 +90,128 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Side: Product Card */}
-        <div className="flex justify-center lg:justify-end">
-          <motion.div 
-            initial={{ x: 50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl max-w-[550px] w-full border border-gray-100"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-black text-black mb-2 leading-tight">
-              {productData.name}
-            </h2>
-            
-            <div className="flex items-baseline gap-4 mb-8">
-              <span className="text-2xl text-gray-400 line-through">
-                {formatCurrency(activeBundle.compareAtPrice)}
-              </span>
-              <span className="text-4xl font-black text-black">
-                {formatCurrency(activeBundle.price)}
-              </span>
-              {activeBundle.discountBadge && (
-                <span className="bg-danger text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
-                  {activeBundle.discountBadge}
-                </span>
-              )}
-            </div>
-
-            {/* Urgencia y Escasez */}
-            <div className="bg-danger/10 border border-danger/20 rounded-xl p-4 mb-6">
-              <div className="flex items-center justify-between mb-3 border-b border-danger/10 pb-3">
-                 <div className="flex items-center gap-2 text-danger font-bold text-sm">
-                    <span className="animate-pulse">⏱️</span>
-                    <span>La oferta expira en:</span>
-                 </div>
-                 <div className="bg-danger text-white font-black px-3 py-1 rounded-lg tracking-widest shadow-inner">
-                    {formatTime(timeLeft)}
-                 </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="text-danger">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+        {/* Right Side: Product Card / Form Area */}
+        <div id="checkout-area" className="flex justify-center lg:justify-end min-h-[600px] items-start">
+          <AnimatePresence mode="wait">
+            {showForm ? (
+              <motion.div 
+                key="form"
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -100, opacity: 0 }}
+                className="w-full max-w-[550px]"
+              >
+                <CheckoutForm 
+                   variantId={productData.variants[selectedBundle - 1].shopifyId}
+                   bundleTitle={activeBundle.title}
+                   price={activeBundle.price}
+                   onCancel={() => setShowForm(false)}
+                />
+              </motion.div>
+            ) : (
+              <motion.div 
+                key="product"
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -50, opacity: 0 }}
+                className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl max-w-[550px] w-full border border-gray-100"
+              >
+                <h2 className="text-4xl md:text-5xl font-heading font-black text-black mb-2 leading-tight">
+                  {productData.name}
+                </h2>
+                
+                <div className="flex items-baseline gap-4 mb-8">
+                  <span className="text-2xl text-gray-400 line-through">
+                    {formatCurrency(activeBundle.compareAtPrice)}
+                  </span>
+                  <span className="text-4xl font-black text-black">
+                    {formatCurrency(activeBundle.price)}
+                  </span>
+                  {activeBundle.discountBadge && (
+                    <span className="bg-danger text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
+                      {activeBundle.discountBadge}
+                    </span>
+                  )}
                 </div>
-                <div className="flex-1">
-                  <p className="text-danger font-bold text-sm">🔥 ¡Atención! Solo quedan 11 pares en bodega.</p>
-                  <div className="w-full bg-danger/20 h-2 rounded-full mt-2 overflow-hidden">
-                    <div className="bg-danger h-full rounded-full w-[15%]"></div>
+
+                {/* Urgencia y Escasez */}
+                <div className="bg-danger/10 border border-danger/20 rounded-xl p-4 mb-6">
+                  <div className="flex items-center justify-between mb-3 border-b border-danger/10 pb-3">
+                     <div className="flex items-center gap-2 text-danger font-bold text-sm">
+                        <span className="animate-pulse">⏱️</span>
+                        <span>La oferta expira en:</span>
+                     </div>
+                     <div className="bg-danger text-white font-black px-3 py-1 rounded-lg tracking-widest shadow-inner">
+                        {formatTime(timeLeft)}
+                     </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="text-danger">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-danger font-bold text-sm">🔥 ¡Atención! Solo quedan 11 pares en bodega.</p>
+                      <div className="w-full bg-danger/20 h-2 rounded-full mt-2 overflow-hidden">
+                        <div className="bg-danger h-full rounded-full w-[15%]"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="mb-8">
-              <p className="text-black font-heading font-bold mb-4">Selecciona tu paquete:</p>
-              <div className="flex flex-col gap-3">
-                {bundles.map((bundle) => (
-                  <button
-                    key={bundle.id}
-                    onClick={() => setSelectedBundle(bundle.id)}
-                    className={`relative w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center justify-between ${selectedBundle === bundle.id ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-gray-300'}`}
-                  >
-                    {bundle.isPopular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                        Más Popular
-                      </div>
-                    )}
-                    <div className="flex items-center gap-4">
-                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedBundle === bundle.id ? 'border-primary' : 'border-gray-300'}`}>
-                        {selectedBundle === bundle.id && <div className="w-3 h-3 bg-primary rounded-full"></div>}
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-black text-lg">{bundle.title}</h3>
-                        <p className="text-sm text-gray-500">{bundle.subtitle}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                       <span className="font-black text-lg text-black">{formatCurrency(bundle.price)}</span>
-                    </div>
+                <div className="mb-8">
+                  <p className="text-black font-heading font-bold mb-4">Selecciona tu paquete:</p>
+                  <div className="flex flex-col gap-3">
+                    {bundles.map((bundle) => (
+                      <button
+                        key={bundle.id}
+                        onClick={() => setSelectedBundle(bundle.id)}
+                        className={`relative w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center justify-between ${selectedBundle === bundle.id ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-gray-300'}`}
+                      >
+                        {bundle.isPopular && (
+                          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Más Popular
+                          </div>
+                        )}
+                        <div className="flex items-center gap-4">
+                          <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedBundle === bundle.id ? 'border-primary' : 'border-gray-300'}`}>
+                            {selectedBundle === bundle.id && <div className="w-3 h-3 bg-primary rounded-full"></div>}
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-black text-lg">{bundle.title}</h3>
+                            <p className="text-sm text-gray-500">{bundle.subtitle}</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                           <span className="font-black text-lg text-black">{formatCurrency(bundle.price)}</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <button onClick={handleCheckout} className="w-full btn-primary text-xl py-4 shadow-xl shadow-primary/20">
+                    PEDIR CONTRA ENTREGA
                   </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <button onClick={handleCheckout} className="w-full btn-primary text-xl py-4 shadow-xl shadow-primary/20">
-                COMPRAR AHORA
-              </button>
-            </div>
-            
-            <div className="flex justify-center gap-6 mt-6 border-t border-gray-100 pt-6">
-               <div className="flex flex-col items-center gap-2">
-                 <ShieldCheck size={24} className="text-primary" />
-                 <span className="text-[10px] font-bold text-gray-500 uppercase text-center">Pago<br/>Seguro</span>
-               </div>
-               <div className="flex flex-col items-center gap-2">
-                 <Truck size={24} className="text-primary" />
-                 <span className="text-[10px] font-bold text-gray-500 uppercase text-center">Envío<br/>Nacional</span>
-               </div>
-               <div className="flex flex-col items-center gap-2">
-                 <Check size={24} className="text-primary" />
-                 <span className="text-[10px] font-bold text-gray-500 uppercase text-center">Calidad<br/>Garantizada</span>
-               </div>
-            </div>
-          </motion.div>
+                </div>
+                
+                <div className="flex justify-center gap-6 mt-6 border-t border-gray-100 pt-6">
+                   <div className="flex flex-col items-center gap-2">
+                     <ShieldCheck size={24} className="text-primary" />
+                     <span className="text-[10px] font-bold text-gray-500 uppercase text-center">Pago<br/>Seguro</span>
+                   </div>
+                   <div className="flex flex-col items-center gap-2">
+                     <Truck size={24} className="text-primary" />
+                     <span className="text-[10px] font-bold text-gray-500 uppercase text-center">Envío<br/>Nacional</span>
+                   </div>
+                   <div className="flex flex-col items-center gap-2">
+                     <Check size={24} className="text-primary" />
+                     <span className="text-[10px] font-bold text-gray-500 uppercase text-center">Calidad<br/>Garantizada</span>
+                   </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
       
