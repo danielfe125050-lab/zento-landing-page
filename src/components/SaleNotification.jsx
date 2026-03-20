@@ -43,10 +43,10 @@ export default function SaleNotification() {
     <AnimatePresence>
       {isVisible && currentSale && (
         <motion.div
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: -100, opacity: 0 }}
-          className="fixed bottom-24 left-6 z-40 bg-white rounded-2xl shadow-2xl p-4 flex items-center gap-4 border border-primary/10 max-w-[280px]"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          className="fixed top-24 md:top-auto md:bottom-24 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-6 z-[70] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-3 flex items-center gap-3 border border-primary/10 w-[90%] md:max-w-[280px]"
         >
           <div className="bg-primary/20 p-2 rounded-full text-primary">
             <ShoppingCart size={20} />
