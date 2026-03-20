@@ -21,7 +21,7 @@ import ExitIntentPopup from './components/ExitIntentPopup';
 
 function App() {
   return (
-    <div className="min-h-screen relative font-body scroll-smooth text-main bg-white">
+    <div className="min-h-screen relative font-body scroll-smooth text-main bg-white overflow-hidden w-full max-w-full">
       <ExitIntentPopup />
       <UrgencyBar />
       <Navbar />
