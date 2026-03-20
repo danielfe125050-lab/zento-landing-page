@@ -49,7 +49,8 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 w-full h-[30%] bg-white"></div>
       </div>
 
-      <div className="container relative z-10 mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
+      <div className="w-full max-w-[100vw] overflow-x-hidden box-border pt-4 pb-12">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 md:gap-16 items-center w-full max-w-full">
         
         {/* Left Side: Product Image Carousel */}
         <div className="relative flex flex-col justify-center items-center w-full min-w-0">
@@ -213,6 +214,7 @@ export default function Hero() {
             )}
           </AnimatePresence>
         </div>
+      </div>
       </div>
       
       {/* Vistos En Banner */}
