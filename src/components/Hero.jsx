@@ -49,10 +49,10 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 w-full h-[30%] bg-white"></div>
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container relative z-10 mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
         
         {/* Left Side: Product Image Carousel */}
-        <div className="relative flex flex-col justify-center items-center w-full">
+        <div className="relative flex flex-col justify-center items-center w-full min-w-0">
           <motion.div 
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -91,7 +91,7 @@ export default function Hero() {
         </div>
 
         {/* Right Side: Product Card / Form Area */}
-        <div id="checkout-area" className="flex justify-center lg:justify-end min-h-[600px] items-start">
+        <div id="checkout-area" className="flex justify-center lg:justify-end min-h-[600px] items-start w-full min-w-0">
           <AnimatePresence mode="wait">
             {showForm ? (
               <motion.div 
@@ -99,7 +99,7 @@ export default function Hero() {
                 initial={{ x: 100, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: -100, opacity: 0 }}
-                className="w-full max-w-[550px]"
+                className="w-full max-w-full sm:max-w-[550px]"
               >
                 <CheckoutForm 
                    variantId={productData.variants[selectedBundle - 1].shopifyId}
