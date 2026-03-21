@@ -172,8 +172,8 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                           </div>
                         )}
                         <div className="flex items-center gap-3 w-full sm:w-auto">
-                          <div className={`w-5 h-5 sm:w-6 sm:h-6 shrink-0 rounded-full border-2 flex items-center justify-center ${selectedBundle === bundle.id ? 'border-primary' : 'border-gray-300'}`}>
-                            {selectedBundle === bundle.id && <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-primary rounded-full"></div>}
+                          <div className={`w-5 h-5 sm:w-6 sm:h-6 shrink-0 rounded-full border-2 flex items-center justify-center ${selectedVariantId === bundle.id ? 'border-primary' : 'border-gray-300'}`}>
+                            {selectedVariantId === bundle.id && <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-primary rounded-full"></div>}
                           </div>
                           <div className="flex-1 min-w-0">
                             <h3 className="font-bold text-black text-base sm:text-lg truncate">{bundle.title}</h3>
