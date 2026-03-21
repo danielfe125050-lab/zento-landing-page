@@ -156,8 +156,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         <div className="relative">
           <MessageSquare className="absolute left-4 top-1/2 text-gray-400 mt-4" size={20} />
           <textarea 
-            required
-            placeholder="Notas del pedido (Ej: Dejar en portería, tallas, colores...)" 
+            placeholder="Notas del pedido (Opcional: Ej: Dejar en portería, tallas, colores...)" 
             rows="3"
             className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 pl-12 pr-4 outline-none transition-all resize-none"
             value={formData.notes}
