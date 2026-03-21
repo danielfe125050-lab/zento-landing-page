@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Zap } from 'lucide-react';
 import { productData } from '../data/product';
 
-export default function StickyBuyBar() {
+export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSelectedVariantId }) {
   const [show, setShow] = useState(false);
-  const [selectedVariant, setSelectedVariant] = useState(productData.variants[0]); // Lite default para la barra
+  const selectedVariant = productData.variants.find(v => v.id === selectedVariantId) || productData.variants[0];
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
@@ -25,30 +25,9 @@ export default function StickyBuyBar() {
 
   const formatCurrency = (val) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(val);
 
-  const handleCheckout = async (e) => {
+  const handleCheckout = (e) => {
     e.preventDefault();
-    const domain = productData.storeDomain;
-    
-    try {
-      // 1. Vaciar el carrito silenciosamente
-      await fetch(`https://${domain}.myshopify.com/cart/clear.js`, { method: 'POST' });
-      
-      // 2. Añadir la cantidad elegida silenciosamente
-      const formData = new FormData();
-      formData.append('id', selectedVariant.shopifyId);
-      formData.append('quantity', quantity);
-      
-      await fetch(`https://${domain}.myshopify.com/cart/add.js`, {
-        method: 'POST',
-        body: formData
-      });
-      
-      // 3. Ir al carrito limpio (Releasit funcionará perfecto sin bloqueos ni urls raras)
-      window.location.href = `https://${domain}.myshopify.com/cart`;
-    } catch (error) {
-      // Fallback seguro
-      window.location.href = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${selectedVariant.shopifyId}%26quantity=${quantity}`;
-    }
+    onOpenCheckout(selectedVariant.id);
   };
 
   return (
@@ -95,8 +74,8 @@ export default function StickyBuyBar() {
              <div className="relative h-full flex-1 sm:flex-none">
                 <select 
                   className="appearance-none bg-surface border w-full border-primary/20 text-main text-xs font-bold rounded-lg pl-3 pr-8 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary h-full cursor-pointer"
-                  value={selectedVariant.id}
-                  onChange={(e) => setSelectedVariant(productData.variants.find(v => v.id === e.target.value))}
+                  value={selectedVariantId}
+                  onChange={(e) => setSelectedVariantId(e.target.value)}
                 >
                   {productData.variants.map(v => (
                     <option key={v.id} value={v.id} className="text-main bg-white">{v.name}</option>

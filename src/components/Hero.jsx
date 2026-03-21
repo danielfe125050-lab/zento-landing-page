@@ -4,9 +4,7 @@ import { productData } from '../data/product';
 import { Check, ShieldCheck, Truck } from 'lucide-react';
 import CheckoutForm from './CheckoutForm';
 
-export default function Hero() {
-  const [showForm, setShowForm] = useState(false);
-  const [selectedBundle, setSelectedBundle] = useState(1);
+export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVariantId, setSelectedVariantId }) {
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
   const [timeLeft, setTimeLeft] = useState(15 * 60 + 24); // 15:24
 
@@ -24,16 +22,16 @@ export default function Hero() {
   };
 
   const bundles = [
-    { id: 1, title: '1 Par', subtitle: 'Básico', price: 49900, compareAtPrice: 69900, quantity: 1, discountBadge: null },
-    { id: 2, title: '2 Pares', subtitle: '🎁 + BONO GRATIS: Guía PDF', price: 84800, compareAtPrice: 139800, quantity: 2, isPopular: true, discountBadge: '15% OFF' },
-    { id: 3, title: '3 Pares', subtitle: '🎁 + BONO PDF + Envío Express', price: 112000, compareAtPrice: 209700, quantity: 3, discountBadge: '25% OFF' },
+    { id: '1-unit', title: '1 Par', subtitle: 'Básico', price: 49900, compareAtPrice: 69900, quantity: 1, discountBadge: null },
+    { id: '2-units', title: '2 Pares', subtitle: '🎁 + BONO GRATIS: Guía PDF', price: 84800, compareAtPrice: 139800, quantity: 2, isPopular: true, discountBadge: '15% OFF' },
+    { id: '3-units', title: '3 Pares', subtitle: '🎁 + BONO PDF + Envío Express', price: 112000, compareAtPrice: 209700, quantity: 3, discountBadge: '25% OFF' },
   ];
 
-  const activeBundle = bundles.find(b => b.id === selectedBundle);
+  const activeBundle = bundles.find(b => b.id === selectedVariantId) || bundles[0];
 
   const handleCheckout = (e) => {
     e.preventDefault();
-    setShowForm(true);
+    setIsCheckoutOpen(true);
     // Hacemos scroll suave al formulario si es necesario
     const element = document.getElementById('checkout-area');
     if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -94,7 +92,7 @@ export default function Hero() {
         {/* Right Side: Product Card / Form Area */}
         <div id="checkout-area" className="flex justify-center lg:justify-end min-h-[600px] items-start w-full min-w-0">
           <AnimatePresence mode="wait">
-            {showForm ? (
+            {isCheckoutOpen ? (
               <motion.div 
                 key="form"
                 initial={{ x: 100, opacity: 0 }}
@@ -103,10 +101,10 @@ export default function Hero() {
                 className="w-full max-w-full sm:max-w-[550px]"
               >
                 <CheckoutForm 
-                   variantId={productData.variants[selectedBundle - 1].shopifyId}
+                   variantId={productData.variants.find(v => v.id === selectedVariantId)?.shopifyId}
                    bundleTitle={activeBundle.title}
                    price={activeBundle.price}
-                   onCancel={() => setShowForm(false)}
+                   onCancel={() => setIsCheckoutOpen(false)}
                 />
               </motion.div>
             ) : (
@@ -165,8 +163,8 @@ export default function Hero() {
                     {bundles.map((bundle) => (
                       <button
                         key={bundle.id}
-                        onClick={() => setSelectedBundle(bundle.id)}
-                        className={`relative w-full text-left p-3 sm:p-4 rounded-2xl border-2 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-4 ${selectedBundle === bundle.id ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-gray-300'}`}
+                        onClick={() => setSelectedVariantId(bundle.id)}
+                        className={`relative w-full text-left p-3 sm:p-4 rounded-2xl border-2 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-4 ${selectedVariantId === bundle.id ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-gray-300'}`}
                       >
                         {bundle.isPopular && (
                           <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider whitespace-nowrap">

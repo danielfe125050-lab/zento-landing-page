@@ -20,12 +20,27 @@ import VideoSection from './components/VideoSection';
 import ExitIntentPopup from './components/ExitIntentPopup';
 
 function App() {
+  const [isCheckoutOpen, setIsCheckoutOpen] = React.useState(false);
+  const [selectedVariantId, setSelectedVariantId] = React.useState('1-unit'); // Default to 1 unit
+
+  const handleOpenCheckout = (variantId) => {
+    if (variantId) setSelectedVariantId(variantId);
+    setIsCheckoutOpen(true);
+    // Scroll to top where the form is rendered (in Hero)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen relative font-body scroll-smooth text-main bg-white overflow-hidden w-full max-w-full">
-      <ExitIntentPopup />
+      <ExitIntentPopup onOpenCheckout={handleOpenCheckout} />
       <UrgencyBar />
       <Navbar />
-      <Hero />
+      <Hero 
+        isCheckoutOpen={isCheckoutOpen} 
+        setIsCheckoutOpen={setIsCheckoutOpen}
+        selectedVariantId={selectedVariantId}
+        setSelectedVariantId={setSelectedVariantId}
+      />
       <VideoSection />
       <EmotionalSection />
       <HowItWorks />
@@ -49,7 +64,11 @@ function App() {
 
       <WhatsAppButton />
       <SaleNotification />
-      <StickyBuyBar />
+      <StickyBuyBar 
+        onOpenCheckout={handleOpenCheckout}
+        selectedVariantId={selectedVariantId}
+        setSelectedVariantId={setSelectedVariantId}
+      />
     </div>
   );
 }

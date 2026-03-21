@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Gift } from 'lucide-react';
 import { productData } from '../data/product';
 
-export default function ExitIntentPopup() {
+export default function ExitIntentPopup({ onOpenCheckout }) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
 
@@ -33,7 +33,8 @@ export default function ExitIntentPopup() {
   }, [hasTriggered]);
 
   const handleClaim = () => {
-    window.location.href = productData.checkoutUrl + '?discount=EXTRA10';
+    setIsVisible(false);
+    onOpenCheckout('1-unit'); // Abrir checkout con el básico
   };
 
   return (
