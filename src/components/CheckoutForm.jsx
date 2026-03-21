@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Loader2, Phone, MapPin, User, MessageSquare } from 'lucide-react';
+import { CheckCircle2, Loader2, Phone, MapPin, User, MessageSquare, ShieldCheck, Lock, Truck } from 'lucide-react';
 
 export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }) {
   const [loading, setLoading] = useState(false);
@@ -176,6 +176,33 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         <p className="text-center text-xs text-gray-400 font-bold uppercase mt-4">
           🚚 ENVÍO GRATIS Y PAGO CONTRA ENTREGA
         </p>
+
+        {/* Trust & Urgency Boosters */}
+        <div className="mt-8 pt-6 border-t border-gray-100">
+           <div className="flex justify-center gap-4 mb-6">
+              <div className="flex flex-col items-center gap-1 opacity-60">
+                 <ShieldCheck size={20} className="text-primary" />
+                 <span className="text-[9px] font-bold uppercase">Garantía 30d</span>
+              </div>
+              <div className="flex flex-col items-center gap-1 opacity-60">
+                 <Lock size={20} className="text-primary" />
+                 <span className="text-[9px] font-bold uppercase">Pago Seguro</span>
+              </div>
+              <div className="flex flex-col items-center gap-1 opacity-60">
+                 <Truck size={20} className="text-primary" />
+                 <span className="text-[9px] font-bold uppercase">Envío Gratis</span>
+              </div>
+           </div>
+           
+           {/* Micro Testimonial */}
+           <div className="bg-gray-50 rounded-xl p-3 border border-primary/5 flex gap-3 items-center">
+              <img src="https://i.pravatar.cc/100?img=33" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" alt="User" />
+              <div className="flex-1">
+                <p className="text-[11px] leading-tight text-gray-500 italic">"El envío fue súper rápido a Medellín y el material es de calidad. ¡Pidan los 2 pares!"</p>
+                <p className="text-[10px] font-bold mt-1 text-primary">— Juan P. (Verificado)</p>
+              </div>
+           </div>
+        </div>
       </form>
     </div>
   );
