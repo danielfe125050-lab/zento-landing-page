@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Loader2, Phone, MapPin, User, MessageSquare, ShieldCheck, Lock, Truck } from 'lucide-react';
+import { regions } from '../data/colombia';
 
 export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }) {
   const [loading, setLoading] = useState(false);
@@ -135,22 +136,39 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-           <input 
-             required
-             type="text" 
-             placeholder="Ciudad" 
-             className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 px-4 outline-none transition-all"
-             value={formData.city}
-             onChange={(e) => setFormData({...formData, city: e.target.value})}
-           />
-           <input 
-             required
-             type="text" 
-             placeholder="Departamento" 
-             className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 px-4 outline-none transition-all"
-             value={formData.department}
-             onChange={(e) => setFormData({...formData, department: e.target.value})}
-           />
+           <div className="relative">
+             <input 
+               required
+               list="cities"
+               type="text" 
+               placeholder="Ciudad" 
+               className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 px-4 outline-none transition-all"
+               value={formData.city}
+               onChange={(e) => setFormData({...formData, city: e.target.value})}
+             />
+             <datalist id="cities">
+               {regions
+                 .filter(r => !formData.department || r.name === formData.department)
+                 .flatMap(r => r.cities)
+                 .map(c => <option key={c} value={c} />)
+               }
+             </datalist>
+           </div>
+           
+           <div className="relative">
+             <input 
+               required
+               list="departments"
+               type="text" 
+               placeholder="Departamento" 
+               className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 px-4 outline-none transition-all"
+               value={formData.department}
+               onChange={(e) => setFormData({...formData, department: e.target.value})}
+             />
+             <datalist id="departments">
+               {regions.map(r => <option key={r.name} value={r.name} />)}
+             </datalist>
+           </div>
         </div>
 
         <div className="relative">
