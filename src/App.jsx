@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UrgencyBar from './components/UrgencyBar';
 import Hero from './components/Hero';
 import Benefits from './components/Benefits';
@@ -20,8 +20,8 @@ import VideoSection from './components/VideoSection';
 import ExitIntentPopup from './components/ExitIntentPopup';
 
 function App() {
-  const [isCheckoutOpen, setIsCheckoutOpen] = React.useState(false);
-  const [selectedVariantId, setSelectedVariantId] = React.useState('1-unit'); // Default to 1 unit
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [selectedVariantId, setSelectedVariantId] = useState('1-unit'); // Default to 1 unit
 
   const handleOpenCheckout = (variantId) => {
     if (variantId) setSelectedVariantId(variantId);
