@@ -22,16 +22,16 @@ export default function SaleNotification() {
 
       setTimeout(() => {
         setIsVisible(false);
-      }, 5000);
+      }, 4000);
     };
 
-    // Primera notificación después de 10 segundos
-    const initialTimer = setTimeout(showNotification, 10000);
+    // Primera notificación después de 30 segundos
+    const initialTimer = setTimeout(showNotification, 30000);
 
-    // Intervalo de 20-40 segundos
+    // Intervalo de 1 a 3 minutos para no ser invasivo
     const interval = setInterval(() => {
       showNotification();
-    }, Math.random() * (40000 - 20000) + 20000);
+    }, Math.random() * (180000 - 60000) + 60000);
 
     return () => {
       clearTimeout(initialTimer);
