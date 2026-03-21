@@ -17,14 +17,28 @@ export default function ComparisonSection() {
             viewport={{ once: true }}
             className="w-full md:w-1/2 text-center md:text-left mt-8"
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-6">
-              ¿Qué hace tan especial a Grip Gym Pro?
+            <h2 className="text-3xl md:text-5xl font-heading font-black mb-6 leading-tight uppercase italic">
+              ¿Por qué somos <span className="text-primary">Superiores</span>?
             </h2>
-            <div className="space-y-4 text-main-muted text-sm md:text-base mb-8 md:mb-0">
-              <p>La mayoría de los guantes o espumas se rompen y huelen mal.</p>
-              <p>
-                Grip Gym Pro está diseñado con materiales de alta resistencia que protegen tus manos en cada levantamiento sin limitar tu movimiento.
-              </p>
+            <div className="space-y-4 text-main font-medium text-lg mb-8 md:mb-0">
+               <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
+                     <Check size={20} />
+                  </div>
+                  <p>A diferencia de los guantes tradicionales, Grip Gym Pro no retiene sudor ni genera mal olor.</p>
+               </div>
+               <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
+                     <Check size={20} />
+                  </div>
+                  <p>Material de silicona grado industrial que dura 5x más que la espuma barata.</p>
+               </div>
+               <div className="flex items-start gap-3">
+                  <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
+                     <Check size={20} />
+                  </div>
+                  <p>Diseño ergonómico que te permite soltar la barra instantáneamente si es necesario.</p>
+               </div>
             </div>
           </motion.div>
 
