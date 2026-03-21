@@ -1,7 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Loader2, Phone, MapPin, User, MessageSquare, ShieldCheck, Lock, Truck } from 'lucide-react';
+import { CheckCircle2, Loader2, Phone, MapPin, User, MessageSquare, ShieldCheck, Lock, Truck, ChevronDown } from 'lucide-react';
 import { regions } from '../data/colombia';
+
+const SearchableSelect = ({ options, value, onChange, placeholder, disabled = false }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    if (!value) setSearch('');
+    else setSearch(value);
+  }, [value]);
+
+  const filtered = options.filter(opt => 
+    opt.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div className="relative w-full">
+      <input 
+        required
+        disabled={disabled}
+        type="text"
+        placeholder={placeholder}
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setIsOpen(true);
+          // Si el usuario escribe algo que coincide exactamente, lo seleccionamos
+          const match = options.find(o => o.toLowerCase() === e.target.value.toLowerCase());
+          if (match) onChange(match);
+        }}
+        onFocus={() => setIsOpen(true)}
+        className={`w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 px-4 outline-none transition-all pr-10 ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-text'}`}
+        autoComplete="off"
+      />
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+        <ChevronDown size={18} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </div>
+
+      <AnimatePresence>
+        {isOpen && !disabled && (
+          <>
+            <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
+            <motion.ul 
+              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -10 }}
+              className="absolute left-0 right-0 top-full mt-2 bg-white border border-gray-100 rounded-2xl shadow-2xl z-20 max-h-60 overflow-y-auto overflow-x-hidden py-2"
+            >
+              {filtered.length > 0 ? (
+                filtered.map(opt => (
+                  <li 
+                    key={opt}
+                    onClick={() => {
+                      onChange(opt);
+                      setSearch(opt);
+                      setIsOpen(false);
+                    }}
+                    className={`px-4 py-3 hover:bg-primary/5 cursor-pointer text-sm font-medium border-b border-gray-50 last:border-0 transition-colors ${value === opt ? 'text-primary bg-primary/5' : 'text-main'}`}
+                  >
+                    {opt}
+                  </li>
+                ))
+              ) : (
+                <li className="px-4 py-3 text-xs text-gray-400 italic">No se encontraron resultados</li>
+              )}
+            </motion.ul>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }) {
   const [loading, setLoading] = useState(false);
@@ -15,6 +86,12 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
     department: '',
     notes: ''
   });
+
+  const departmentOptions = regions.map(r => r.name);
+  const cityOptions = regions
+    .filter(r => !formData.department || r.name === formData.department)
+    .flatMap(r => r.cities)
+    .sort();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -136,40 +213,22 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-           <div className="relative">
-             <select 
-               required
-               className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 px-4 outline-none transition-all appearance-none cursor-pointer text-main"
-               value={formData.city}
-               onChange={(e) => setFormData({...formData, city: e.target.value})}
-             >
-               <option value="">Ciudad</option>
-               {regions
-                 .filter(r => !formData.department || r.name === formData.department)
-                 .flatMap(r => r.cities)
-                 .sort()
-                 .map(c => <option key={c} value={c}>{c}</option>)
-               }
-             </select>
-             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
-               <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-             </div>
-           </div>
-           
-           <div className="relative">
-             <select 
-               required
-               className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 px-4 outline-none transition-all appearance-none cursor-pointer text-main"
-               value={formData.department}
-               onChange={(e) => setFormData({...formData, department: e.target.value, city: ''})}
-             >
-               <option value="">Departamento</option>
-               {regions.map(r => <option key={r.name} value={r.name}>{r.name}</option>)}
-             </select>
-             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
-               <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-             </div>
-           </div>
+           {/* Department Selector */}
+           <SearchableSelect 
+             placeholder="Departamento"
+             options={departmentOptions}
+             value={formData.department}
+             onChange={(val) => setFormData({...formData, department: val, city: ''})}
+           />
+
+           {/* City Selector */}
+           <SearchableSelect 
+             placeholder="Ciudad"
+             options={cityOptions}
+             value={formData.city}
+             onChange={(val) => setFormData({...formData, city: val})}
+             disabled={!formData.department}
+           />
         </div>
 
         <div className="relative">
