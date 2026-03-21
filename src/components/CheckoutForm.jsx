@@ -93,6 +93,12 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
     .flatMap(r => r.cities)
     .sort();
 
+  useEffect(() => {
+    if (window.fbq) {
+      window.fbq('track', 'InitiateCheckout');
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -109,6 +115,14 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
 
       const result = await response.json();
       if (result.success) {
+        if (window.fbq) {
+          window.fbq('track', 'Purchase', { 
+            value: price, 
+            currency: 'COP',
+            content_name: bundleTitle,
+            content_ids: [variantId]
+          });
+        }
         setSuccess(true);
       } else {
         alert("Error al procesar el pedido. Por favor intenta de nuevo.");
