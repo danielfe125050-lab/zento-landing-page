@@ -25,23 +25,29 @@ export default function VideoSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="relative aspect-video sm:aspect-[21/9] w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer"
+          className="relative aspect-video w-full rounded-2xl md:rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-gray-900"
         >
-          <img 
-            src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1200&q=80" 
-            alt="Atleta entrenando" 
-            className="w-full h-full object-cover opacity-60 group-hover:opacity-50 transition-opacity duration-500"
-          />
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            className="w-full h-full object-cover opacity-80"
+          >
+            <source src="/1080.mp4" type="video/mp4" />
+            Tu navegador no soporta el tag de video.
+          </video>
           
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-primary hover:bg-white hover:text-black text-white w-20 h-20 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:scale-110 shadow-xl shadow-primary/30">
-              <PlayCircle size={40} className="ml-1" />
-            </div>
-          </div>
-          
-          <div className="absolute bottom-6 left-6 text-left">
-             <span className="bg-danger text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-md">Demostración</span>
-             <p className="font-bold text-white mt-2 drop-shadow-md hidden sm:block">Dominadas y Peso Muerto 100kg</p>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+          <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 text-left">
+             <div className="flex items-center gap-2 md:gap-3 mb-3">
+                <span className="bg-primary text-white text-[9px] md:text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">Demostración Real</span>
+                <span className="bg-white/10 backdrop-blur-md text-white/80 text-[9px] md:text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">1080p HD</span>
+             </div>
+             <p className="text-xl md:text-3xl font-black text-white drop-shadow-lg leading-tight uppercase">
+                Domina cada <br/> levantamiento
+             </p>
           </div>
         </motion.div>
       </div>
