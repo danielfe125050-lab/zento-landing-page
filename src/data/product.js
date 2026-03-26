@@ -1,57 +1,55 @@
 export const productData = {
-  name: "Grip Gym Pro",
-  subtitle: "SIN DESLIZAMIENTOS. SIN CALLOS",
-  socialProof: "+10,000 ATLETAS PROTEGIDOS",
-  price: 49900,
-  compareAtPrice: 69900,
-  savings: 20000,
-  discount: "28%",
-  storeDomain: "zentobuy", 
+  name: "Depilador Flawless Facial",
+  subtitle: "PIEL SUAVE Y SIN VELLO EN SEGUNDOS",
+  socialProof: "+15,000 MUJERES SATISFECHAS",
+  price: 59900,
+  compareAtPrice: 99900,
+  savings: 40000,
+  discount: "40%",
+  storeDomain: "zento-co", 
   checkoutUrl: "/cart/",
   images: [
-    "/5.jpeg",
-    "/1.jpeg",
-    "/2.jpeg",
-    "/3.jpeg",
-    "/4.jpeg",
-    "/6.jpeg"
+    "/Captura_de_pantalla_202603261758.jpeg",
+    "/Captura_de_pantalla_202603261758 (1).jpeg",
+    "/Captura_de_pantalla_202603261758 (2).jpeg",
+    "/Captura_de_pantalla_202603261759.jpeg"
   ],
   variants: [
-    { id: "1-unit", name: "1 Par", price: 49900, compareAtPrice: 69900, shopifyId: "43213863551094" },
-    { id: "2-units", name: "2 Pares", price: 84800, compareAtPrice: 139800, shopifyId: "43213863583862" },
-    { id: "3-units", name: "3 Pares", price: 112000, compareAtPrice: 209700, shopifyId: "43213863616630" }
+    { id: "1-unit", name: "1 Unidad", price: 59900, compareAtPrice: 99900, shopifyId: "45239798887516" },
+    { id: "2-units", name: "2 Unidades", price: 89900, compareAtPrice: 199800, shopifyId: "45239798920284" },
+    { id: "3-units", name: "3 Unidades", price: 119900, compareAtPrice: 299700, shopifyId: "45239798953052" }
   ],
   howItWorks: [
-    { step: "🛡️", title: "Protección Total", description: "Superficie de goma que actúa como escudo entre la barra y tu piel." },
-    { step: "🔒", title: "Agarre 360°", description: "Textura honeycomb que garantiza que la barra nunca se escape." },
-    { step: "✋", title: "Ajuste Perfecto", description: "Anillo ergonómico que mantiene la empuñadura fija sin restricciones." }
+    { step: "✨", title: "Depilación Instantánea", description: "Elimina el vello facial al instante y sin dolor." },
+    { step: "🌸", title: "Suave con tu Piel", description: "Hipoalergénico y sin enrojecimiento." },
+    { step: "👜", title: "Discreto y Portátil", description: "Diseño elegante tipo labial, perfecto para llevar a cualquier lugar." }
   ],
   benefits: [
-    { title: "Adiós Callos", description: "Elimina el roce que genera ampollas y callosidades dolorosas." },
-    { title: "Más Fuerza", description: "Al no sentir dolor, tu mente se enfoca 100% en el músculo." },
-    { title: "Lleva a Todas Partes", description: "Solo 7x3.5cm y 0.05kg. Caben en cualquier bolsillo o mochila." }
+    { title: "Cero Dolor", description: "Olvídate de la cera, pinzas y tirones dolorosos." },
+    { title: "Luz LED Incorporada", description: "Ilumina hasta el vello más fino para una depilación perfecta." },
+    { title: "Recargable", description: "Batería de larga duración, práctico y fácil de usar." }
   ],
   reviews: [
-    { name: "Mateo R.", rating: 5, comment: "Desde que las uso ya no tengo dolor al hacer peso muerto. Son increíbles y el agarre es perfecto." },
-    { name: "Sofía L.", rating: 5, comment: "Prácticas y súper cómodas. Las llevo a todas mis clases de calistenia, no se resbalan nada." }
+    { name: "Mariana P.", rating: 5, comment: "Es una maravilla. Me salvó para un evento, en 2 minutos tenía el rostro perfecto y sin recortes." },
+    { name: "Laura V.", rating: 5, comment: "Súper práctico. Lo llevo en el bolso siempre. La luz LED ayuda muchísimo." }
   ],
   faqs: [
-    { question: "¿Para qué ejercicios son ideales?", answer: "Pesas, Crossfit, Calistenia, Dominadas, Peso Muerto, Remo, Press y cualquier movimiento de agarre." },
-    { question: "¿Cuáles son las especificaciones técnicas?", answer: "Material: Silicona de goma de alta resistencia. Dimensiones: 7.0 cm x 3.5 cm. Peso: 0.05 kg el par." }
+    { question: "¿Causa irritación?", answer: "No, su cabezal hipoalergénico está diseñado para deslizarse suavemente sin cortar ni irritar la piel sensible." },
+    { question: "¿Cómo se limpia?", answer: "El cabezal es removible y lavable, incluye un cepillo limpiador pequeño." }
   ],
   heroReview: {
-    name: "Camilo G.",
+    name: "Ana M.",
     rating: 5,
-    avatar: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=150&h=150&fit=crop",
-    text: "Mi agarre mejoró muchísimo y mis manos ya no sufren. Recomendadas."
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop",
+    text: "Cambió mi rutina de belleza. Rápido, sin dolor y muy elegante. ¡Recomendadísimo!"
   },
   heroFaqs: [],
   comparisonTable: [
-    { feature: "Agarre Perfecto sin Deslizos", ours: true, others: false },
-    { feature: "Cero Callos y Ampollas", ours: true, others: false },
-    { feature: "Ergonomía Extrema", ours: true, others: false },
-    { feature: "Evita el Mal Olor", ours: true, others: false }
+    { feature: "Cero Dolor y Tirones", ours: true, others: false },
+    { feature: "No deja rojez ni manchas", ours: true, others: false },
+    { feature: "Portátil (Diseño Labial)", ours: true, others: false },
+    { feature: "Luz LED para precisión", ours: true, others: false }
   ],
   addons: [],
-  urgency: { stockLeft: 18, viewers: 124, countdownMinutes: 12 }
+  urgency: { stockLeft: 14, viewers: 87, countdownMinutes: 15 }
 };

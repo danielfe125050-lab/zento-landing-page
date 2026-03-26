@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Zap } from 'lucide-react';
 import { productData } from '../data/product';
 
-export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSelectedVariantId }) {
+export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSelectedVariantId, discountApplied }) {
   const [show, setShow] = useState(false);
   const selectedVariant = productData.variants.find(v => v.id === selectedVariantId) || productData.variants[0];
   const [quantity, setQuantity] = useState(1);
@@ -24,6 +24,7 @@ export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSel
   if (!show) return null;
 
   const formatCurrency = (val) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(val);
+  const finalPrice = discountApplied ? selectedVariant.price * 0.95 : selectedVariant.price;
 
   const handleCheckout = (e) => {
     e.preventDefault();
@@ -40,10 +41,10 @@ export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSel
             <img src={selectedVariant.image || productData.images[0]} alt={productData.name} className="w-12 h-12 object-contain rounded-lg border border-primary/10" />
             <div>
               <div className="font-heading font-black text-black flex items-center gap-2 text-sm uppercase tracking-tight">
-                GRIP GYM PRO <span className="bg-black text-white text-[8px] uppercase font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm"><Zap size={8} fill="currentColor"/> SAVE {productData.discount}</span>
+                Flawless Facial <span className="bg-black text-white text-[8px] uppercase font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm"><Zap size={8} fill="currentColor"/> SAVE {productData.discount}</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-bold">
-                <span className="text-black">{formatCurrency(selectedVariant.price)}</span>
+                <span className="text-black">{formatCurrency(finalPrice)}</span>
                 <span className="text-gray-400 line-through">{formatCurrency(selectedVariant.compareAtPrice)}</span>
               </div>
             </div>

@@ -7,7 +7,7 @@ export default function GuaranteeSection() {
     {
       icon: ShieldCheck,
       title: "Garantía de Satisfacción",
-      text: "Confiamos tanto en Grip Gym Pro que si se rompen en 30 días, te devolvemos el dinero."
+      text: "Confiamos tanto en Flawless Facial que si falla en 30 días, te devolvemos el dinero."
     },
     {
       icon: Award,
@@ -36,7 +36,7 @@ export default function GuaranteeSection() {
         >
           <h2 className="text-3xl font-extrabold text-main mb-4 uppercase tracking-tighter">Nuestro Compromiso de Calidad</h2>
           <div className="w-20 h-1.5 bg-primary mx-auto rounded-full mb-6"></div>
-          <p className="text-main-muted">En Grip Gym Pro no solo vendemos un accesorio, entregamos confianza y resultados. Estamos contigo en cada levantamiento.</p>
+          <p className="text-main-muted">En Flawless Facial no solo vendemos un accesorio, entregamos confianza y resultados. Estamos contigo en cada levantamiento.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

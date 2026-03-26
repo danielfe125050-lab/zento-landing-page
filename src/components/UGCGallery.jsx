@@ -4,9 +4,9 @@ import { Instagram, Heart } from 'lucide-react';
 
 export default function UGCGallery() {
   const photos = [
-    { src: "/7.jpeg", label: "@camilo_lift" },
-    { src: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&h=500&fit=crop", label: "Envío recibido 🙌" },
-    { src: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=500&h=500&fit=crop", label: "Nuevo PR: 100kg" }
+    { src: "/Captura_de_pantalla_202603261759 (1).jpeg", label: "@maria_belleza" },
+    { src: "/Captura_de_pantalla_202603261758 (1).jpeg", label: "Envío recibido rápido 🙌" },
+    { src: "/2.jpeg", label: "Cero piel roja ✨" }
   ];
 
   return (
@@ -14,9 +14,9 @@ export default function UGCGallery() {
       <div className="container px-4">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1 rounded-full text-xs font-bold uppercase mb-4">
-            <Instagram size={14} /> Atletas Reales
+            <Instagram size={14} /> Mujeres Reales
           </div>
-          <h2 className="text-3xl font-extrabold text-main uppercase tracking-tighter">Más de 10,000 Atletas Felices</h2>
+          <h2 className="text-3xl font-extrabold text-main uppercase tracking-tighter">Más de 15,000 Clientas Felices</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -40,7 +40,7 @@ export default function UGCGallery() {
         </div>
         
         <div className="mt-12 text-center">
-            <p className="text-main-muted text-sm italic italic">"Unete a la comunidad #GripGymPro y cuida de tus manos"</p>
+            <p className="text-main-muted text-sm italic italic">"Unete a la comunidad #Flawless y cuida tu rostro"</p>
         </div>
       </div>
     </section>

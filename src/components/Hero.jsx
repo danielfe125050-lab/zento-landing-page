@@ -4,7 +4,7 @@ import { productData } from '../data/product';
 import { Check, ShieldCheck, Truck } from 'lucide-react';
 import CheckoutForm from './CheckoutForm';
 
-export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVariantId, setSelectedVariantId }) {
+export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVariantId, setSelectedVariantId, discountApplied }) {
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
   const [timeLeft, setTimeLeft] = useState(15 * 60 + 24); // 15:24
 
@@ -22,12 +22,13 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
   };
 
   const bundles = [
-    { id: '1-unit', title: '1 Par', subtitle: 'Básico', price: 49900, compareAtPrice: 69900, quantity: 1, discountBadge: null },
-    { id: '2-units', title: '2 Pares', subtitle: '🎁 + BONO GRATIS: Guía PDF', price: 84800, compareAtPrice: 139800, quantity: 2, isPopular: true, discountBadge: '15% OFF' },
-    { id: '3-units', title: '3 Pares', subtitle: '🎁 + BONO PDF + Envío Express', price: 112000, compareAtPrice: 209700, quantity: 3, discountBadge: '25% OFF' },
+    { id: '1-unit', title: '1 Unidad', subtitle: 'Básico', price: 59900, compareAtPrice: 99900, quantity: 1, discountBadge: null },
+    { id: '2-units', title: '2 Unidades', subtitle: '🎁 + BONO GRATIS: Guía Facial', price: 89900, compareAtPrice: 199800, quantity: 2, isPopular: true, discountBadge: '25% OFF' },
+    { id: '3-units', title: '3 Unidades', subtitle: '🎁 + BONO + Envío Express', price: 119900, compareAtPrice: 299700, quantity: 3, discountBadge: '40% OFF' },
   ];
 
   const activeBundle = bundles.find(b => b.id === selectedVariantId) || bundles[0];
+  const finalPrice = discountApplied ? activeBundle.price * 0.95 : activeBundle.price;
 
   const handleCheckout = (e) => {
     e.preventDefault();
@@ -102,8 +103,8 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
               >
                 <CheckoutForm 
                    variantId={productData.variants.find(v => v.id === selectedVariantId)?.shopifyId}
-                   bundleTitle={activeBundle.title}
-                   price={activeBundle.price}
+                   bundleTitle={activeBundle.title + (discountApplied ? ' (-5% Extra)' : '')}
+                   price={finalPrice}
                    onCancel={() => setIsCheckoutOpen(false)}
                 />
               </motion.div>
@@ -124,7 +125,7 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                     {formatCurrency(activeBundle.compareAtPrice)}
                   </span>
                   <span className="text-4xl font-black text-black">
-                    {formatCurrency(activeBundle.price)}
+                    {formatCurrency(finalPrice)}
                   </span>
                   {activeBundle.discountBadge && (
                     <span className="bg-danger text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
@@ -181,7 +182,7 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                           </div>
                         </div>
                         <div className="text-left sm:text-right pl-8 sm:pl-0">
-                           <span className="font-black text-base sm:text-lg text-black">{formatCurrency(bundle.price)}</span>
+                           <span className="font-black text-base sm:text-lg text-black">{formatCurrency(discountApplied ? bundle.price * 0.95 : bundle.price)}</span>
                         </div>
                       </button>
                     ))}
@@ -218,13 +219,13 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
       {/* Vistos En Banner */}
       <div className="relative z-10 w-full bg-surface-light border-y border-gray-200 mt-20 py-8">
         <div className="container mx-auto px-6 text-center">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">Usados en competencias internacionales y cajas de todo el país</p>
+          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">El secreto de belleza recomendado por</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale">
             {/* Fake logos usando texto robusto como placeholder */}
-            <h3 className="text-2xl font-black font-heading">CROSSFIT JOURNAL</h3>
-            <h3 className="text-2xl font-black font-heading">MEN'S HEALTH</h3>
-            <h3 className="text-2xl font-black font-heading">ATLETA PRO</h3>
-            <h3 className="text-2xl font-black font-heading">FITNESS MAG</h3>
+            <h3 className="text-2xl font-black font-heading">VOGUE</h3>
+            <h3 className="text-2xl font-black font-heading">COSMOPOLITAN</h3>
+            <h3 className="text-2xl font-black font-heading">ELLE</h3>
+            <h3 className="text-2xl font-black font-heading">GLAMOUR</h3>
           </div>
         </div>
       </div>

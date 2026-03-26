@@ -34,7 +34,7 @@ export default function ExitIntentPopup({ onOpenCheckout }) {
 
   const handleClaim = () => {
     setIsVisible(false);
-    onOpenCheckout('1-unit'); // Abrir checkout con el básico
+    onOpenCheckout('1-unit', true); // Abrir checkout con el básico y descuento
   };
 
   return (
@@ -70,9 +70,9 @@ export default function ExitIntentPopup({ onOpenCheckout }) {
             </div>
             
             <div className="p-8 text-center">
-              <p className="text-xl font-bold mb-4 leading-tight">No te vayas sin proteger tus manos.</p>
+              <p className="text-xl font-bold mb-4 leading-tight">No te vayas sin cuidar tu piel.</p>
               <p className="text-main-muted mb-6">
-                Lleva hoy tus Grip Gym Pro con un <strong className="text-black">10% DE DESCUENTO ADICIONAL</strong>. Exclusivo si completas tu pedido ahora mismo.
+                Lleva hoy tus Flawless Facial con un <strong className="text-black">5% DE DESCUENTO ADICIONAL</strong>. Exclusivo si completas tu pedido ahora mismo.
               </p>
               
               <div className="space-y-3">
@@ -80,7 +80,7 @@ export default function ExitIntentPopup({ onOpenCheckout }) {
                   onClick={handleClaim}
                   className="w-full btn-primary text-lg py-4 uppercase shadow-xl animate-pulse-soft"
                 >
-                  💥 RECLAMAR MI 10% EXTRA
+                  💥 RECLAMAR MI 5% EXTRA
                 </button>
                 <button 
                   onClick={() => setIsVisible(false)}

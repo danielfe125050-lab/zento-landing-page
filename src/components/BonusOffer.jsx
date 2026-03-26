@@ -19,7 +19,7 @@ export default function BonusOffer() {
                 ¡Tu compra incluye un <span className="text-primary italic">Regalo VIP!</span>
               </h2>
               <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                No solo te llevas tus Grip Gym Pro, te llevas el sistema completo para dominar el gimnasio. Recibe totalmente <span className="text-white font-bold underline">GRATIS</span> nuestra guía digital de élite.
+                No solo te llevas tus Flawless Facial, te llevas el sistema completo para tu rutina de belleza. Recibe totalmente <span className="text-white font-bold underline">GRATIS</span> nuestra guía digital de cuidado facial.
               </p>
               
               <ul className="space-y-4 mb-10">
@@ -54,7 +54,7 @@ export default function BonusOffer() {
                   initial={{ rotate: -5, scale: 0.9 }}
                   whileInView={{ rotate: 0, scale: 1 }}
                   src="/ebook_bonus.png" 
-                  alt="E-book Guía de Agarre de Élite Grip Gym Pro" 
+                  alt="E-book Guía de Belleza Facial Flawless Facial" 
                   className="w-full max-w-md mx-auto drop-shadow-[0_35px_35px_rgba(34,197,94,0.3)]"
                 />
             </div>

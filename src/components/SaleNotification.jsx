@@ -15,7 +15,7 @@ export default function SaleNotification() {
       const city = cities[Math.floor(Math.random() * cities.length)];
       
       const rand = Math.random();
-      const treatment = rand > 0.7 ? "3 Pares de Grip Gym Pro" : (rand > 0.3 ? "2 Pares de Grip Gym Pro" : "1 Par de Grip Gym Pro");
+      const treatment = rand > 0.7 ? "3 Unidades de Flawless Facial" : (rand > 0.3 ? "2 Unidades de Flawless Facial" : "1 Unidad de Flawless Facial");
       
       setCurrentSale({ name, city, treatment });
       setIsVisible(true);

@@ -22,9 +22,11 @@ import ExitIntentPopup from './components/ExitIntentPopup';
 function App() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [selectedVariantId, setSelectedVariantId] = useState('1-unit'); // Default to 1 unit
+  const [discountApplied, setDiscountApplied] = useState(false);
 
-  const handleOpenCheckout = (variantId) => {
+  const handleOpenCheckout = (variantId, applyDiscount = false) => {
     if (variantId) setSelectedVariantId(variantId);
+    if (applyDiscount) setDiscountApplied(true);
     setIsCheckoutOpen(true);
     // Scroll to top where the form is rendered (in Hero)
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -40,6 +42,7 @@ function App() {
         setIsCheckoutOpen={setIsCheckoutOpen}
         selectedVariantId={selectedVariantId}
         setSelectedVariantId={setSelectedVariantId}
+        discountApplied={discountApplied}
       />
       <VideoSection />
       <EmotionalSection />
@@ -53,8 +56,8 @@ function App() {
       
       {/* Footer */}
       <footer className="relative z-10 bg-black pt-24 pb-32 lg:pb-12 text-center text-white px-4 border-t border-gray-800">
-        <h2 className="text-4xl md:text-5xl font-heading font-black mb-6">GRIP GYM PRO</h2>
-        <p className="font-medium">© {new Date().getFullYear()} Grip Gym Pro. All rights reserved.</p>
+        <h2 className="text-4xl md:text-5xl font-heading font-black mb-6">Flawless Facial</h2>
+        <p className="font-medium">© {new Date().getFullYear()} Flawless Facial. All rights reserved.</p>
         <div className="flex flex-wrap justify-center gap-8 mt-8 text-sm font-bold uppercase tracking-widest opacity-80">
           <a href="#" className="hover:opacity-60 transition-opacity">Privacy Policy</a>
           <a href="#" className="hover:opacity-60 transition-opacity">Terms of Service</a>
@@ -68,6 +71,7 @@ function App() {
         onOpenCheckout={handleOpenCheckout}
         selectedVariantId={selectedVariantId}
         setSelectedVariantId={setSelectedVariantId}
+        discountApplied={discountApplied}
       />
     </div>
   );

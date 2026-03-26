@@ -8,7 +8,7 @@ export default function Navbar() {
         {/* Center Logo */}
         <div className="flex-shrink-0">
           <h1 className="text-4xl md:text-5xl font-heading font-black text-black tracking-tight text-center">
-            GRIP GYM PRO
+            Flawless Facial
           </h1>
         </div>
       </div>

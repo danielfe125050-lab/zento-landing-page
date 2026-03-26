@@ -25,7 +25,7 @@ export default function ComparisonSection() {
                   <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
                      <Check size={20} />
                   </div>
-                  <p>A diferencia de los guantes tradicionales, Grip Gym Pro no retiene sudor ni genera mal olor.</p>
+                  <p>A diferencia de la cera o las pinzas, Flawless Facial no causa dolor, enrojecimiento ni irritación.</p>
                </div>
                <div className="flex items-start gap-3">
                   <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
@@ -55,7 +55,7 @@ export default function ComparisonSection() {
               <div className="grid grid-cols-5 text-center items-end pb-3 pt-6 px-4">
                 <div className="col-span-2"></div>
                 <div className="col-span-2 font-black text-primary flex flex-col items-center justify-center">
-                   <div className="text-xl">Grip Gym Pro™</div>
+                   <div className="text-xl">Flawless Facial™</div>
                 </div>
                 <div className="col-span-1 font-bold text-main-muted text-sm italic">Otras Opciones</div>
               </div>

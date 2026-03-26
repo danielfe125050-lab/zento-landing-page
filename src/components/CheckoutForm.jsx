@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Loader2, Phone, MapPin, User, MessageSquare, ShieldCheck, Lock, Truck, ChevronDown } from 'lucide-react';
 import { regions } from '../data/colombia';
+import { productData } from '../data/product';
 
 const SearchableSelect = ({ options, value, onChange, placeholder, disabled = false }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,33 +105,38 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
     setLoading(true);
 
     try {
-      const response = await fetch('https://grip-gym-pro-backend-production.up.railway.app/api/orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          variantId
-        })
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        if (window.fbq) {
-          window.fbq('track', 'Purchase', { 
-            value: price, 
-            currency: 'COP',
-            content_name: bundleTitle,
-            content_ids: [variantId]
-          });
-        }
-        setSuccess(true);
-      } else {
-        alert("Error al procesar el pedido. Por favor intenta de nuevo.");
+      // Registrar evento de compra si Pixel está activo
+      if (window.fbq) {
+        window.fbq('track', 'Purchase', { 
+          value: price, 
+          currency: 'COP',
+          content_name: bundleTitle,
+          content_ids: [variantId]
+        });
       }
+
+      // Separar nombre y apellido para Shopify
+      const nameParts = formData.fullName.trim().split(' ');
+      const firstName = encodeURIComponent(nameParts[0] || '');
+      const lastName = encodeURIComponent(nameParts.slice(1).join(' ') || '');
+      
+      const email = encodeURIComponent(formData.email);
+      const phone = encodeURIComponent(formData.phone);
+      const address = encodeURIComponent(formData.address);
+      const city = encodeURIComponent(formData.city);
+      const province = encodeURIComponent(formData.department);
+      
+      // Construir el enlace directo al checkout (Permalink de Shopify)
+      const storeUrl = `https://${productData.storeDomain}.myshopify.com`;
+      const checkoutUrl = `${storeUrl}/cart/${variantId}:1?checkout[email]=${email}&checkout[shipping_address][first_name]=${firstName}&checkout[shipping_address][last_name]=${lastName}&checkout[shipping_address][address1]=${address}&checkout[shipping_address][city]=${city}&checkout[shipping_address][province]=${province}&checkout[shipping_address][phone]=${phone}&checkout[shipping_address][country]=CO`;
+
+      // Redirigir al cliente
+      window.location.href = checkoutUrl;
+
     } catch (error) {
-       alert("Error de conexión. Verifica que el servidor de agentes esté corriendo.");
-    } finally {
-      setLoading(false);
+       console.error("Error redirecting to checkout:", error);
+       alert("Error al procesar el pedido. Por favor intenta de nuevo.");
+       setLoading(false);
     }
   };
 
@@ -146,7 +152,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         </div>
         <h2 className="text-3xl font-black text-black mb-4">¡PEDIDO RECIBIDO!</h2>
         <p className="text-gray-600 mb-8 text-lg">
-          Gracias por confiar en **Grip Gym Pro**. <br/> 
+          Gracias por confiar en **Flawless Facial**. <br/> 
           Nos pondremos en contacto contigo por WhatsApp para confirmar los detalles del envío.
         </p>
         <button 
