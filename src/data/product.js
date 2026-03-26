@@ -6,7 +6,7 @@ export const productData = {
   compareAtPrice: 99900,
   savings: 40000,
   discount: "40%",
-  storeDomain: "zento-co", 
+  storeDomain: "zentobuy", 
   checkoutUrl: "/cart/",
   images: [
     "/Captura_de_pantalla_202603261758.jpeg",
