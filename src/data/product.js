@@ -15,9 +15,9 @@ export const productData = {
     "/Captura_de_pantalla_202603261759.jpeg"
   ],
   variants: [
-    { id: "1-unit", name: "1 Unidad", price: 59900, compareAtPrice: 99900, shopifyId: "45239798887516" },
-    { id: "2-units", name: "2 Unidades", price: 89900, compareAtPrice: 199800, shopifyId: "45239798920284" },
-    { id: "3-units", name: "3 Unidades", price: 119900, compareAtPrice: 299700, shopifyId: "45239798953052" }
+    { id: "1-unit", name: "1 Unidad", price: 59900, compareAtPrice: 99900, shopifyId: "43239760887926" },
+    { id: "2-units", name: "2 Unidades", price: 89900, compareAtPrice: 199800, shopifyId: "43239760920694" },
+    { id: "3-units", name: "3 Unidades", price: 119900, compareAtPrice: 299700, shopifyId: "43239760953462" }
   ],
   howItWorks: [
     { step: "✨", title: "Depilación Instantánea", description: "Elimina el vello facial al instante y sin dolor." },
