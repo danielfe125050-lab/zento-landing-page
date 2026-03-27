@@ -116,9 +116,14 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                 exit={{ x: -50, opacity: 0 }}
                 className="bg-white rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-12 shadow-2xl max-w-full sm:max-w-[550px] w-full border border-gray-100 overflow-hidden box-border mx-auto"
               >
-                <h2 className="text-4xl md:text-5xl font-heading font-black text-black mb-2 leading-tight">
+                <h2 className="text-4xl md:text-5xl font-heading font-black text-black mb-4 leading-tight">
                   {productData.name}
                 </h2>
+
+                <div className="inline-flex items-center gap-2 bg-[#00b894]/10 border border-[#00b894]/30 text-[#00b894] font-black px-4 py-2 rounded-xl mb-6 shadow-sm">
+                  <Truck size={20} className="animate-bounce" />
+                  <span className="uppercase tracking-wide text-[13px] md:text-sm">PAGO CONTRA ENTREGA - PAGA AL RECIBIR</span>
+                </div>
                 
                 <div className="flex items-baseline gap-4 mb-8">
                   <span className="text-2xl text-gray-400 line-through">
