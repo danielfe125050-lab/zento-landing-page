@@ -39,10 +39,10 @@ export default function EmotionalSection() {
             </h2>
             <div className="space-y-6 text-main-muted text-lg leading-relaxed text-left">
               <p>
-                <strong>(El Problema):</strong> La depilación con cera quema y estira tu piel, provocando envejecimiento prematuro. Las pinzas son literalmente una tortura lenta.
+                La depilación con cera quema y estira tu piel, provocando envejecimiento prematuro. Las pinzas son literalmente una tortura lenta.
               </p>
               <p>
-                <strong>(La Agitación):</strong> Piensa en esa vez que tenías un evento importante y al depilarte el labio superior quedaste con una mancha roja e inflamada. O peor, esos vellos oscuros que solo notas cuando estás bajo la luz del sol hablando con alguien de frente porque la cera no los arrancó todos.
+                Piensa en esa vez que tenías un evento importante y al depilarte el labio superior quedaste con una mancha roja e inflamada. O peor, esos vellos oscuros que solo notas cuando estás bajo la luz del sol hablando con alguien de frente porque la cera no los arrancó todos.
               </p>
               <p className="font-bold text-main">
                 Tu rostro es tu carta de presentación. No dejes que los métodos del pasado arruinen tu seguridad.
