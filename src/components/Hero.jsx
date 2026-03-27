@@ -4,7 +4,7 @@ import { productData } from '../data/product';
 import { Check, ShieldCheck, Truck } from 'lucide-react';
 import CheckoutForm from './CheckoutForm';
 
-export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVariantId, setSelectedVariantId, discountApplied }) {
+export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVariantId, setSelectedVariantId }) {
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
   const [timeLeft, setTimeLeft] = useState(15 * 60 + 24); // 15:24
 
@@ -28,7 +28,7 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
   ];
 
   const activeBundle = bundles.find(b => b.id === selectedVariantId) || bundles[0];
-  const finalPrice = discountApplied ? activeBundle.price * 0.95 : activeBundle.price;
+  const finalPrice = activeBundle.price;
 
   const handleCheckout = (e) => {
     e.preventDefault();
@@ -103,7 +103,7 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
               >
                 <CheckoutForm 
                    variantId={productData.variants.find(v => v.id === selectedVariantId)?.shopifyId}
-                   bundleTitle={activeBundle.title + (discountApplied ? ' (-5% Extra)' : '')}
+                   bundleTitle={activeBundle.title}
                    price={finalPrice}
                    onCancel={() => setIsCheckoutOpen(false)}
                 />
@@ -182,7 +182,7 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                           </div>
                         </div>
                         <div className="text-left sm:text-right pl-8 sm:pl-0">
-                           <span className="font-black text-base sm:text-lg text-black">{formatCurrency(discountApplied ? bundle.price * 0.95 : bundle.price)}</span>
+                           <span className="font-black text-base sm:text-lg text-black">{formatCurrency(bundle.price)}</span>
                         </div>
                       </button>
                     ))}

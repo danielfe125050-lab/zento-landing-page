@@ -17,16 +17,13 @@ import BonusOffer from './components/BonusOffer';
 import LogisticsSection from './components/LogisticsSection';
 import UGCGallery from './components/UGCGallery';
 import VideoSection from './components/VideoSection';
-import ExitIntentPopup from './components/ExitIntentPopup';
 
 function App() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [selectedVariantId, setSelectedVariantId] = useState('1-unit'); // Default to 1 unit
-  const [discountApplied, setDiscountApplied] = useState(false);
 
-  const handleOpenCheckout = (variantId, applyDiscount = false) => {
+  const handleOpenCheckout = (variantId) => {
     if (variantId) setSelectedVariantId(variantId);
-    if (applyDiscount) setDiscountApplied(true);
     setIsCheckoutOpen(true);
     // Scroll to top where the form is rendered (in Hero)
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -34,7 +31,6 @@ function App() {
 
   return (
     <div className="min-h-screen relative font-body scroll-smooth text-main bg-white overflow-hidden w-full max-w-full">
-      <ExitIntentPopup onOpenCheckout={handleOpenCheckout} />
       <UrgencyBar />
       <Navbar />
       <Hero 
@@ -42,7 +38,6 @@ function App() {
         setIsCheckoutOpen={setIsCheckoutOpen}
         selectedVariantId={selectedVariantId}
         setSelectedVariantId={setSelectedVariantId}
-        discountApplied={discountApplied}
       />
       <VideoSection />
       <EmotionalSection />
@@ -71,7 +66,6 @@ function App() {
         onOpenCheckout={handleOpenCheckout}
         selectedVariantId={selectedVariantId}
         setSelectedVariantId={setSelectedVariantId}
-        discountApplied={discountApplied}
       />
     </div>
   );

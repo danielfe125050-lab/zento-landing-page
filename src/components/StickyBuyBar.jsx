@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Zap } from 'lucide-react';
 import { productData } from '../data/product';
 
-export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSelectedVariantId, discountApplied }) {
+export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSelectedVariantId }) {
   const [show, setShow] = useState(false);
   const selectedVariant = productData.variants.find(v => v.id === selectedVariantId) || productData.variants[0];
   const [quantity, setQuantity] = useState(1);
@@ -24,7 +24,7 @@ export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSel
   if (!show) return null;
 
   const formatCurrency = (val) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(val);
-  const finalPrice = discountApplied ? selectedVariant.price * 0.95 : selectedVariant.price;
+  const finalPrice = selectedVariant.price;
 
   const handleCheckout = (e) => {
     e.preventDefault();
