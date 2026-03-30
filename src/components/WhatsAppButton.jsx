@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 
 export default function WhatsAppButton() {
   const phoneNumber = "573116445034";
-  const message = encodeURIComponent("Hola, tengo una pregunta sobre las depiladoras Flawless Facial.");
-  const url = `https://wa.me/${phoneNumber}?text=${message}`;
+  const message = "Hola, tengo una pregunta sobre la Mandolina Vertical Safe-Slice Pro.";
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
     <motion.a
@@ -16,7 +16,7 @@ export default function WhatsAppButton() {
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-[100px] lg:bottom-10 right-3 lg:right-6 z-[60] bg-[#25D366] text-white p-3 lg:p-4 rounded-full shadow-2xl flex items-center justify-center group scale-90 lg:scale-100 origin-bottom-right"
+      className="fixed bottom-24 right-6 z-40 bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center group"
     >
       <div className="absolute right-full mr-3 bg-white text-main text-xs font-bold py-2 px-4 rounded-lg shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-surface-dark/10">
         ¿Necesitas ayuda? Chatea con nosotros

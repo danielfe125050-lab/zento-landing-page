@@ -8,7 +8,7 @@ export default function EmotionalSection() {
       <div className="container">
         <div className="flex flex-col md:flex-row items-center gap-16">
           
-          {/* Image Placeholder */}
+          {/* Image */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -16,13 +16,12 @@ export default function EmotionalSection() {
             viewport={{ once: true }}
             className="w-full md:w-1/2 relative"
           >
-             <div className="absolute inset-0 bg-danger/10 blur-[80px] rounded-full z-0"></div>
-             
+             <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full z-0"></div>
              <img 
-              src="/el problema.jpeg" 
-              alt="Problema de depilación tradicional" 
-              className="relative z-10 w-full h-auto rounded-3xl shadow-2xl border border-danger/20"
-             />
+              src={productData.images[1]} 
+              alt="Relaxing Room" 
+              className="relative z-10 w-full rounded-2xl shadow-2xl border border-white/5"
+            />
           </motion.div>
 
           {/* Text Content */}
@@ -33,19 +32,18 @@ export default function EmotionalSection() {
             viewport={{ once: true }}
             className="w-full md:w-1/2"
           >
-            <div className="bg-danger/10 text-danger text-xs font-bold px-3 py-1 rounded-full w-max mb-4 uppercase tracking-widest">El Problema Oculto</div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              ¿Cansada del dolor y de que tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-danger to-red-600">maquillaje luzca grumoso?</span>
+              Cocinar nunca fue tan <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">fácil, rápido y divertido</span>
             </h2>
             <div className="space-y-6 text-main-muted text-lg leading-relaxed text-left">
               <p>
-                La depilación con cera quema y estira tu piel, provocando envejecimiento prematuro. Las pinzas son literalmente una tortura lenta.
+                Olvídate de pasar horas picando verduras y del miedo constante a cortarte con cuchillos afilados. La Mandolina Vertical Safe-Slice™ transforma la tarea más tediosa de la cocina en algo instantáneo.
               </p>
               <p>
-                Piensa en esa vez que tenías un evento importante y al depilarte el labio superior quedaste con una mancha roja e inflamada. O peor, esos vellos oscuros que solo notas cuando estás bajo la luz del sol hablando con alguien de frente porque la cera no los arrancó todos.
+                Diseñada para la vida moderna en Colombia, esta herramienta te permite preparar ensaladas gourmet, guisos perfectos y snacks saludables en una fracción del tiempo habitual.
               </p>
-              <p className="font-bold text-main">
-                Tu rostro es tu carta de presentación. No dejes que los métodos del pasado arruinen tu seguridad.
+              <p>
+                No es solo un utensilio más — es la libertad de recuperar tu tiempo para lo que realmente importa: disfrutar de una comida deliciosa y nutritiva con tu familia.
               </p>
             </div>
           </motion.div>

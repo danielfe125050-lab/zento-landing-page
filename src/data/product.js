@@ -1,55 +1,56 @@
 export const productData = {
-  name: "Depilador Flawless Facial",
-  subtitle: "PIEL SUAVE Y SIN VELLO EN SEGUNDOS",
-  socialProof: "+15,000 MUJERES SATISFECHAS",
-  price: 59900,
-  compareAtPrice: 99900,
-  savings: 40000,
-  discount: "40%",
+  name: "Safe Slice® Mandoline Pro",
+  subtitle: "CORTA SEGURO, RÁPIDO Y PRECISO EN SEGUNDOS",
+  socialProof: "+15,000 CLIENTES SATISFECHOS",
+  price: 79900,
+  compareAtPrice: 159900,
+  savings: 80000,
+  discount: "50% OFF",
   storeDomain: "zentobuy", 
   checkoutUrl: "/cart/",
   images: [
-    "/Captura_de_pantalla_202603261758.jpeg",
-    "/Captura_de_pantalla_202603261758 (1).jpeg",
-    "/Captura_de_pantalla_202603261758 (2).jpeg",
-    "/Captura_de_pantalla_202603261759.jpeg"
+    "/10.jpeg",
+    "/4.jpeg",
+    "/1.jpeg",
+    "/2.jpeg"
   ],
   variants: [
-    { id: "1-unit", name: "1 Unidad", price: 59900, compareAtPrice: 99900, shopifyId: "43239760887926" },
-    { id: "2-units", name: "2 Unidades", price: 89900, compareAtPrice: 199800, shopifyId: "43239760920694" },
-    { id: "3-units", name: "3 Unidades", price: 119900, compareAtPrice: 299700, shopifyId: "43239760953462" }
+    { id: "1-unit", name: "1 Unidad", price: 79900, compareAtPrice: 130000, shopifyId: "43245281840886" },
+    { id: "2-units", name: "2 Unidades", price: 129900, compareAtPrice: 260000, shopifyId: "43245281873654" },
+    { id: "3-units", name: "3 Unidades", price: 169900, compareAtPrice: 390000, shopifyId: "43245281906422" }
   ],
   howItWorks: [
-    { step: "✨", title: "Depilación Instantánea", description: "Elimina el vello facial al instante y sin dolor." },
-    { step: "🌸", title: "Suave con tu Piel", description: "Hipoalergénico y sin enrojecimiento." },
-    { step: "👜", title: "Discreto y Portátil", description: "Diseño elegante tipo labial, perfecto para llevar a cualquier lugar." }
+    { step: "1", title: "Configura", description: "Despliega las patas de seguridad y coloca el contenedor debajo." },
+    { step: "2", title: "Selecciona", description: "Gira las perillas traseras para elegir el grosor (0.5mm a 8mm) y tipo de corte." },
+    { step: "3", title: "Presiona", description: "Introduce el alimento, usa el pulsador de seguridad y ¡listo!" }
   ],
   benefits: [
-    { title: "Cero Dolor", description: "Olvídate de la cera, pinzas y tirones dolorosos." },
-    { title: "Luz LED Incorporada", description: "Ilumina hasta el vello más fino para una depilación perfecta." },
-    { title: "Recargable", description: "Batería de larga duración, práctico y fácil de usar." }
+    { title: "+30 Tipos de Corte", description: "Desde rodajas finas hasta julianas y dados perfectos sin cambiar cuchillas." },
+    { title: "Seguridad Anti-Cortes", description: "Tus dedos nunca tocan las cuchillas gracias al sistema de pulsador vertical." },
+    { title: "Diseño Compacto", description: "Se pliega completamente para guardarla en cualquier cajón de tu cocina." }
   ],
   reviews: [
-    { name: "Mariana P.", rating: 5, comment: "Es una maravilla. Me salvó para un evento, en 2 minutos tenía el rostro perfecto y sin recortes." },
-    { name: "Laura V.", rating: 5, comment: "Súper práctico. Lo llevo en el bolso siempre. La luz LED ayuda muchísimo." }
+    { name: "Mariana G.", rating: 5, comment: "¡Me encanta! Puedo picar las verduras de toda la semana en 10 minutos." },
+    { name: "Juan P.", rating: 5, comment: "Lo mejor es que es súper segura. Mis hijos me ayudan a cocinar sin riesgo." }
   ],
   faqs: [
-    { question: "¿Causa irritación?", answer: "No, su cabezal hipoalergénico está diseñado para deslizarse suavemente sin cortar ni irritar la piel sensible." },
-    { question: "¿Cómo se limpia?", answer: "El cabezal es removible y lavable, incluye un cepillo limpiador pequeño." }
+    { question: "¿Qué puedo cortar con la mandolina?", answer: "Prácticamente cualquier verdura o fruta: papas, cebollas, zanahorias, calabacines, manzanas y más." },
+    { question: "¿Es difícil de limpiar?", answer: "Para nada. Incluye un cepillo especial y es apta para la rejilla superior del lavavajillas." }
   ],
   heroReview: {
-    name: "Ana M.",
+    name: "Carolina V.",
     rating: 5,
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop",
-    text: "Cambió mi rutina de belleza. Rápido, sin dolor y muy elegante. ¡Recomendadísimo!"
+    avatar: "/user-avatar.jpg",
+    text: "La mejor inversión para mi cocina este año. Corta impecable y el pago contra entrega fue rapidísimo."
   },
   heroFaqs: [],
   comparisonTable: [
-    { feature: "Cero Dolor y Tirones", ours: true, others: false },
-    { feature: "No deja rojez ni manchas", ours: true, others: false },
-    { feature: "Portátil (Diseño Labial)", ours: true, others: false },
-    { feature: "Luz LED para precisión", ours: true, others: false }
+    { feature: "Seguridad Total (Anticortes)", zento: true, others: false },
+    { feature: "+30 Tipos de Corte Ajustables", zento: true, others: false },
+    { feature: "Cuchillas de Acero Quirúrgico", zento: true, others: true },
+    { feature: "Sistema Vertical con Resorte", zento: true, others: false },
+    { feature: "Diseño Plegable Ultra-Compacto", zento: true, others: false }
   ],
   addons: [],
-  urgency: { stockLeft: 14, viewers: 87, countdownMinutes: 15 }
+  urgency: { stockLeft: 14, viewers: 84, countdownMinutes: 12 }
 };

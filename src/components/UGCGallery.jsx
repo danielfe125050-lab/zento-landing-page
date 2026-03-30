@@ -4,9 +4,9 @@ import { Instagram, Heart } from 'lucide-react';
 
 export default function UGCGallery() {
   const photos = [
-    { src: "/Captura_de_pantalla_202603261759 (1).jpeg", label: "@maria_belleza" },
-    { src: "/Captura_de_pantalla_202603261758 (1).jpeg", label: "Envío recibido rápido 🙌" },
-    { src: "/2.jpeg", label: "Cero piel roja ✨" }
+    { src: "/img/zento/ugc_1.png", label: "@daniela_r" },
+    { src: "/img/zento/ugc_2.png", label: "Pedido recibido" },
+    { src: "/img/zento/ugc_3.png", label: "¡Pica todo en segundos!" }
   ];
 
   return (
@@ -14,9 +14,9 @@ export default function UGCGallery() {
       <div className="container px-4">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1 rounded-full text-xs font-bold uppercase mb-4">
-            <Instagram size={14} /> Mujeres Reales
+            <Instagram size={14} /> Prueba Social Reales
           </div>
-          <h2 className="text-3xl font-extrabold text-main uppercase tracking-tighter">Más de 15,000 Clientas Felices</h2>
+          <h2 className="text-3xl font-extrabold text-main uppercase tracking-tighter">Más de 5,000 Clientes Felices</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -40,7 +40,7 @@ export default function UGCGallery() {
         </div>
         
         <div className="mt-12 text-center">
-            <p className="text-main-muted text-sm italic italic">"Unete a la comunidad #Flawless y cuida tu rostro"</p>
+            <p className="text-main-muted text-sm italic">"Únete a la comunidad #ZentoKitchen y comparte tus mejores recetas"</p>
         </div>
       </div>
     </section>

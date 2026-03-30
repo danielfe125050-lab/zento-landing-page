@@ -17,28 +17,14 @@ export default function ComparisonSection() {
             viewport={{ once: true }}
             className="w-full md:w-1/2 text-center md:text-left mt-8"
           >
-            <h2 className="text-3xl md:text-5xl font-heading font-black mb-6 leading-tight uppercase italic">
-              ¿Por qué somos <span className="text-primary">Superiores</span>?
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-6">
+              ¿Qué hace tan especial a Zento?
             </h2>
-            <div className="space-y-4 text-main font-medium text-lg mb-8 md:mb-0">
-               <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
-                     <Check size={20} />
-                  </div>
-                  <p>A diferencia de la cera o las pinzas, Flawless Facial no causa dolor, enrojecimiento ni irritación.</p>
-               </div>
-               <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
-                     <Check size={20} />
-                  </div>
-                  <p>Material de silicona grado industrial que dura 5x más que la espuma barata.</p>
-               </div>
-               <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
-                     <Check size={20} />
-                  </div>
-                  <p>Diseño ergonómico que te permite soltar la barra instantáneamente si es necesario.</p>
-               </div>
+            <div className="space-y-4 text-main-muted text-sm md:text-base mb-8 md:mb-0">
+              <p>La mayoría de mandolinas tradicionales son peligrosas y dejan un desastre en tu cocina.</p>
+              <p>
+                Zento™ ha sido diseñada con un sistema vertical de seguridad que protege tus manos al 100% mientras ofrece cortes de precisión profesional en segundos.
+              </p>
             </div>
           </motion.div>
 
@@ -55,9 +41,9 @@ export default function ComparisonSection() {
               <div className="grid grid-cols-5 text-center items-end pb-3 pt-6 px-4">
                 <div className="col-span-2"></div>
                 <div className="col-span-2 font-black text-primary flex flex-col items-center justify-center">
-                   <div className="text-xl">Flawless Facial™</div>
+                   <div className="text-xl">Zento™</div>
                 </div>
-                <div className="col-span-1 font-bold text-main-muted text-sm italic">Otras Opciones</div>
+                <div className="col-span-1 font-bold text-main-muted text-sm italic">Otras Marcas</div>
               </div>
               
               {/* Rows */}
@@ -68,7 +54,7 @@ export default function ComparisonSection() {
                       {row.feature}
                     </div>
                     <div className="col-span-2 flex items-center justify-center py-4 bg-white border-r border-gray-100 shadow-[inset_5px_0px_10px_rgba(248,173,186,0.05)]">
-                      {row.ours ? <Check className="text-accent drop-shadow-sm" size={24} /> : <X className="text-gray-300" size={24} />}
+                      {row.zento ? <Check className="text-accent drop-shadow-sm" size={24} /> : <X className="text-gray-300" size={24} />}
                     </div>
                     <div className="col-span-1 flex items-center justify-center py-4 bg-gray-50">
                       {row.others ? <Check className="text-green-500" size={20} /> : <X className="text-gray-900" size={20} />}

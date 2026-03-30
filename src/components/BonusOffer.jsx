@@ -19,28 +19,28 @@ export default function BonusOffer() {
                 ¡Tu compra incluye un <span className="text-primary italic">Regalo VIP!</span>
               </h2>
               <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                No solo te llevas tus Flawless Facial, te llevas el sistema completo para tu rutina de belleza. Recibe totalmente <span className="text-white font-bold underline">GRATIS</span> nuestra guía digital de cuidado facial.
+                No solo te llevas la mejor herramienta de cocina, te llevas el sistema completo para comer sano. Recibe totalmente <span className="text-white font-bold underline">GRATIS</span> nuestra guía digital exclusiva.
               </p>
               
               <ul className="space-y-4 mb-10">
                 <li className="flex items-center gap-3 justify-center lg:justify-start">
                   <CheckCircle size={20} className="text-primary" />
-                  <span className="text-sm font-medium">Guía de Agarre de Élite: Técnica Pro</span>
+                  <span className="text-sm font-medium">Recetario: 30 Ensaladas Gourmet en 5 Minutos</span>
                 </li>
                 <li className="flex items-center gap-3 justify-center lg:justify-start">
                   <CheckCircle size={20} className="text-primary" />
-                  <span className="text-sm font-medium">Rutina de 15 min de Antebrazo y Fuerza</span>
+                  <span className="text-sm font-medium">Guía de Conservación de Vegetales Frescos</span>
                 </li>
                 <li className="flex items-center gap-3 justify-center lg:justify-start">
                   <CheckCircle size={20} className="text-primary" />
-                  <span className="text-sm font-medium">Secretos de Suplementación para Atletas</span>
+                  <span className="text-sm font-medium">Trucos para Snacks Saludables y Crujientes</span>
                 </li>
               </ul>
               
               <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
                 <div className="text-center">
                     <p className="text-xs uppercase text-gray-400 font-bold mb-1">Valor Comercial</p>
-                    <p className="text-2xl font-black text-gray-500 line-through">$59.900</p>
+                    <p className="text-2xl font-black text-gray-500 line-through">$45.000</p>
                 </div>
                 <div className="text-center bg-primary/20 border border-primary/30 px-6 py-2 rounded-2xl">
                     <p className="text-xs uppercase text-primary font-bold mb-1">Para ti hoy</p>
@@ -54,8 +54,8 @@ export default function BonusOffer() {
                   initial={{ rotate: -5, scale: 0.9 }}
                   whileInView={{ rotate: 0, scale: 1 }}
                   src="/ebook_bonus.png" 
-                  alt="E-book Guía de Belleza Facial Flawless Facial" 
-                  className="w-full max-w-md mx-auto drop-shadow-[0_35px_35px_rgba(34,197,94,0.3)]"
+                  alt="E-book Recetario Saludable Zento" 
+                  className="w-full max-w-md mx-auto drop-shadow-[0_35px_35px_rgba(248,173,186,0.3)]"
                 />
             </div>
           </div>

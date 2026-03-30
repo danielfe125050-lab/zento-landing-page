@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Zap } from 'lucide-react';
 import { productData } from '../data/product';
 
-export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSelectedVariantId }) {
+export default function StickyBuyBar() {
   const [show, setShow] = useState(false);
-  const selectedVariant = productData.variants.find(v => v.id === selectedVariantId) || productData.variants[0];
+  const [selectedVariant, setSelectedVariant] = useState(productData.variants[0]); // Lite default para la barra
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
@@ -24,11 +24,31 @@ export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSel
   if (!show) return null;
 
   const formatCurrency = (val) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(val);
-  const finalPrice = selectedVariant.price;
 
-  const handleCheckout = (e) => {
+  const handleCheckout = async (e) => {
     e.preventDefault();
-    onOpenCheckout(selectedVariant.id);
+    const domain = productData.storeDomain;
+    
+    try {
+      // 1. Vaciar el carrito silenciosamente
+      await fetch(`https://${domain}.myshopify.com/cart/clear.js`, { method: 'POST' });
+      
+      // 2. Añadir la cantidad elegida silenciosamente
+      const formData = new FormData();
+      formData.append('id', selectedVariant.shopifyId);
+      formData.append('quantity', quantity);
+      
+      await fetch(`https://${domain}.myshopify.com/cart/add.js`, {
+        method: 'POST',
+        body: formData
+      });
+      
+      // 3. Ir al carrito limpio (Releasit funcionará perfecto sin bloqueos ni urls raras)
+      window.location.href = `https://${domain}.myshopify.com/cart`;
+    } catch (error) {
+      // Fallback seguro
+      window.location.href = `https://${domain}.myshopify.com/cart/clear?return_to=/cart/add?id=${selectedVariant.shopifyId}%26quantity=${quantity}`;
+    }
   };
 
   return (
@@ -40,19 +60,19 @@ export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSel
           <div className="hidden sm:flex items-center gap-4">
             <img src={selectedVariant.image || productData.images[0]} alt={productData.name} className="w-12 h-12 object-contain rounded-lg border border-primary/10" />
             <div>
-              <div className="font-heading font-black text-black flex items-center gap-2 text-sm uppercase tracking-tight">
-                Flawless Facial <span className="bg-black text-white text-[8px] uppercase font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm"><Zap size={8} fill="currentColor"/> SAVE {productData.discount}</span>
+              <div className="font-heading font-black text-[#00473e] flex items-center gap-2 text-sm uppercase tracking-tight">
+                OLIPOP™ <span className="bg-green-700 text-white text-[8px] uppercase font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm"><Zap size={8} fill="currentColor"/> SAVE {productData.discount}</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-bold">
-                <span className="text-black">{formatCurrency(finalPrice)}</span>
+                <span className="text-[#00473e]">{formatCurrency(selectedVariant.price)}</span>
                 <span className="text-gray-400 line-through">{formatCurrency(selectedVariant.compareAtPrice)}</span>
               </div>
             </div>
           </div>
 
-             <div className="flex w-full sm:w-auto items-center gap-2">
+            <div className="flex w-full sm:w-auto items-center gap-3">
               {/* Selector de Cantidad Sticky */}
-              <div className="hidden sm:flex items-center bg-surface border border-primary/20 rounded-lg overflow-hidden h-full">
+              <div className="flex items-center bg-surface border border-primary/20 rounded-lg overflow-hidden h-full">
                 <button 
                   type="button"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -72,11 +92,11 @@ export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSel
                 </button>
               </div>
 
-             <div className="relative h-full flex-1 sm:flex-none">
+             <div className="relative h-full">
                 <select 
-                  className="appearance-none bg-surface border w-full border-primary/20 text-main text-xs font-bold rounded-lg pl-3 pr-8 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary h-full cursor-pointer"
-                  value={selectedVariantId}
-                  onChange={(e) => setSelectedVariantId(e.target.value)}
+                  className="appearance-none bg-surface border border-primary/20 text-main text-xs font-bold rounded-lg pl-3 pr-8 py-3 focus:outline-none focus:ring-2 focus:ring-primary h-full cursor-pointer"
+                  value={selectedVariant.id}
+                  onChange={(e) => setSelectedVariant(productData.variants.find(v => v.id === e.target.value))}
                 >
                   {productData.variants.map(v => (
                     <option key={v.id} value={v.id} className="text-main bg-white">{v.name}</option>
@@ -89,7 +109,7 @@ export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSel
 
             <button 
               onClick={handleCheckout}
-              className="bg-primary hover:bg-primary-hover text-white font-bold py-3 px-4 sm:px-6 rounded-lg shadow-lg flex-1 sm:flex-none transition-colors flex items-center justify-center gap-2 animate-pulse-soft whitespace-nowrap text-sm sm:text-base"
+              className="bg-primary hover:bg-primary-hover text-white font-bold py-3 px-6 rounded-lg shadow-lg flex-1 sm:flex-none transition-colors flex items-center justify-center gap-2 animate-pulse-soft whitespace-nowrap"
             >
               COMPRAR AHORA
             </button>

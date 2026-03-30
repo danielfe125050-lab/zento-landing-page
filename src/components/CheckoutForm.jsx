@@ -115,12 +115,14 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         });
       }
 
-      const response = await fetch('https://grip-gym-pro-backend-production.up.railway.app/api/orders', {
+      const response = await fetch('https://ai-dropshipping-ruddy.vercel.app/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          variantId
+          variantId,
+          bundleTitle,
+          price
         })
       });
 
@@ -140,7 +142,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
       }
     } catch (error) {
        console.error("Error submitting order:", error);
-       alert("Error de conexión. Verifica que el servidor de agentes esté corriendo.");
+       alert("Error de conexión. Verifica tu conexión a internet.");
     } finally {
       setLoading(false);
     }
@@ -158,7 +160,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         </div>
         <h2 className="text-3xl font-black text-black mb-4">¡PEDIDO RECIBIDO!</h2>
         <p className="text-gray-600 mb-8 text-lg">
-          Gracias por confiar en **Flawless Facial**. <br/> 
+          Gracias por confiar en **Safe Slice Mandoline**. <br/> 
           Nos pondremos en contacto contigo por WhatsApp para confirmar los detalles del envío.
         </p>
         <button 
