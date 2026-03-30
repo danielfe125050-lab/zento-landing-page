@@ -8,7 +8,7 @@ export default function EmotionalSection() {
       <div className="container">
         <div className="flex flex-col md:flex-row items-center gap-16">
           
-          {/* Image */}
+          {/* Image Placeholder */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -16,12 +16,13 @@ export default function EmotionalSection() {
             viewport={{ once: true }}
             className="w-full md:w-1/2 relative"
           >
-             <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full z-0"></div>
+             <div className="absolute inset-0 bg-primary/10 blur-[80px] rounded-full z-0"></div>
+             
              <img 
-              src={productData.images[1]} 
-              alt="Relaxing Room" 
-              className="relative z-10 w-full rounded-2xl shadow-2xl border border-white/5"
-            />
+              src="/3.jpeg" 
+              alt="Problema al cocinar" 
+              className="relative z-10 w-full h-auto rounded-3xl shadow-2xl border border-primary/20"
+             />
           </motion.div>
 
           {/* Text Content */}
@@ -32,18 +33,19 @@ export default function EmotionalSection() {
             viewport={{ once: true }}
             className="w-full md:w-1/2"
           >
+            <div className="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full w-max mb-4 uppercase tracking-widest">El Problema Oculto</div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Cocinar nunca fue tan <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">fácil, rápido y divertido</span>
+              ¿Cansada del estrés y de que tu <span className="text-primary">comida tarde horas en prepararse?</span>
             </h2>
             <div className="space-y-6 text-main-muted text-lg leading-relaxed text-left">
               <p>
-                Olvídate de pasar horas picando verduras y del miedo constante a cortarte con cuchillos afilados. La Mandolina Vertical Safe-Slice™ transforma la tarea más tediosa de la cocina en algo instantáneo.
+                Cortar vegetales con cuchillos o ralladores tradicionales es peligroso y frustrante.
               </p>
               <p>
-                Diseñada para la vida moderna en Colombia, esta herramienta te permite preparar ensaladas gourmet, guisos perfectos y snacks saludables en una fracción del tiempo habitual.
+                Piensa en esa vez que tenías prisa para preparar la cena y terminaste lastimándote los dedos con el cuchillo. O peor, en esas horas y horas perdidas picando cada verdura una por una cuando hubieras preferido estar descansando.
               </p>
-              <p>
-                No es solo un utensilio más — es la libertad de recuperar tu tiempo para lo que realmente importa: disfrutar de una comida deliciosa y nutritiva con tu familia.
+              <p className="font-bold text-main">
+                Cocinar no debería ser un riesgo ni tomar tanto tiempo. No dejes que herramientas obsoletas arruinen tu experiencia.
               </p>
             </div>
           </motion.div>

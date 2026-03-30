@@ -4,15 +4,15 @@
 @tailwind utilities;
 
 :root {
-  --primary: #00473e;
-  --primary-hover: #00332d;
-  --bg: #fffae2;
-  --surface: #fcfaf2;
-  --surface-light: #c3e39d;
-  --text: #00473e;
-  --text-muted: #4b736b;
-  --accent: #c3e39d;
-  --danger: #ff4d4d;
+  --primary: #7da21b;
+  --primary-hover: #638016;
+  --bg: #ffffff;
+  --surface: #f4fbf9;
+  --surface-light: #f9fdfc;
+  --text: #2a2a2a;
+  --text-muted: #7a7a7a;
+  --accent: #cce88b;
+  --danger: #e65100;
   --radius: 50px; /* Pill shaped buttons */
 }
 
@@ -22,13 +22,15 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   font-family: 'Outfit', sans-serif;
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 h1, h2, h3, h4 {

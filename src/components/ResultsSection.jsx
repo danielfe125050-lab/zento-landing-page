@@ -3,42 +3,42 @@ import { motion } from 'framer-motion';
 
 export default function ResultsSection() {
   return (
-    <section className="py-20 bg-surface-light/30">
-      <div className="container px-4">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl font-extrabold text-main mb-4 uppercase tracking-tighter">Resultados Reales en 30 Días</h2>
-          <div className="w-20 h-1.5 bg-primary mx-auto rounded-full mb-6"></div>
-          <p className="text-main-muted">La ciencia y la constancia se unen. Mira la evolución real de nuestras clientes usando Zento diariamente.</p>
+    <section className="py-24 bg-surface-light/30 border-y border-gray-100">
+      <div className="container px-4 max-w-6xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl md:text-5xl font-black text-black mb-4 uppercase tracking-tight">Velocidad Profesional</h2>
+          <div className="w-24 h-2 bg-primary mx-auto rounded-full mb-6"></div>
+          <p className="text-xl text-gray-500 font-medium leading-relaxed">Olvídate de picar por horas para una ensalada. El sistema de cuchillas cerradas te hace 10x más eficiente.</p>
         </div>
 
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white border border-primary/10">
+        {/* Mostrando el GIF animado grande de demostración global */}
+        <div className="relative rounded-[40px] overflow-hidden shadow-2xl bg-white border-4 border-white mx-auto max-w-3xl">
           <img 
-            src="/img/zento/results.png" 
-            alt="Resultados antes y después de 30 días con Zento" 
-            className="w-full h-auto"
+            src="/imgi_24_giphy.gif" 
+            alt="Demostración infinita de Safe Slice Mandoline" 
+            className="w-full h-auto object-cover"
           />
-          <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-main/80 to-transparent p-8">
-            <div className="flex justify-between text-white font-bold uppercase tracking-widest text-xs md:text-sm">
-              <span>Día 1</span>
-              <span>Día 15</span>
-              <span>Día 30</span>
-            </div>
+          <div className="absolute top-4 right-4 bg-primary text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
+            Resultados Reales
           </div>
         </div>
         
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="p-6 bg-white rounded-2xl shadow-sm">
-                <p className="text-primary font-bold text-2xl mb-1">94%</p>
-                <p className="text-main-muted text-xs uppercase font-bold">Piel más firme</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-sm">
-                <p className="text-primary font-bold text-2xl mb-1">88%</p>
-                <p className="text-main-muted text-xs uppercase font-bold">Efecto Levantamiento</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-sm">
-                <p className="text-primary font-bold text-2xl mb-1">91%</p>
-                <p className="text-main-muted text-xs uppercase font-bold">Reducción de Celulitis</p>
-            </div>
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
+            <motion.div whileHover={{ y: -5 }} className="p-8 bg-white rounded-3xl shadow-lg border border-primary/5">
+                <p className="text-primary font-black text-5xl mb-2">30+</p>
+                <p className="text-main text-sm uppercase font-bold tracking-widest">Opciones de Corte</p>
+                <p className="text-gray-400 text-xs mt-2 font-medium">Rebanadas, julianas y cubos</p>
+            </motion.div>
+            <motion.div whileHover={{ y: -5 }} className="p-8 bg-white rounded-3xl shadow-lg border border-primary/5 relative scale-105 z-10 border-b-4 border-b-primary shadow-primary/10">
+                <p className="text-primary font-black text-5xl mb-2">0</p>
+                <p className="text-main text-sm uppercase font-bold tracking-widest">Piel Expuesta</p>
+                <p className="text-gray-400 text-xs mt-2 font-medium">Jamás verás las navajas expuestas</p>
+            </motion.div>
+            <motion.div whileHover={{ y: -5 }} className="p-8 bg-white rounded-3xl shadow-lg border border-primary/5">
+                <p className="text-primary font-black text-5xl mb-2">40</p>
+                <p className="text-main text-sm uppercase font-bold tracking-widest">Min Ahorrados</p>
+                <p className="text-gray-400 text-xs mt-2 font-medium">Prepara comidas en tiempo récord</p>
+            </motion.div>
         </div>
       </div>
     </section>

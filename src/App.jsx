@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UrgencyBar from './components/UrgencyBar';
 import Hero from './components/Hero';
 import Benefits from './components/Benefits';
@@ -13,43 +13,64 @@ import SaleNotification from './components/SaleNotification';
 import GuaranteeSection from './components/GuaranteeSection';
 import Navbar from './components/Navbar';
 import ResultsSection from './components/ResultsSection';
-import UsageSection from './components/UsageSection';
-import IngredientsSection from './components/IngredientsSection';
 import BonusOffer from './components/BonusOffer';
 import LogisticsSection from './components/LogisticsSection';
 import UGCGallery from './components/UGCGallery';
+import ProductFeatures from './components/ProductFeatures';
+import FeatureTabs from './components/FeatureTabs';
+
 
 function App() {
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [selectedVariantId, setSelectedVariantId] = useState('1-unit'); // Default to 1 unit
+
+  const handleOpenCheckout = (variantId) => {
+    if (variantId) setSelectedVariantId(variantId);
+    setIsCheckoutOpen(true);
+    // Scroll to top where the form is rendered (in Hero)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen relative font-body scroll-smooth text-main bg-[#fffae2]">
+    <div className="min-h-screen relative font-body scroll-smooth text-main bg-white overflow-hidden w-full max-w-full">
       <UrgencyBar />
       <Navbar />
-      <Hero />
-      <LogisticsSection />
+      <Hero 
+        isCheckoutOpen={isCheckoutOpen} 
+        setIsCheckoutOpen={setIsCheckoutOpen}
+        selectedVariantId={selectedVariantId}
+        setSelectedVariantId={setSelectedVariantId}
+      />
+
       <EmotionalSection />
-      <IngredientsSection />
-      <UsageSection />
+      <ProductFeatures />
       <HowItWorks />
-      <ComparisonSection />
       <Benefits />
       <Testimonials />
+      <UGCGallery />
+      <FeatureTabs />
       <FaqSection />
+      <ComparisonSection />
       <GuaranteeSection />
       
-      {/* Zento-style Footer */}
-      <footer className="relative z-10 bg-[#fffae2] pt-24 pb-12 text-center text-[#00473e] px-4 border-t border-green-100">
-        <h2 className="text-4xl md:text-5xl font-heading font-black mb-6">ZENTO</h2>
-        <p className="font-medium">© {new Date().getFullYear()} ZENTO Colombia. Todos los derechos reservados.</p>
+      {/* Footer */}
+      <footer className="relative z-10 bg-black pt-24 pb-32 lg:pb-12 text-center text-white px-4 border-t border-gray-800">
+        <h2 className="text-4xl md:text-5xl font-heading font-black mb-6">Safe Slice Mandoline</h2>
+        <p className="font-medium">© {new Date().getFullYear()} Safe Slice Mandoline. All rights reserved.</p>
         <div className="flex flex-wrap justify-center gap-8 mt-8 text-sm font-bold uppercase tracking-widest opacity-80">
-          <a href="#" className="hover:opacity-60 transition-opacity">Políticas de Privacidad</a>
-          <a href="#" className="hover:opacity-60 transition-opacity">Términos de Servicio</a>
-          <a href="#" className="hover:opacity-60 transition-opacity">Políticas de Reembolso</a>
+          <a href="#" className="hover:opacity-60 transition-opacity">Privacy Policy</a>
+          <a href="#" className="hover:opacity-60 transition-opacity">Terms of Service</a>
+          <a href="#" className="hover:opacity-60 transition-opacity">Refund Policy</a>
         </div>
       </footer>
 
       <WhatsAppButton />
       <SaleNotification />
-      <StickyBuyBar />
+      <StickyBuyBar 
+        onOpenCheckout={handleOpenCheckout}
+        selectedVariantId={selectedVariantId}
+        setSelectedVariantId={setSelectedVariantId}
+      />
     </div>
   );
 }

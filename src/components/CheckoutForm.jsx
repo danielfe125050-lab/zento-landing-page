@@ -142,7 +142,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
       }
     } catch (error) {
        console.error("Error submitting order:", error);
-       alert("Error de conexión. Verifica tu conexión a internet.");
+       alert("Error de conexión. Verifica que el servidor de agentes esté corriendo.");
     } finally {
       setLoading(false);
     }

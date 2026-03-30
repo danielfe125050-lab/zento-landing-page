@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart } from 'lucide-react';
 
 const cities = ["Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena", "Cúcuta", "Bucaramanga", "Pereira", "Santa Marta", "Ibagué", "Manizales"];
-const names = ["Claudia", "Marcela", "Yuliana", "Sandra", "Valentina", "Paola", "Ximena", "Lorena", "Andrea", "Camila", "Jessica"];
+const names = ["Carlos", "Daniel", "Mateo", "Sebastián", "Alejandro", "Andrés", "Juan", "Diego", "David", "Camilo", "Santiago"];
 
 export default function SaleNotification() {
   const [currentSale, setCurrentSale] = useState(null);
@@ -13,23 +13,25 @@ export default function SaleNotification() {
     const showNotification = () => {
       const name = names[Math.floor(Math.random() * names.length)];
       const city = cities[Math.floor(Math.random() * cities.length)];
-      const treatment = Math.random() > 0.5 ? "Tratamiento 3 Meses" : "Tratamiento 1 Mes";
+      
+      const rand = Math.random();
+      const treatment = rand > 0.7 ? "3 Unidades de Safe Slice" : (rand > 0.3 ? "2 Unidades de Safe Slice" : "1 Unidad de Safe Slice");
       
       setCurrentSale({ name, city, treatment });
       setIsVisible(true);
 
       setTimeout(() => {
         setIsVisible(false);
-      }, 5000);
+      }, 4000);
     };
 
-    // Primera notificación después de 10 segundos
-    const initialTimer = setTimeout(showNotification, 10000);
+    // Primera notificación después de 30 segundos
+    const initialTimer = setTimeout(showNotification, 30000);
 
-    // Intervalo de 20-40 segundos
+    // Intervalo de 1 a 3 minutos para no ser invasivo
     const interval = setInterval(() => {
       showNotification();
-    }, Math.random() * (40000 - 20000) + 20000);
+    }, Math.random() * (180000 - 60000) + 60000);
 
     return () => {
       clearTimeout(initialTimer);
@@ -41,10 +43,10 @@ export default function SaleNotification() {
     <AnimatePresence>
       {isVisible && currentSale && (
         <motion.div
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: -100, opacity: 0 }}
-          className="fixed bottom-24 left-6 z-40 bg-white rounded-2xl shadow-2xl p-4 flex items-center gap-4 border border-primary/10 max-w-[280px]"
+          initial={{ scale: 0.9, opacity: 0, x: "-50%" }}
+          animate={{ scale: 1, opacity: 1, x: "-50%" }}
+          exit={{ scale: 0.9, opacity: 0, x: "-50%" }}
+          className="fixed top-24 md:top-auto md:bottom-24 left-1/2 md:translate-x-0 md:left-6 z-[70] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-3 flex items-center gap-3 border border-primary/10 w-[90%] md:max-w-[280px]"
         >
           <div className="bg-primary/20 p-2 rounded-full text-primary">
             <ShoppingCart size={20} />

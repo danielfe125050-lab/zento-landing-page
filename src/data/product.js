@@ -1,18 +1,24 @@
 export const productData = {
-  name: "Safe Slice® Mandoline Pro",
-  subtitle: "CORTA SEGURO, RÁPIDO Y PRECISO EN SEGUNDOS",
+  name: "Cortador Safe Slice® Mandoline",
+  subtitle: "CORTE SEGURO, RÁPIDO Y PRECISO EN SEGUNDOS",
   socialProof: "+15,000 CLIENTES SATISFECHOS",
   price: 79900,
-  compareAtPrice: 159900,
-  savings: 80000,
-  discount: "50% OFF",
+  compareAtPrice: 130000,
+  savings: 50100,
+  discount: "38%",
   storeDomain: "zentobuy", 
   checkoutUrl: "/cart/",
   images: [
     "/10.jpeg",
     "/4.jpeg",
     "/1.jpeg",
-    "/2.jpeg"
+    "/2.jpeg",
+    "/3.jpeg",
+    "/5.jpeg",
+    "/6.jpeg",
+    "/7.jpeg",
+    "/8.jpeg",
+    "/9.jpeg"
   ],
   variants: [
     { id: "1-unit", name: "1 Unidad", price: 79900, compareAtPrice: 130000, shopifyId: "43245281840886" },
@@ -20,37 +26,36 @@ export const productData = {
     { id: "3-units", name: "3 Unidades", price: 169900, compareAtPrice: 390000, shopifyId: "43245281906422" }
   ],
   howItWorks: [
-    { step: "1", title: "Configura", description: "Despliega las patas de seguridad y coloca el contenedor debajo." },
-    { step: "2", title: "Selecciona", description: "Gira las perillas traseras para elegir el grosor (0.5mm a 8mm) y tipo de corte." },
-    { step: "3", title: "Presiona", description: "Introduce el alimento, usa el pulsador de seguridad y ¡listo!" }
+    { step: "🛡️", title: "Corte Seguro", description: "Tus dedos y manos nunca se acercan a las cuchillas gracias al empujador de ingredientes." },
+    { step: "🔪", title: "Más de 30 Cortes", description: "Elige tu nivel de grosor y corta en rodajas, dados, juliana y tiras sin esfuerzo." },
+    { step: "⚙️", title: "Precisión Ajustable", description: "Cortes ultra finos de 1 mm hasta 8 mm con solo girar el disco trasero." }
   ],
   benefits: [
-    { title: "+30 Tipos de Corte", description: "Desde rodajas finas hasta julianas y dados perfectos sin cambiar cuchillas." },
-    { title: "Seguridad Anti-Cortes", description: "Tus dedos nunca tocan las cuchillas gracias al sistema de pulsador vertical." },
-    { title: "Diseño Compacto", description: "Se pliega completamente para guardarla en cualquier cajón de tu cocina." }
+    { title: "Cero Peligro", description: "Evita cortes y accidentes en la cocina. Preparación de alimentos 100% segura." },
+    { title: "Limpieza Sencilla", description: "Apto para lavavajillas en la rejilla superior e incluye cepillo para limpieza detallada." },
+    { title: "Compacto y Plegable", description: "Se pliega fácilmente para guardarlo de manera elegante en cajones y armarios." }
   ],
   reviews: [
-    { name: "Mariana G.", rating: 5, comment: "¡Me encanta! Puedo picar las verduras de toda la semana en 10 minutos." },
-    { name: "Juan P.", rating: 5, comment: "Lo mejor es que es súper segura. Mis hijos me ayudan a cocinar sin riesgo." }
+    { name: "Carlos M.", rating: 5, comment: "¡El mejor cortador que he tenido! Es muy eficiente, fácil de usar y hace que preparar mis comidas sea mucho más rápido." },
+    { name: "Lucía F.", rating: 5, comment: "Me ha ahorrado muchísimo tiempo y estrés al hacer las ensaladas para toda la familia. Súper seguro y confiable." }
   ],
   faqs: [
-    { question: "¿Qué puedo cortar con la mandolina?", answer: "Prácticamente cualquier verdura o fruta: papas, cebollas, zanahorias, calabacines, manzanas y más." },
-    { question: "¿Es difícil de limpiar?", answer: "Para nada. Incluye un cepillo especial y es apta para la rejilla superior del lavavajillas." }
+    { question: "¿Es seguro para usar?", answer: "Totalmente. El diseño mantiene tus dedos alejados de la cuchilla, el empujador de alimentos hace todo el trabajo por ti." },
+    { question: "¿Cómo se lava?", answer: "Puedes meterlo en el lavavajillas o lavarlo a mano con el cepillo de limpieza que viene incluido." }
   ],
   heroReview: {
-    name: "Carolina V.",
+    name: "Raquel S.",
     rating: 5,
-    avatar: "/user-avatar.jpg",
-    text: "La mejor inversión para mi cocina este año. Corta impecable y el pago contra entrega fue rapidísimo."
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop",
+    text: "Cambió mi forma de cocinar. Rápido, seguro y los cortes salen perfectos. ¡Totalmente recomendado!"
   },
   heroFaqs: [],
   comparisonTable: [
-    { feature: "Seguridad Total (Anticortes)", zento: true, others: false },
-    { feature: "+30 Tipos de Corte Ajustables", zento: true, others: false },
-    { feature: "Cuchillas de Acero Quirúrgico", zento: true, others: true },
-    { feature: "Sistema Vertical con Resorte", zento: true, others: false },
-    { feature: "Diseño Plegable Ultra-Compacto", zento: true, others: false }
+    { feature: "Cero Riesgo de Cortaduras", ours: true, others: false },
+    { feature: "Cortes Exactos y Precisos", ours: true, others: false },
+    { feature: "+30 Opciones de Corte Diferentes", ours: true, others: false },
+    { feature: "Diseño Plegable Fácil de Guardar", ours: true, others: false }
   ],
   addons: [],
-  urgency: { stockLeft: 14, viewers: 84, countdownMinutes: 12 }
+  urgency: { stockLeft: 14, viewers: 87, countdownMinutes: 15 }
 };

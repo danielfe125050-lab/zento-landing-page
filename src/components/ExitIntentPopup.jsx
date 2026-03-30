@@ -70,9 +70,9 @@ export default function ExitIntentPopup({ onOpenCheckout }) {
             </div>
             
             <div className="p-8 text-center">
-              <p className="text-xl font-bold mb-4 leading-tight">No te vayas sin cuidar tu piel.</p>
+              <p className="text-xl font-bold mb-4 leading-tight">No te vayas sin simplificar tu cocina.</p>
               <p className="text-main-muted mb-6">
-                Lleva hoy tus Flawless Facial con un <strong className="text-black">5% DE DESCUENTO ADICIONAL</strong>. Exclusivo si completas tu pedido ahora mismo.
+                Lleva hoy tu Safe Slice Mandoline con un <strong className="text-black">10% DE DESCUENTO ADICIONAL</strong>. Exclusivo si completas tu pedido ahora mismo.
               </p>
               
               <div className="space-y-3">
