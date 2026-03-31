@@ -106,14 +106,6 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
 
     try {
       // Registrar evento de compra si Pixel está activo
-      if (window.fbq) {
-        window.fbq('track', 'Purchase', { 
-          value: price, 
-          currency: 'COP',
-          content_name: bundleTitle,
-          content_ids: [variantId]
-        });
-      }
 
       const response = await fetch('https://ai-dropshipping-ruddy.vercel.app/api/orders', {
         method: 'POST',
@@ -138,7 +130,12 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         }
         setSuccess(true);
       } else {
-        alert("Error al procesar el pedido. Por favor intenta de nuevo.");
+        const errorMsg = result.error ? JSON.parse(result.error) : null;
+        if (errorMsg && errorMsg['customer.phone_number']) {
+           alert("Este número de teléfono ya ha sido utilizado para un pedido. Por favor usa uno diferente.");
+        } else {
+           alert(result.error || "Error al procesar el pedido. Por favor intenta de nuevo.");
+        }
       }
     } catch (error) {
        console.error("Error submitting order:", error);
