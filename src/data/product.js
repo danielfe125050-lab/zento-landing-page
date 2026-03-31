@@ -21,7 +21,7 @@ export const productData = {
     "/9.jpeg"
   ],
   variants: [
-    { id: "1-unit", name: "1 Unidad", price: 79900, compareAtPrice: 130000, shopifyId: "43245281640566" },
+    { id: "1-unit", name: "1 Unidad", price: 79900, compareAtPrice: 160000, shopifyId: "43245281640566" },
     { id: "2-units", name: "2 Unidades", price: 129900, compareAtPrice: 260000, shopifyId: "43245281673334" },
     { id: "3-units", name: "3 Unidades", price: 169900, compareAtPrice: 390000, shopifyId: "43245281706102" }
   ],
