@@ -130,12 +130,9 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         }
         setSuccess(true);
       } else {
-        const errorMsg = result.error ? JSON.parse(result.error) : null;
-        if (errorMsg && errorMsg['customer.phone_number']) {
-           alert("Este número de teléfono ya ha sido utilizado para un pedido. Por favor usa uno diferente.");
-        } else {
-           alert(result.error || "Error al procesar el pedido. Por favor intenta de nuevo.");
-        }
+        // Reportamos el error pero de forma genérica para no bloquear al usuario con tecnicismos
+        console.error("Order rejected by server:", result.error);
+        alert(typeof result.error === 'string' ? "No pudimos procesar el pedido. Por favor verifica tus datos e intenta de nuevo." : "Error al procesar el pedido.");
       }
     } catch (error) {
        console.error("Error submitting order:", error);
