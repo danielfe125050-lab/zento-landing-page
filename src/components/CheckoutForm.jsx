@@ -22,7 +22,7 @@ const SearchableSelect = ({ options, value, onChange, placeholder, disabled = fa
       <input 
         required
         disabled={disabled}
-        type="text"
+        type="text" 
         placeholder={placeholder}
         value={search}
         onChange={(e) => {
@@ -105,7 +105,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
     setLoading(true);
 
     try {
-      // Registrar evento de compra si Pixel está activo
+      // Registrar evento de compra si Pixel está activo - MOVIDO AL BLOQUE DE ÉXITO
 
       const response = await fetch('https://ai-dropshipping-ruddy.vercel.app/api/orders', {
         method: 'POST',
@@ -130,9 +130,9 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         }
         setSuccess(true);
       } else {
-        // Reportamos el error pero de forma genérica para no bloquear al usuario con tecnicismos
+        // Reducimos la fricción eliminando mensajes técnicos o bloqueantes
         console.error("Order rejected by server:", result.error);
-        alert(typeof result.error === 'string' ? "No pudimos procesar el pedido. Por favor verifica tus datos e intenta de nuevo." : "Error al procesar el pedido.");
+        alert("No pudimos procesar el pedido. Por favor verifica tus datos e intenta de nuevo.");
       }
     } catch (error) {
        console.error("Error submitting order:", error);
