@@ -65,16 +65,29 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> VER EN ACCIÓN
               </div>
               <AnimatePresence mode="wait">
-                <motion.img 
-                  key={currentImageIdx}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  src={productData.images[currentImageIdx]} 
-                  alt={`${productData.name} view ${currentImageIdx + 1}`}
-                  className="w-full h-full object-cover"
-                />
+                {productData.images[currentImageIdx].endsWith('.mp4') ? (
+                  <motion.video 
+                    key={currentImageIdx}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    src={productData.images[currentImageIdx]} 
+                    autoPlay loop muted playsInline
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <motion.img 
+                    key={currentImageIdx}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    src={productData.images[currentImageIdx]} 
+                    alt={`${productData.name} view ${currentImageIdx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </AnimatePresence>
             </div>
           </motion.div>
@@ -84,9 +97,13 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
               <button 
                 key={idx}
                 onClick={() => setCurrentImageIdx(idx)} 
-                className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${currentImageIdx === idx ? 'border-primary ring-2 ring-primary/20' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all relative ${currentImageIdx === idx ? 'border-primary ring-2 ring-primary/20' : 'border-transparent opacity-60 hover:opacity-100'}`}
               >
-                <img src={img} className="w-full h-full object-cover" />
+                {img.endsWith('.mp4') ? (
+                  <video src={img} className="w-full h-full object-cover" />
+                ) : (
+                  <img src={img} className="w-full h-full object-cover" />
+                )}
               </button>
             ))}
           </div>

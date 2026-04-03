@@ -9,6 +9,7 @@ export const productData = {
   storeDomain: "universal-ecommerce", 
   checkoutUrl: "/cart/",
   images: [
+    "/video 6.mp4",
     "/4.jpeg",
     "/1.jpeg",
     "/2.jpeg",
