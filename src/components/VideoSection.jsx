@@ -16,7 +16,7 @@ export default function VideoSection() {
             La Solución en Acción
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Descubre por qué miles de personas han dejado los cuchillos peligrosos, y confían en el empujador de seguridad para lograr cortes perfectos en segundos.
+            Descubre por qué miles de conductores han dejado de rogar por aire en las gasolineras, y confían en la tecnología inalámbrica para tener sus llantas full en segundos.
           </p>
         </motion.div>
 
@@ -45,7 +45,7 @@ export default function VideoSection() {
                 <span className="bg-primary text-white text-[9px] md:text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">Demostración Real</span>
              </div>
              <p className="text-xl md:text-3xl font-black text-white drop-shadow-lg leading-tight uppercase">
-                Cortes perfectos <br/> en 2 minutos
+                Llantas calibradas <br/> en 2 minutos
              </p>
           </div>
         </motion.div>

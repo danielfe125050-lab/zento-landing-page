@@ -8,19 +8,19 @@ export default function FeatureTabs() {
     {
       id: "compacto",
       title: "Almacenamiento Compacto",
-      image: "/7.jpeg",
-      subtitle: "Plegalo rápido y ahorra todo el espacio de tu cocina"
+      image: "/3.jpeg",
+      subtitle: "Guárdalo fácilmente y no ocupes espacio extra en el baúl o la guantera."
     },
     {
       id: "tamaños",
       title: "Guía de Grosores",
-      image: "/8.jpeg",
+      image: "/4.jpeg",
       subtitle: "La versatilidad de una tabla experta en segundos"
     },
     {
       id: "limpieza",
       title: "Limpieza y Protección",
-      image: "/9.jpeg",
+      image: "/5.jpeg",
       subtitle: "Dedos siempre a salvo en todo el barrido de corte"
     }
   ];
@@ -32,7 +32,7 @@ export default function FeatureTabs() {
           <h2 className="text-3xl md:text-5xl font-black text-main tracking-tight uppercase mb-4">
             Explora cada Detalle
           </h2>
-          <p className="text-xl text-main-muted font-medium">Toca para descubrir cómo dominarás tu cocina.</p>
+          <p className="text-xl text-main-muted font-medium">Toca para descubrir cómo dominarás la carretera.</p>
         </div>
 
         {/* Tab Navigation */}

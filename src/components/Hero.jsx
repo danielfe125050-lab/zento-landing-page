@@ -22,9 +22,8 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
   };
 
   const bundles = [
-    { id: '1-unit', title: '1 Unidad', subtitle: 'Ideal para uso personal', price: 79900, compareAtPrice: 130000, quantity: 1, discountBadge: null },
-    { id: '2-units', title: '2 Unidades', subtitle: 'Ahorro + Repuesto', price: 129900, compareAtPrice: 260000, quantity: 2, isPopular: true, discountBadge: '25% OFF EXTRA' },
-    { id: '3-units', title: '3 Unidades', subtitle: '1 Para ti y 2 para regalar', price: 169900, compareAtPrice: 390000, quantity: 3, discountBadge: '40% OFF EXTRA' },
+    { id: '1-unit', title: '1 Compresor AeroSmart', subtitle: 'Ideal para viaje seguro', price: 131900, compareAtPrice: 220000, quantity: 1, discountBadge: null },
+    { id: '2-units', title: 'Combo X2 (Moto y Carro)', subtitle: 'Ahorro + Para la Familia', price: 229900, compareAtPrice: 440000, quantity: 2, isPopular: true, discountBadge: 'OFERTA ESPECIAL' }
   ];
 
   const activeBundle = bundles.find(b => b.id === selectedVariantId) || bundles[0];
@@ -41,14 +40,14 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
   const formatCurrency = (val) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(val);
 
   return (
-    <section className="relative min-h-[800px] pt-12 pb-24 overflow-hidden">
+    <section className="relative min-h-[800px] pt-2 md:pt-6 pb-24 overflow-hidden">
       {/* Wavy Background Layer */}
       <div className="absolute inset-0 z-0">
         <div className="h-[70%] bg-gray-200 rounded-b-[100px] md:rounded-b-[200px]" style={{ borderRadius: '0 0 50% 50% / 0 0 20% 20%' }}></div>
         <div className="absolute bottom-0 left-0 w-full h-[30%] bg-white"></div>
       </div>
 
-      <div className="w-full max-w-[100vw] overflow-x-hidden box-border pt-4 pb-12">
+      <div className="w-full max-w-[100vw] overflow-x-hidden box-border pt-2 pb-12">
         <div className="container relative z-10 mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 md:gap-16 items-center w-full max-w-full">
         
         {/* Left Side: Product Image Carousel */}
@@ -61,7 +60,10 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-black/5 rounded-full blur-3xl"></div>
             
-            <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-gray-200 bg-white">
+            <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-gray-200 bg-white group">
+              <div className="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider flex items-center gap-2 border border-white/20 shadow-xl group-hover:scale-105 transition-transform cursor-pointer">
+                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> VER EN ACCIÓN
+              </div>
               <AnimatePresence mode="wait">
                 <motion.img 
                   key={currentImageIdx}
@@ -139,49 +141,40 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                   )}
                 </div>
 
+                {/* Garantía Blindada Addon */}
+                <div className="bg-primary/5 border-l-4 border-primary p-3 rounded-r-xl mb-6 flex items-start gap-3">
+                  <ShieldCheck className="text-primary shrink-0 mt-0.5" size={20} />
+                  <div>
+                    <h4 className="text-black font-bold text-sm leading-tight mb-1">Garantía Blindada 30 Días</h4>
+                    <p className="text-gray-500 text-xs leading-snug">Si no infla tus llantas maravillosamente como prometemos, te devolvemos el 100% de tu dinero. Compra sin riesgo.</p>
+                  </div>
+                </div>
+
                 {/* Urgencia y Escasez */}
-                <div className="bg-orange-600/10 border border-orange-600/20 rounded-xl p-4 mb-6">
-                  <div className="flex items-center justify-between mb-3 border-b border-orange-600/10 pb-3">
-                     <div className="flex items-center gap-2 text-orange-600 font-bold text-sm">
+                <div className="bg-red-600/10 border border-red-600/20 rounded-xl p-4 mb-6">
+                  <div className="flex items-center justify-between mb-3 border-b border-red-600/10 pb-3">
+                     <div className="flex items-center gap-2 text-red-600 font-bold text-sm">
                         <span className="animate-pulse">⏱️</span>
                         <span>La oferta expira en:</span>
                      </div>
-                     <div className="bg-orange-600 text-white font-black px-3 py-1 rounded-lg tracking-widest shadow-inner">
+                     <div className="bg-red-600 text-white font-black px-3 py-1 rounded-lg tracking-widest shadow-inner">
                         {formatTime(timeLeft)}
                      </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="text-orange-600">
+                    <div className="text-red-600">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
                     </div>
                     <div className="flex-1">
-                      <p className="text-orange-600 font-bold text-sm">🔥 ¡Atención! Solo quedan 11 pares en bodega.</p>
-                      <div className="w-full bg-orange-600/20 h-2 rounded-full mt-2 overflow-hidden">
-                        <div className="bg-orange-600 h-full rounded-full w-[15%]"></div>
+                      <p className="text-red-600 font-bold text-sm">🔥 ¡Atención! Solo quedan 11 unidades en bodega.</p>
+                      <div className="w-full bg-red-600/20 h-2 rounded-full mt-2 overflow-hidden">
+                        <div className="bg-red-600 h-full rounded-full w-[15%]"></div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Selector de Color Simulado */}
-                <div className="mb-6">
-                  <p className="text-black font-heading font-bold mb-3 flex justify-between items-center">
-                    <span>Color Seleccionado: <span className="text-primary font-black uppercase">Verde Clásico</span></span>
-                    <span className="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-md font-bold uppercase">¡En Stock!</span>
-                  </p>
-                  <div className="flex gap-4">
-                    <div className="relative border-2 border-primary bg-primary/5 rounded-2xl p-4 flex-1 cursor-pointer transition-transform hover:scale-105">
-                      <div className="absolute -top-3 -right-2 bg-primary text-white text-[9px] font-bold px-2 py-1 rounded-full uppercase shadow-lg shadow-primary/30 z-10">¡DISPONIBLE!</div>
-                      <div className="w-8 h-8 rounded-full bg-primary shadow-inner mx-auto mb-2 ring-2 ring-primary ring-offset-2"></div>
-                      <p className="text-center font-bold text-sm text-black leading-tight">Color<br/>Verde</p>
-                    </div>
-                    <div className="relative border-2 border-gray-200 bg-gray-50 rounded-2xl p-4 flex-1 opacity-50 cursor-not-allowed grayscale">
-                      <div className="absolute -top-3 -right-2 bg-gray-500 text-white text-[9px] font-bold px-2 py-1 rounded-full uppercase z-10">AGOTADO</div>
-                      <div className="w-8 h-8 rounded-full bg-[#2a2a2a] shadow-inner mx-auto mb-2 relative"><div className="absolute inset-0 m-auto h-[2px] w-full bg-white/50 -rotate-45"></div></div>
-                      <p className="text-center font-bold text-sm text-gray-500 line-through leading-tight">Negro<br/>Onyx</p>
-                    </div>
-                  </div>
-                </div>
+
 
                 <div className="mb-8">
                   <p className="text-black font-heading font-bold mb-4">Selecciona tu paquete:</p>
@@ -225,6 +218,15 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                     </span>
                   </button>
                 </div>
+
+                {/* Sello Pago Contra Entrega Local */}
+                <div className="mt-4 mb-2 text-center border border-dashed border-gray-200 rounded-xl py-3 bg-gray-50/50">
+                  <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2">No arriesgues tu dinero. Paga al recibir con:</p>
+                  <div className="flex justify-center items-center gap-4 grayscale opacity-60">
+                    <span className="font-heading font-black text-sm text-blue-900 border border-blue-900/20 px-2 flex items-center justify-center rounded">SERVIENTREGA</span>
+                    <span className="font-heading font-black text-sm text-red-700 border border-red-700/20 px-2 flex items-center justify-center rounded">INTER RAPIDÍSIMO</span>
+                  </div>
+                </div>
                 
                 <div className="flex justify-center gap-6 mt-6 border-t border-gray-100 pt-6">
                    <div className="flex flex-col items-center gap-2">
@@ -250,13 +252,13 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
       {/* Vistos En Banner */}
       <div className="relative z-10 w-full bg-surface-light border-y border-gray-200 mt-20 py-8">
         <div className="container mx-auto px-6 text-center">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">El secreto de cocina recomendado por</p>
+          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">El dispositivo de seguridad recomendado por</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale">
             {/* Fake logos usando texto robusto como placeholder */}
-            <h3 className="text-2xl font-black font-heading">VOGUE</h3>
-            <h3 className="text-2xl font-black font-heading">COSMOPOLITAN</h3>
-            <h3 className="text-2xl font-black font-heading">ELLE</h3>
-            <h3 className="text-2xl font-black font-heading">GLAMOUR</h3>
+            <h3 className="text-2xl font-black font-heading">MOTOR TREND</h3>
+            <h3 className="text-2xl font-black font-heading">AUTO BILD</h3>
+            <h3 className="text-2xl font-black font-heading">CAR & DRIVER</h3>
+            <h3 className="text-2xl font-black font-heading">TOP GEAR</h3>
           </div>
         </div>
       </div>

@@ -11,12 +11,12 @@ export default {
         'body': ['"Outfit"', 'sans-serif'],
       },
       colors: {
-        primary: { DEFAULT: '#7da21b', hover: '#638016', 5: 'rgba(125, 162, 27, 0.05)', 10: 'rgba(125, 162, 27, 0.10)', 20: 'rgba(125, 162, 27, 0.20)' },
+        primary: { DEFAULT: '#2563eb', hover: '#1d4ed8', 5: 'rgba(37, 99, 235, 0.05)', 10: 'rgba(37, 99, 235, 0.10)', 20: 'rgba(37, 99, 235, 0.20)' },
         bg: '#ffffff',
-        surface: { DEFAULT: '#f4fbf9', light: '#f9fdfc' },
-        main: { DEFAULT: '#2a2a2a', muted: '#7a7a7a' },
-        accent: '#cce88b',
-        danger: '#e65100'
+        surface: { DEFAULT: '#f8fafc', light: '#f1f5f9' },
+        main: { DEFAULT: '#1e293b', muted: '#64748b' },
+        accent: '#93c5fd',
+        danger: '#ef4444'
       }
     },
   },

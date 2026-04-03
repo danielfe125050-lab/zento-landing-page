@@ -18,11 +18,16 @@ export default function EmotionalSection() {
           >
              <div className="absolute inset-0 bg-primary/10 blur-[80px] rounded-full z-0"></div>
              
-             <img 
-              src="/3.jpeg" 
-              alt="Problema al cocinar" 
-              className="relative z-10 w-full h-auto rounded-3xl shadow-2xl border border-primary/20"
-             />
+             <div className="relative z-10 w-full max-w-[320px] mx-auto rounded-3xl shadow-2xl border border-primary/20 overflow-hidden pointer-events-none">
+                 <video 
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  src="/publicidad.mp4" 
+                  className="w-full h-auto object-cover scale-[1.12] translate-y-3"
+                 />
+             </div>
           </motion.div>
 
           {/* Text Content */}
@@ -35,17 +40,17 @@ export default function EmotionalSection() {
           >
             <div className="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full w-max mb-4 uppercase tracking-widest">El Problema Oculto</div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              ¿Cansada del estrés y de que tu <span className="text-primary">comida tarde horas en prepararse?</span>
+              ¿Cansado de la inseguridad y del estrés de <span className="text-primary">quedar varado en medio de la nada?</span>
             </h2>
             <div className="space-y-6 text-main-muted text-lg leading-relaxed text-left">
               <p>
-                Cortar vegetales con cuchillos o ralladores tradicionales es peligroso y frustrante.
+                Quedarte varado con una llanta baja en medio de la nada es peligroso y muy frustrante.
               </p>
               <p>
-                Piensa en esa vez que tenías prisa para preparar la cena y terminaste lastimándote los dedos con el cuchillo. O peor, en esas horas y horas perdidas picando cada verdura una por una cuando hubieras preferido estar descansando.
+                Piensa en esa vez que una llanta estaba baja manejando de noche y el pánico de quedar varado. O peor, las horas perdidas haciendo filas en estaciones de servicio solo para descubrir que la máquina estaba averiada.
               </p>
               <p className="font-bold text-main">
-                Cocinar no debería ser un riesgo ni tomar tanto tiempo. No dejes que herramientas obsoletas arruinen tu experiencia.
+                Un viaje en familia no debería ser un riesgo ni ser arruinado por una llanta baja. Toma el control de tu seguridad vial.
               </p>
             </div>
           </motion.div>

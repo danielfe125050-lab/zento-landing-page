@@ -5,20 +5,20 @@ export default function ProductFeatures() {
   const features = [
     {
       title: "Control Absoluto del Grosor",
-      description: "Con su dial regulable trasero, puedes ajustar el grosor de tus cortes desde láminas transparentes de 1mm hasta bloques de 8mm. Tú tienes el control exacto.",
+      description: "Con su pantalla digital LED, puedes establecer la presión en PSI exacta que necesita tu llanta (moto, carro o bici). Tú tienes el control milimétrico.",
       image: "/4.jpeg",
       reverse: false
     },
     {
-      title: "Cortes con Seguridad Total",
-      description: "El diseño inteligente de nuestro empujador de ingredientes asegura que tus manos nunca estarán cerca de las hojas de acero. Cocina con tranquilidad.",
-      image: "/5.jpeg",
+      title: "Inflado Auto-Inteligente",
+      description: "Su sistema inteligente apaga el compresor de manera automática cuando alcanza la presión indicada, evitando daños en la llanta. Úsalo con total confianza.",
+      image: "/video 6.mp4",
       reverse: true
     },
     {
       title: "Fácil Limpieza Garantizada",
-      description: "Viene con un cepillo especial para llegar a todos los rincones de las cuchillas. Además, es completamente apto para la rejilla superior de lavavajillas.",
-      image: "/6.jpeg",
+      description: "Viene con boquillas universales (Carro, Moto, Bici, Balones). Además, la batería integrada funciona como powerbank para cargar tu celular en emergencias.",
+      image: "/5.jpeg",
       reverse: false
     }
   ];
@@ -40,7 +40,20 @@ export default function ProductFeatures() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <img src={feature.image} alt={feature.title} className="w-full h-auto rounded-3xl shadow-2xl border border-gray-100 object-cover" />
+                {feature.image.endsWith('.mp4') ? (
+                  <div className="relative w-full max-w-[320px] mx-auto rounded-3xl shadow-2xl border border-primary/20 overflow-hidden pointer-events-none">
+                    <video 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline 
+                      src={feature.image} 
+                      className="w-full h-auto object-cover scale-[1.12] translate-y-3 block" 
+                    />
+                  </div>
+                ) : (
+                  <img src={feature.image} alt={feature.title} className="w-full h-auto rounded-3xl shadow-2xl border border-gray-100 object-cover" />
+                )}
               </motion.div>
               
               <motion.div 

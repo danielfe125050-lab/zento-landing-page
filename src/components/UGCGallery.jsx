@@ -5,22 +5,22 @@ import { Star, CheckCircle } from 'lucide-react';
 export default function UGCGallery() {
   const reviews = [
     { 
-      src: "/ugc1.jpg", 
+      src: "/1.jpeg", 
       name: "Carmen R.", 
-      text: "Sorprendida con la facilidad que cortó este tomate, antes siempre con el cuchillo los aplastaba porque perdían el jugo. ¡Excelente compra!" 
+      text: "Me salvó en un viaje a Medellín. Tenía la llanta baja y en 3 minutos la calibré sin ensuciarme las manos. ¡Excelente inversión!" 
     },
     { 
-      src: "/ugc2.jpg", 
+      src: "/2.jpeg", 
       name: "Laura V.", 
       text: "El material se siente súper resistente y de buena calidad. Las ventosas abajo hacen que no se resbale para nada. Muy seguro." 
     },
     { 
-      src: "/ugc3.jpg", 
+      src: "/3.jpeg", 
       name: "Martha G.", 
-      text: "Hacer ensaladas de pepino nunca fue tan rápido, en menos de 1 minuto tengo todo listo en rodajas perfectas y sin peligro de cortarme." 
+      text: "Calibrar las llantas de la moto nunca fue tan rápido. Antes perdía horas buscando estaciones con aire, ahora lo hago en casa." 
     },
     { 
-      src: "/ugc4.jpg", 
+      src: "/4.jpeg", 
       name: "Diana P.", 
       text: "Llorar por picar cebolla quedó en el pasado. Los aros salen limpios y el contenedor recoge absolutamente todo. 10/10." 
     }
@@ -33,7 +33,7 @@ export default function UGCGallery() {
           <h2 className="text-4xl md:text-5xl font-black text-black tracking-tight mb-4 uppercase">
             Más de 15,000 Clientes Felices
           </h2>
-          <p className="text-xl text-gray-500 font-medium">Mira los resultados reales en diferentes tipos de vegetales.</p>
+          <p className="text-xl text-gray-500 font-medium">Mira los testimonios de conductores reales usándolo en diferentes tipos de vehículos.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -83,7 +83,7 @@ export default function UGCGallery() {
         </div>
         
         <div className="mt-16 text-center">
-            <p className="text-gray-400 font-medium italic">"Únete a la comunidad #SafeSlice y cocina seguro"</p>
+            <p className="text-gray-400 font-medium italic">"Únete a la comunidad #AeroSmartPro y viaja seguro"</p>
         </div>
       </div>
     </section>

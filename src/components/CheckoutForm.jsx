@@ -154,7 +154,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         </div>
         <h2 className="text-3xl font-black text-black mb-4">¡PEDIDO RECIBIDO!</h2>
         <p className="text-gray-600 mb-8 text-lg">
-          Gracias por confiar en **Safe Slice Mandoline**. <br/> 
+          Gracias por confiar en **AeroSmart Pro**. <br/> 
           Nos pondremos en contacto contigo por WhatsApp para confirmar los detalles del envío.
         </p>
         <button 
@@ -297,7 +297,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
            <div className="bg-gray-50 rounded-xl p-3 border border-primary/5 flex gap-3 items-center">
               <img src="https://i.pravatar.cc/100?img=33" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" alt="User" />
               <div className="flex-1">
-                <p className="text-[11px] leading-tight text-gray-500 italic">"El envío fue súper rápido a Medellín y el material es de calidad. ¡Pidan los 2 pares!"</p>
+                <p className="text-[11px] leading-tight text-gray-500 italic">"El envío fue súper rápido a Medellín y es de excelente calidad. ¡Pidan el combo x2!"</p>
                 <p className="text-[10px] font-bold mt-1 text-primary">— Juan P. (Verificado)</p>
               </div>
            </div>

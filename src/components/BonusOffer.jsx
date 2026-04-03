@@ -19,7 +19,7 @@ export default function BonusOffer() {
                 ¡Tu compra incluye un <span className="text-primary italic">Regalo VIP!</span>
               </h2>
               <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                No solo te llevas tu Safe Slice, te llevas el sistema completo para mejorar tu cocina. Recibe totalmente <span className="text-white font-bold underline">GRATIS</span> nuestra guía digital de recetas y cortes saludables.
+                No solo te llevas tu AeroSmart Pro, te llevas el sistema completo para mejorar tu seguridad vial. Recibe totalmente <span className="text-white font-bold underline">GRATIS</span> nuestra Guía Digital: Secretos de un Viajero Inteligente.
               </p>
               
               <ul className="space-y-4 mb-10">
@@ -53,8 +53,8 @@ export default function BonusOffer() {
                 <motion.img 
                   initial={{ rotate: -5, scale: 0.9 }}
                   whileInView={{ rotate: 0, scale: 1 }}
-                  src="/ebook_bonus.png" 
-                  alt="E-book Guía de Recetas Safe Slice" 
+                  src="/Diseño sin título.gif" 
+                  alt="E-book Guía Viajero Seguro AeroSmart Pro" 
                   className="w-full max-w-md mx-auto drop-shadow-[0_35px_35px_rgba(34,197,94,0.3)]"
                 />
             </div>

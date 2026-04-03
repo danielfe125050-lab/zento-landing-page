@@ -11,27 +11,16 @@ export default function HowItWorks() {
           <p className="text-main-muted text-xl">Mira cómo cambia todo en segundos.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { src: "/imgi_13_cortadora_verduras_papas_gif_1.webp", title: "Paso 1: Coloca", desc: "Pon tus vegetales u hortalizas directo en el conducto hermético superior sin tener contacto." },
-            { src: "/imgi_15_cortadora_verduras_papas_gif_2.webp", title: "Paso 2: Gira", desc: "Selecciona el modo y el grosor exacto que necesitas rotando fácilmente la perilla." },
-            { src: "/imgi_18_cortadora_verduras_papas_gif_3.webp", title: "Paso 3: Bombea", desc: "Usa el émbolo de resorte y mira caer infinitas rodajas perfectas en segundos." }
-          ].map((item, idx) => (
-            <motion.div 
-               key={idx}
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.5, delay: idx * 0.1 }}
-               viewport={{ once: true }}
-               className="bg-white p-6 rounded-[32px] border border-primary/10 hover:border-primary transition-all text-center group shadow-xl"
-            >
-               <div className="rounded-2xl overflow-hidden mb-6 aspect-square shadow-inner border border-gray-100">
-                  <img src={item.src} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={item.title} />
-               </div>
-               <h3 className="text-xl font-black mb-2 text-main uppercase">{item.title}</h3>
-               <p className="text-main-muted font-medium">{item.desc}</p>
-            </motion.div>
-          ))}
+        <div className="flex justify-center items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="w-full max-w-3xl rounded-[32px] overflow-hidden shadow-2xl border-[4px] border-white ring-1 ring-gray-200"
+          >
+             <img src="/5.jpeg" alt="Instrucciones AeroSmart Pro" className="w-full h-auto object-cover" />
+          </motion.div>
         </div>
         
         <div className="mt-16 flex justify-center">

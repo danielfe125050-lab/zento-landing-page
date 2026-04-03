@@ -25,7 +25,7 @@ export default function ComparisonSection() {
                   <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
                      <Check size={20} />
                   </div>
-                  <p>A diferencia de los cuchillos tradicionales, Safe Slice Mandoline no causa cortes, no requiere de técnica y protege tus manos siempre.</p>
+                  <p>A diferencia de las bombas manuales o los calibradores públicos defectuosos, AeroSmart Pro no requiere esfuerzo físico, te da autonomía en carreteras y cuida de ti y tu vehículo..</p>
                </div>
                <div className="flex items-start gap-3">
                   <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
@@ -55,7 +55,7 @@ export default function ComparisonSection() {
               <div className="grid grid-cols-5 text-center items-end pb-3 pt-6 px-4">
                 <div className="col-span-2"></div>
                 <div className="col-span-2 font-black text-primary flex flex-col items-center justify-center">
-                   <div className="text-xl">Safe Slice™</div>
+                   <div className="text-xl">AeroSmart Pro™</div>
                 </div>
                 <div className="col-span-1 font-bold text-main-muted text-sm italic">Otras Opciones</div>
               </div>
