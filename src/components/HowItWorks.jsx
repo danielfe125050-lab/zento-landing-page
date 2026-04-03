@@ -19,7 +19,7 @@ export default function HowItWorks() {
             viewport={{ once: true }}
             className="w-full max-w-3xl rounded-[32px] overflow-hidden shadow-2xl border-[4px] border-white ring-1 ring-gray-200"
           >
-             <img src="/5.jpeg" alt="Instrucciones AeroSmart Pro" className="w-full h-auto object-cover" />
+             <img src="/5.jpeg" alt="Instrucciones AeroSmart Pro" loading="lazy" className="w-full h-auto object-cover" />
           </motion.div>
         </div>
         

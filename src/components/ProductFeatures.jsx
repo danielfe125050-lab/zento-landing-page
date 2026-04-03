@@ -52,7 +52,7 @@ export default function ProductFeatures() {
                     />
                   </div>
                 ) : (
-                  <img src={feature.image} alt={feature.title} className="w-full h-auto rounded-3xl shadow-2xl border border-gray-100 object-cover" />
+                  <img src={feature.image} loading="lazy" alt={feature.title} className="w-full h-auto rounded-3xl shadow-2xl border border-gray-100 object-cover" />
                 )}
               </motion.div>
               
