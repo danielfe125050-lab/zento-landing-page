@@ -11,7 +11,6 @@ import StickyBuyBar from './components/StickyBuyBar';
 import WhatsAppButton from './components/WhatsAppButton';
 import SaleNotification from './components/SaleNotification';
 import GuaranteeSection from './components/GuaranteeSection';
-import Navbar from './components/Navbar';
 import ResultsSection from './components/ResultsSection';
 import BonusOffer from './components/BonusOffer';
 import LogisticsSection from './components/LogisticsSection';
@@ -34,7 +33,6 @@ function App() {
   return (
     <div className="min-h-screen relative font-body scroll-smooth text-main bg-white overflow-hidden w-full max-w-full">
       <UrgencyBar />
-      <Navbar />
       <Hero 
         isCheckoutOpen={isCheckoutOpen} 
         setIsCheckoutOpen={setIsCheckoutOpen}
