@@ -4,15 +4,15 @@
 @tailwind utilities;
 
 :root {
-  --primary: #7da21b;
-  --primary-hover: #638016;
+  --primary: #FF4D4D;
+  --primary-hover: #E83E3E;
   --bg: #ffffff;
-  --surface: #f4fbf9;
-  --surface-light: #f9fdfc;
-  --text: #2a2a2a;
-  --text-muted: #7a7a7a;
-  --accent: #cce88b;
-  --danger: #e65100;
+  --surface: #f8fafc;
+  --surface-light: #E9F8F9;
+  --text: #1A1A1A;
+  --text-muted: #4A4A4A;
+  --accent: #93c5fd;
+  --danger: #ef4444;
   --radius: 50px; /* Pill shaped buttons */
 }
 

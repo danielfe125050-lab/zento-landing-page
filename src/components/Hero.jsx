@@ -61,9 +61,7 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-black/5 rounded-full blur-3xl"></div>
             
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-gray-200 bg-white group">
-              <div className="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider flex items-center gap-2 border border-white/20 shadow-xl group-hover:scale-105 transition-transform cursor-pointer">
-                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> VER EN ACCIÓN
-              </div>
+
               <AnimatePresence mode="wait">
                 {productData.images[currentImageIdx].endsWith('.mp4') ? (
                   <motion.video 
@@ -144,15 +142,23 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                   <span className="uppercase tracking-wide text-[13px] md:text-sm">PAGO CONTRA ENTREGA - PAGA AL RECIBIR</span>
                 </div>
                 
-                <div className="flex items-baseline gap-4 mb-8">
-                  <span className="text-2xl text-gray-400 line-through">
-                    {formatCurrency(activeBundle.compareAtPrice)}
-                  </span>
-                  <span className="text-4xl font-black text-black">
-                    {formatCurrency(finalPrice)}
-                  </span>
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="flex flex-col">
+                    <span className="text-lg text-gray-400 line-through leading-none">
+                      {formatCurrency(activeBundle.compareAtPrice)}
+                    </span>
+                    <span className="text-4xl font-black text-black">
+                      {formatCurrency(finalPrice)}
+                    </span>
+                  </div>
+                  <div className="bg-primary text-white px-3 py-1.5 rounded-xl font-black text-sm flex flex-col items-center justify-center shadow-lg shadow-primary/20 animate-pulse">
+                    <span className="text-[10px] uppercase leading-none opacity-80">Ahorras</span>
+                    <span className="text-lg leading-none">
+                      {Math.round(((activeBundle.compareAtPrice - activeBundle.price) / activeBundle.compareAtPrice) * 100)}%
+                    </span>
+                  </div>
                   {activeBundle.discountBadge && (
-                    <span className="bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
+                    <span className="bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                       {activeBundle.discountBadge}
                     </span>
                   )}
