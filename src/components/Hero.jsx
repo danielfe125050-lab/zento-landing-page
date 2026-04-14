@@ -12,6 +12,19 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
     const timer = setInterval(() => {
       setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
     }, 1000);
+
+    // Meta Pixel: Track ViewContent when product is viewed
+    if (window.fbq) {
+      window.fbq('track', 'ViewContent', {
+        content_name: productData.name,
+        content_category: 'Citrus Juicers',
+        content_ids: [productData.variants[0].dropiId],
+        content_type: 'product',
+        value: productData.variants[0].price,
+        currency: 'COP'
+      });
+    }
+
     return () => clearInterval(timer);
   }, []);
 
