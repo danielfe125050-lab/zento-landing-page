@@ -44,7 +44,7 @@ function App() {
       <ProductFeatures />
       <HowItWorks />
       <Benefits />
-      <Testimonials />
+      <UGCGallery />
 
       <FaqSection />
       <ComparisonSection />
@@ -52,8 +52,8 @@ function App() {
       
       {/* Footer */}
       <footer className="relative z-10 bg-black pt-24 pb-32 lg:pb-12 text-center text-white px-4 border-t border-gray-800">
-        <h2 className="text-4xl md:text-5xl font-heading font-black mb-6">AeroSmart Pro</h2>
-        <p className="font-medium">© {new Date().getFullYear()} AeroSmart Pro. All rights reserved.</p>
+        <h2 className="text-4xl md:text-5xl font-heading font-black mb-6">FreshJuice Pro</h2>
+        <p className="font-medium">© {new Date().getFullYear()} FreshJuice Pro. All rights reserved.</p>
         <div className="flex flex-wrap justify-center gap-8 mt-8 text-sm font-bold uppercase tracking-widest opacity-80">
           <a href="#" className="hover:opacity-60 transition-opacity">Privacy Policy</a>
           <a href="#" className="hover:opacity-60 transition-opacity">Terms of Service</a>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function WhatsAppButton() {
   const phoneNumber = "573116445034";
-  const message = encodeURIComponent("Quiero saber mas sobre AeroSmart Pro");
+  const message = encodeURIComponent("Quiero saber mas sobre FreshJuice Pro");
   const url = `https://wa.me/${phoneNumber}?text=${message}`;
 
   return (

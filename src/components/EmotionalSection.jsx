@@ -24,7 +24,7 @@ export default function EmotionalSection() {
                   loop
                   muted
                   playsInline
-                  src="/publicidad.mp4" 
+                  src="/3.mp4" 
                   className="w-full h-auto object-cover scale-[1.12] translate-y-3"
                  />
              </div>
@@ -40,17 +40,17 @@ export default function EmotionalSection() {
           >
             <div className="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full w-max mb-4 uppercase tracking-widest">El Problema Oculto</div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              ¿Cansado de la inseguridad y del estrés de <span className="text-primary">quedar varado en medio de la nada?</span>
+              ¿Cansado de la molestia y del dolor de manos al <span className="text-primary">exprimir frutas todos los días?</span>
             </h2>
             <div className="space-y-6 text-main-muted text-lg leading-relaxed text-left">
               <p>
-                Quedarte varado con una llanta baja en medio de la nada es peligroso y muy frustrante.
+                Hacer fuerza todas las mañanas exprimiendo limones o naranjas es agotador y mancha tus manos.
               </p>
               <p>
-                Piensa en esa vez que una llanta estaba baja manejando de noche y el pánico de quedar varado. O peor, las horas perdidas haciendo filas en estaciones de servicio solo para descubrir que la máquina estaba averiada.
+                Piensa en el tiempo que pierdes lavando exprimidores mecánicos y lo molesto que es tener que pelar y presionar cada fruta. Con FreshJuice, todo ese trabajo desaparece en segundos.
               </p>
               <p className="font-bold text-main">
-                Un viaje en familia no debería ser un riesgo ni ser arruinado por una llanta baja. Toma el control de tu seguridad vial.
+                Preparar los desayunos para tu familia no debería ser un esfuerzo físico agotador que te ensucie la cocina entera. ¡Hazlo en segundos!
               </p>
             </div>
           </motion.div>

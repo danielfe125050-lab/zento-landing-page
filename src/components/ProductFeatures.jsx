@@ -4,21 +4,21 @@ import { motion } from 'framer-motion';
 export default function ProductFeatures() {
   const features = [
     {
-      title: "Control Absoluto del Grosor",
-      description: "Con su pantalla digital LED, puedes establecer la presión en PSI exacta que necesita tu llanta (moto, carro o bici). Tú tienes el control milimétrico.",
+      title: "100% Sin Desperdicio",
+      description: "Con su motor de alta potencia, extrae cada gota de tu fruta hasta dejar la cáscara vacía. Tú tienes el control fácilmente.",
       image: "/4.jpeg",
       reverse: false
     },
     {
-      title: "Inflado Auto-Inteligente",
-      description: "Su sistema inteligente apaga el compresor de manera automática cuando alcanza la presión indicada, evitando daños en la llanta. Úsalo con total confianza.",
-      image: "/video 6.mp4",
+      title: "Extracción Automática",
+      description: "Su motor de giro dual extrae hasta el último mililitro de manera automática para no desperdiciar fruta. Úsalo con total confianza.",
+      image: "/2.mp4",
       reverse: true
     },
     {
       title: "Fácil Limpieza Garantizada",
-      description: "Viene con boquillas universales (Carro, Moto, Bici, Balones). Además, la batería integrada funciona como powerbank para cargar tu celular en emergencias.",
-      image: "/5.jpeg",
+      description: "Su diseño es lavable y portátil. Además, la batería de larga duración integrada te permite llevarlo de viaje o usarlo donde quieras.",
+      image: "/gif_2.gif",
       reverse: false
     }
   ];
@@ -27,8 +27,8 @@ export default function ProductFeatures() {
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black mb-4">La Precisión en tus Manos</h2>
-          <p className="text-xl text-gray-500">Diseñado cuidando hasta el último detalle.</p>
+          <h2 className="text-4xl md:text-5xl font-black mb-4">Diseño Inteligente</h2>
+          <p className="text-xl text-gray-500">Hecho de materiales seguros (BPA-Free) y listo para durar años.</p>
         </div>
 
         <div className="space-y-24">

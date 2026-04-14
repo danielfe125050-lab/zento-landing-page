@@ -41,7 +41,7 @@ export default function StickyBuyBar({ onOpenCheckout, selectedVariantId, setSel
             <img src={selectedVariant.image || productData.images[0]} alt={productData.name} className="w-12 h-12 object-contain rounded-lg border border-primary/10" />
             <div>
               <div className="font-heading font-black text-black flex items-center gap-2 text-sm uppercase tracking-tight">
-                AeroSmart Pro <span className="bg-black text-white text-[8px] uppercase font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm"><Zap size={8} fill="currentColor"/> SAVE {productData.discount}</span>
+                FreshJuice Pro <span className="bg-black text-white text-[8px] uppercase font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm"><Zap size={8} fill="currentColor"/> SAVE {productData.discount}</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-bold">
                 <span className="text-black">{formatCurrency(finalPrice)}</span>

@@ -1,63 +1,61 @@
 export const productData = {
-  name: "AeroSmart Pro™ - Compresor Inalámbrico",
-  subtitle: "¡NUNCA MÁS TE QUEDES VARADO! INFLA CUALQUIER LLANTA EN MINUTOS SIN ESFUERZO",
-  socialProof: "+12,500 CLIENTES VIAJANDO SEGUROS",
-  price: 131900,
-  compareAtPrice: 220000,
-  savings: 88100,
-  discount: "40%",
+  name: "FreshJuice Pro™ - Exprimidor Automático Inalámbrico",
+  subtitle: "¡JUGOS FRESCOS EN SEGUNDOS! EXTRAE HASTA LA ÚLTIMA GOTA SIN ESFUERZO NORMALMENTE.",
+  socialProof: "+14,200 FAMILIAS MÁS SALUDABLES",
+  price: 89900,
+  compareAtPrice: 159900,
+  savings: 70000,
+  discount: "43%",
   storeDomain: "universal-ecommerce", 
   checkoutUrl: "/cart/",
   images: [
-    "/video 6.mp4",
-    "/4.jpeg",
     "/1.jpeg",
     "/2.jpeg",
     "/3.jpeg",
+    "/4.jpeg",
     "/5.jpeg",
-    "/Diseño sin título.gif",
-    "/Diseño sin título (1).gif",
-    "/Diseño sin título (3).gif"
+    "/6.jpeg"
   ],
   variants: [
-    { id: "1-unit", name: "1 Compresor AeroSmart Pro", price: 131900, compareAtPrice: 220000, shopifyId: "43254882009206" },
-    { id: "2-units", name: "Combo X2 (Casa y Moto/Carro)", price: 229900, compareAtPrice: 440000, shopifyId: "43254882041974" }
+    { id: "1-unit", name: "1 Exprimidor FreshJuice Pro", price: 89900, compareAtPrice: 159900, dropiId: "2126913" },
+    { id: "2-units", name: "Combo X2 (Para Ti y Para Regalar)", price: 159900, compareAtPrice: 319800, dropiId: "2126913" }
   ],
   howItWorks: [
-    { step: "🔌", title: "Conecta y Ajusta", description: "Conecta la manguera a tu llanta y selecciona la presión ideal (PSI)." },
-    { step: "🔘", title: "Presiona un Botón", description: "Oprime inicio y AeroSmart hará todo el esfuerzo por ti automáticamente." },
-    { step: "🛑", title: "Apagado Inteligente", description: "Se detiene solo al alcanzar la presión perfecta, evitando sobre-inflar." }
+    { step: "🔪", title: "Corta la Fruta", description: "Parte a la mitad cualquier cítrico: naranjas, limones, toronjas o mandarinas." },
+    { step: "🔄", title: "Coloca y Cierra", description: "Pon la fruta en el cono extractor y cierra la tapa hermética. ¡Sin ensuciar!" },
+    { step: "🔘", title: "Presiona un Botón", description: "Hunde el botón de inicio y observa cómo extrae todo el jugo automáticamente." }
   ],
   benefits: [
-    { title: "Súper Portátil", description: "Llévalo en la guantera, el baúl de la moto o la maleta de tu bici sin ocupar espacio." },
-    { title: "Independencia Total", description: "No dependas de calibradores dañados en las estaciones o te arriesgues solo en carretera." },
-    { title: "Powerbank Integrado", description: "Cuenta con puerto USB para cargar tu celular en cualquier lugar ante una emergencia." }
+    { title: "No Más Esfuerzo Manual", description: "Su motor rotativo dual saca mucho más jugo que los exprimidores tradicionales sin lastimar tus muñecas." },
+    { title: "100% Portátil y Recargable", description: "Cárgalo con USB tipo C y llévalo a la oficina, paseos o úsalo libremente sin cables en la encimera." },
+    { title: "Súper Fácil de Lavar", description: "Sus piezas desmontables se enjuagan en 30 segundos bajo la llave del agua." }
   ],
   reviews: [
-    { name: "Andrés G.", rating: 5, comment: "Lo compré para mi moto de alto cilindraje porque odio estar buscando aire. En 2 minutos ya tenía la llanta calibrada. Súper recomendado." },
-    { name: "Valeria M.", rating: 5, comment: "Me daba terror quedarme varada sola en la noche. Con esto ya estoy tranquila. Lo llevo en el carro siempre y es muy fácil de usar." },
-    { name: "Javier S.", rating: 5, comment: "Súper práctico. Lo probé con mi camioneta y funcionó perfecto. Ayer me salvó en la vía a Bogotá porque es súper rápido." },
-    { name: "Marcela R.", rating: 4, comment: "La entrega fue muy rápida y pagué en efectivo en mi casa. Sirve excelente para inflar mi motocicleta y la bicicleta de spinning." },
-    { name: "Camilo T.", rating: 5, comment: "Trabajo en plataforma todo el día y perder tiempo pinchado es perder plata. Este inflador es un tanque de guerra, me sorprendió su batería." },
-    { name: "Diego F.", rating: 5, comment: "Increíble la potencia que tiene para lo pequeño que es. Levantó la llanta de mi carro desde cero. Material muy premium, cero quejas." }
+    { name: "Carolina M.", rating: 5, comment: "Lo mejor que he comprado este año. Le hago jugo a mi hijo cada mañana súper rápido y no se me ensucia la cocina." },
+    { name: "Andrea P.", rating: 5, comment: "Yo sufro de túnel carpiano y exprimir a mano era una tortura. Este aparato es una maravilla, hace todo solo." },
+    { name: "Jorge T.", rating: 5, comment: "Sirve excelente para limones y naranjas grandes. La batería dura muchísimo, lo cargo por ahí cada 15 días." },
+    { name: "Diana V.", rating: 4, comment: "Llegó rapidísimo a Bogotá y pagué en efectivo al mensajero. Es muy bonito estéticamente y funciona tal cual el video." },
+    { name: "Mateo S.", rating: 5, comment: "Saca TODO el jugo, literal deja la cáscara vacía. Súper recomendado para hacer los desayunos." },
+    { name: "Natalia C.", rating: 5, comment: "Me encantó el tamaño, no ocupa nada de espacio. Ideal para mi apartamento." }
   ],
   faqs: [
-    { question: "¿Sirve para llantas de carro?", answer: "¡Sí! Tiene la potencia necesaria (hasta 150 PSI) para inflar llantas de autos, camionetas medianas, motos, bicicletas y balones." },
-    { question: "¿Es recargable?", answer: "Sí, es totalmente libre de cables al inflar. Incluye cable USB-C de carga rápida." }
+    { question: "¿Puedo exprimir frutas grandes como toronjas?", answer: "Sí, siempre y cuando las cortes a la mitad para que encajen en el cilindro, el motor tiene la fuerza para extraer el jugo sin problema." },
+    { question: "¿Cómo se recarga?", answer: "Incluye un cable USB Tipo C (como el de la mayoría de los celulares de hoy). Simplemente conéctalo al cargador de tu celular o a un purto USB." },
+    { question: "¿Es difícil de limpiar?", answer: "Para nada. Todas las partes plásticas que tocan la fruta se giran y desmontan fácilmente para lavarlas bajo el grifo. (El motor o base principal se limpia solo con un paño húmedo)." }
   ],
   heroReview: {
-    name: "Camilo R.",
+    name: "Valentina R.",
     rating: 5,
-    avatar: "",
-    text: "Mi viaje a los pueblos ahora es con total tranquilidad. Lo usé con la bici y con la camioneta y funciona perfecto."
+    avatar: "/resena_1.png",
+    text: "Desde que lo tengo hago jugo natural todos los días. Es un alivio no tener que hacer fuerza, lo recomiendo mucho."
   },
   heroFaqs: [],
   comparisonTable: [
-    { feature: "Inflado Totalmente Automático", ours: true, others: false },
-    { feature: "Pantalla Digital Precisa LED", ours: true, others: false },
-    { feature: "Carga de Celulares (Powerbank)", ours: true, others: false },
-    { feature: "Apagado Inteligente", ours: true, others: false }
+    { feature: "Extrae Jugo Automáticamente", ours: true, others: false },
+    { feature: "Recargable Sin Cables", ours: true, others: false },
+    { feature: "Cero Esfuerzo en Muñecas", ours: true, others: false },
+    { feature: "Sin Desorden ni Salpicaduras", ours: true, others: false }
   ],
   addons: [],
-  urgency: { stockLeft: 12, viewers: 104, countdownMinutes: 15 }
+  urgency: { stockLeft: 8, viewers: 124, countdownMinutes: 15 }
 };

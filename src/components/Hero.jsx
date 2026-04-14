@@ -22,8 +22,8 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
   };
 
   const bundles = [
-    { id: '1-unit', title: '1 Compresor AeroSmart', subtitle: 'Ideal para viaje seguro', price: 131900, compareAtPrice: 220000, quantity: 1, discountBadge: null },
-    { id: '2-units', title: 'Combo X2 (Moto y Carro)', subtitle: 'Ahorro + Para la Familia', price: 229900, compareAtPrice: 440000, quantity: 2, isPopular: true, discountBadge: 'OFERTA ESPECIAL' }
+    { id: '1-unit', title: '1 Exprimidor FreshJuice', subtitle: 'Ideal para la casa', price: 89900, compareAtPrice: 159900, quantity: 1, discountBadge: null },
+    { id: '2-units', title: 'Combo X2 (Para Ti y Para Regalar)', subtitle: 'Ahorro Máximo', price: 159900, compareAtPrice: 319800, quantity: 2, isPopular: true, discountBadge: 'OFERTA ESPECIAL' }
   ];
 
   const activeBundle = bundles.find(b => b.id === selectedVariantId) || bundles[0];
@@ -121,7 +121,7 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                 className="w-full max-w-full sm:max-w-[550px]"
               >
                 <CheckoutForm 
-                   variantId={productData.variants.find(v => v.id === selectedVariantId)?.shopifyId}
+                   variantId={productData.variants.find(v => v.id === selectedVariantId)?.dropiId}
                    bundleTitle={activeBundle.title}
                    price={finalPrice}
                    onCancel={() => setIsCheckoutOpen(false)}
@@ -163,7 +163,7 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                   <ShieldCheck className="text-primary shrink-0 mt-0.5" size={20} />
                   <div>
                     <h4 className="text-black font-bold text-sm leading-tight mb-1">Garantía Blindada 30 Días</h4>
-                    <p className="text-gray-500 text-xs leading-snug">Si no infla tus llantas maravillosamente como prometemos, te devolvemos el 100% de tu dinero. Compra sin riesgo.</p>
+                    <p className="text-gray-500 text-xs leading-snug">Si no extrae el jugo maravillosamente como prometemos, te devolvemos el 100% de tu dinero. Compra sin riesgo.</p>
                   </div>
                 </div>
 
@@ -225,13 +225,13 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                 </div>
 
                 <div className="mb-6 relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary to-primary-hover rounded-[50px] blur opacity-30 animate-pulse"></div>
-                  <button onClick={handleCheckout} className="relative bg-primary hover:bg-primary-hover text-white transition-all w-full text-xl py-5 rounded-[50px] shadow-2xl flex flex-col items-center justify-center border-b-4 border-black/20 hover:border-b-2 hover:-translate-y-1 active:border-b-0 active:translate-y-1">
-                    <span className="font-black tracking-wider uppercase flex items-center gap-2">
-                       <Truck size={24} className="animate-bounce" /> PEDIR CONTRA ENTREGA
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary to-primary-hover rounded-[50px] blur opacity-50 animate-pulse"></div>
+                  <button onClick={handleCheckout} className="relative bg-primary hover:bg-primary-hover text-white transition-all w-full text-xl py-5 rounded-[50px] shadow-2xl flex flex-col items-center justify-center border-b-[6px] border-black/20 hover:border-b-2 hover:-translate-y-1 active:border-b-0 active:translate-y-1">
+                    <span className="font-black tracking-wider uppercase flex items-center gap-2 text-2xl drop-shadow-md">
+                       <Truck size={28} className="animate-bounce" /> CLIC AQUÍ, PAGA EN CASA
                     </span>
-                    <span className="text-[11px] font-bold tracking-widest opacity-90 mt-1 uppercase text-white/90">
-                       Llenar Formulario Ahora
+                    <span className="text-xs font-bold tracking-widest opacity-90 mt-1 uppercase bg-black/20 px-4 py-1 rounded-full text-white mt-2">
+                       Envío Gratis A Todo Colombia
                     </span>
                   </button>
                 </div>
@@ -269,13 +269,13 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
       {/* Vistos En Banner */}
       <div className="relative z-10 w-full bg-surface-light border-y border-gray-200 mt-20 py-8">
         <div className="container mx-auto px-6 text-center">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">El dispositivo de seguridad recomendado por</p>
+          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">El producto estrella recomendado por</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale">
             {/* Fake logos usando texto robusto como placeholder */}
-            <h3 className="text-2xl font-black font-heading">MOTOR TREND</h3>
-            <h3 className="text-2xl font-black font-heading">AUTO BILD</h3>
-            <h3 className="text-2xl font-black font-heading">CAR & DRIVER</h3>
-            <h3 className="text-2xl font-black font-heading">TOP GEAR</h3>
+            <h3 className="text-2xl font-black font-heading">SALUD HOY</h3>
+            <h3 className="text-2xl font-black font-heading">CASA & IDEAS</h3>
+            <h3 className="text-2xl font-black font-heading">COCINA FÁCIL</h3>
+            <h3 className="text-2xl font-black font-heading">FIT LIFE</h3>
           </div>
         </div>
       </div>

@@ -72,7 +72,7 @@ export default function ExitIntentPopup({ onOpenCheckout }) {
             <div className="p-8 text-center">
               <p className="text-xl font-bold mb-4 leading-tight">No te vayas y corras el riesgo de quedar varado esta semana.</p>
               <p className="text-main-muted mb-6">
-                Lleva hoy tu AeroSmart Pro con un <strong className="text-black">10% DE DESCUENTO ADICIONAL</strong>. Exclusivo si completas tu pedido ahora mismo.
+                Lleva hoy tu FreshJuice Pro con un <strong className="text-black">10% DE DESCUENTO ADICIONAL</strong>. Exclusivo si completas tu pedido ahora mismo.
               </p>
               
               <div className="space-y-3">

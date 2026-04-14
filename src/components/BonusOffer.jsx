@@ -19,7 +19,7 @@ export default function BonusOffer() {
                 ¡Tu compra incluye un <span className="text-primary italic">Regalo VIP!</span>
               </h2>
               <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                No solo te llevas tu AeroSmart Pro, te llevas el sistema completo para mejorar tu seguridad vial. Recibe totalmente <span className="text-white font-bold underline">GRATIS</span> nuestra Guía Digital: Secretos de un Viajero Inteligente.
+                No solo te llevas tu FreshJuice Pro, te llevas el sistema completo para mejorar tu seguridad vial. Recibe totalmente <span className="text-white font-bold underline">GRATIS</span> nuestra Guía Digital: Secretos de un Vida Saludable.
               </p>
               
               <ul className="space-y-4 mb-10">
@@ -54,7 +54,7 @@ export default function BonusOffer() {
                   initial={{ rotate: -5, scale: 0.9 }}
                   whileInView={{ rotate: 0, scale: 1 }}
                   src="/Diseño sin título.gif" 
-                  alt="E-book Guía Viajero Seguro AeroSmart Pro" 
+                  alt="E-book Recetario Detox Saludable FreshJuice Pro" 
                   className="w-full max-w-md mx-auto drop-shadow-[0_35px_35px_rgba(34,197,94,0.3)]"
                 />
             </div>

@@ -5,24 +5,24 @@ import { Star, CheckCircle } from 'lucide-react';
 export default function UGCGallery() {
   const reviews = [
     { 
-      src: "/1.jpeg", 
+      src: "/resena_1.png", 
       name: "Carmen R.", 
-      text: "Me salvó en un viaje a Medellín. Tenía la llanta baja y en 3 minutos la calibré sin ensuciarme las manos. ¡Excelente inversión!" 
+      text: "Me salvó los desayunos. Exprimir limones o naranjas a mano me dejaba doliendo las manos, ahora en 3 minutos tengo el jugo listo. ¡Excelente inversión!" 
     },
     { 
-      src: "/2.jpeg", 
+      src: "/resena_2.png", 
       name: "Laura V.", 
-      text: "El material se siente súper resistente y de buena calidad. Las ventosas abajo hacen que no se resbale para nada. Muy seguro." 
+      text: "El material se siente súper resistente y de buena calidad. Las ventosas abajo hacen que no se resbale para nada en la encimera. Muy seguro." 
     },
     { 
-      src: "/3.jpeg", 
+      src: "/resena_3.png", 
       name: "Martha G.", 
-      text: "Calibrar las llantas de la moto nunca fue tan rápido. Antes perdía horas buscando estaciones con aire, ahora lo hago en casa." 
+      text: "Hacer jugos naturales nunca fue tan rápido. Antes perdía horas limpiando el colador y exprimiendo, ahora la lavada de este aparato toma 30 segundos." 
     },
     { 
-      src: "/4.jpeg", 
+      src: "/resena_4.png", 
       name: "Diana P.", 
-      text: "Llorar por picar cebolla quedó en el pasado. Los aros salen limpios y el contenedor recoge absolutamente todo. 10/10." 
+      text: "Saca literalmente hasta la última gota de la fruta, la cáscara queda limpia. Valió cada peso y el envío fue rápido." 
     }
   ];
 
@@ -31,9 +31,9 @@ export default function UGCGallery() {
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-black tracking-tight mb-4 uppercase">
-            Más de 15,000 Clientes Felices
+            Más de 14,200 Familias Felices
           </h2>
-          <p className="text-xl text-gray-500 font-medium">Mira los testimonios de conductores reales usándolo en diferentes tipos de vehículos.</p>
+          <p className="text-xl text-gray-500 font-medium">Mira los testimonios de clientes reales preparando sus jugos todas las mañanas.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -50,6 +50,8 @@ export default function UGCGallery() {
                 <img 
                   src={review.src} 
                   alt={`Reseña de ${review.name}`} 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover cursor-pointer hover:scale-110 transition-transform duration-700" 
                 />
               </div>
@@ -83,7 +85,7 @@ export default function UGCGallery() {
         </div>
         
         <div className="mt-16 text-center">
-            <p className="text-gray-400 font-medium italic">"Únete a la comunidad #AeroSmartPro y viaja seguro"</p>
+            <p className="text-gray-400 font-medium italic">"Únete a la comunidad #FreshJuicePro y vive más sano"</p>
         </div>
       </div>
     </section>

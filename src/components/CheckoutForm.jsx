@@ -107,7 +107,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
     try {
       // Registrar evento de compra si Pixel está activo - MOVIDO AL BLOQUE DE ÉXITO
 
-      const response = await fetch('https://ai-dropshipping-ruddy.vercel.app/api/orders', {
+      const response = await fetch('http://localhost:4000/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -154,7 +154,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         </div>
         <h2 className="text-3xl font-black text-black mb-4">¡PEDIDO RECIBIDO!</h2>
         <p className="text-gray-600 mb-8 text-lg">
-          Gracias por confiar en **AeroSmart Pro**. <br/> 
+          Gracias por confiar en **FreshJuice Pro**. <br/> 
           Nos pondremos en contacto contigo por WhatsApp para confirmar los detalles del envío.
         </p>
         <button 

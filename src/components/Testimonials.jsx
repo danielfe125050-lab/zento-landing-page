@@ -14,7 +14,7 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-main">¿Qué dicen nuestros clientes sobre AeroSmart Pro?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-main">¿Qué dicen nuestros clientes sobre FreshJuice Pro?</h2>
           <div className="flex items-center justify-center gap-2 text-xl font-medium">
             <span className="text-4xl font-black">4.9</span>
             <div className="flex text-accent">
@@ -56,7 +56,7 @@ export default function Testimonials() {
               
               <div className="flex items-center gap-4 mt-auto border-t border-gray-50 pt-6">
                 <div className="w-12 h-12 rounded-full bg-surface-light overflow-hidden shadow-inner ring-2 ring-white">
-                  <img src={`https://i.pravatar.cc/150?img=${idx + 11}`} alt={review.name} />
+                  <img src={`/resena_${(idx % 5) + 1}.png`} alt={review.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <h4 className="font-bold text-gray-900">{review.name}</h4>

@@ -18,26 +18,20 @@ export default function ComparisonSection() {
             className="w-full md:w-1/2 text-center md:text-left mt-8"
           >
             <h2 className="text-3xl md:text-5xl font-heading font-black mb-6 leading-tight uppercase italic">
-              ¿Por qué somos <span className="text-primary">Superiores</span>?
+              ¿Te ha pasado <span className="text-primary">esto?</span>
             </h2>
-            <div className="space-y-4 text-main font-medium text-lg mb-8 md:mb-0">
-               <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
-                     <Check size={20} />
-                  </div>
-                  <p>A diferencia de las bombas manuales o los calibradores públicos defectuosos, AeroSmart Pro no requiere esfuerzo físico, te da autonomía en carreteras y cuida de ti y tu vehículo..</p>
+            <div className="space-y-4 text-main font-bold text-lg mb-8 md:mb-0">
+               <div className="flex items-start gap-4 p-3 bg-red-50 rounded-xl">
+                  <div className="text-2xl mt-1 drop-shadow-sm">😫</div>
+                  <p className="text-gray-800">Terminas con jugo por todos lados, la cocina sucia y las manos pegajosas.</p>
                </div>
-               <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
-                     <Check size={20} />
-                  </div>
-                  <p>Material de silicona grado industrial que dura 5x más que la espuma barata.</p>
+               <div className="flex items-start gap-4 p-3 bg-red-50 rounded-xl">
+                  <div className="text-2xl mt-1 drop-shadow-sm">💧</div>
+                  <p className="text-gray-800">Cuesta mucho esfuerzo físico exprimir a mano para sacar todo el jugo.</p>
                </div>
-               <div className="flex items-start gap-3">
-                  <div className="bg-primary/10 p-2 rounded-lg text-primary mt-1">
-                     <Check size={20} />
-                  </div>
-                  <p>Diseño ergonómico que te permite soltar la barra instantáneamente si es necesario.</p>
+               <div className="flex items-start gap-4 p-3 bg-red-50 rounded-xl">
+                  <div className="text-2xl mt-1 drop-shadow-sm">🤯</div>
+                  <p className="text-gray-800">Odias los aparatos gigantes que tienen mil piezas y son imposibles de lavar.</p>
                </div>
             </div>
           </motion.div>
@@ -55,7 +49,7 @@ export default function ComparisonSection() {
               <div className="grid grid-cols-5 text-center items-end pb-3 pt-6 px-4">
                 <div className="col-span-2"></div>
                 <div className="col-span-2 font-black text-primary flex flex-col items-center justify-center">
-                   <div className="text-xl">AeroSmart Pro™</div>
+                   <div className="text-xl">FreshJuice Pro™</div>
                 </div>
                 <div className="col-span-1 font-bold text-main-muted text-sm italic">Otras Opciones</div>
               </div>
@@ -68,10 +62,10 @@ export default function ComparisonSection() {
                       {row.feature}
                     </div>
                     <div className="col-span-2 flex items-center justify-center py-4 bg-white border-r border-gray-100 shadow-[inset_5px_0px_10px_rgba(248,173,186,0.05)]">
-                      {row.ours ? <Check className="text-accent drop-shadow-sm" size={24} /> : <X className="text-gray-300" size={24} />}
+                      {row.ours ? <Check className="text-[#27AE60] drop-shadow-sm" strokeWidth={3} size={28} /> : <X className="text-[#C0392B]" strokeWidth={3} size={28} />}
                     </div>
                     <div className="col-span-1 flex items-center justify-center py-4 bg-gray-50">
-                      {row.others ? <Check className="text-green-500" size={20} /> : <X className="text-gray-900" size={20} />}
+                      {row.others ? <Check className="text-[#27AE60]" strokeWidth={3} size={24} /> : <X className="text-[#C0392B]" strokeWidth={3} size={24} />}
                     </div>
                   </div>
                 ))}

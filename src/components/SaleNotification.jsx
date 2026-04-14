@@ -15,7 +15,7 @@ export default function SaleNotification() {
       const city = cities[Math.floor(Math.random() * cities.length)];
       
       const rand = Math.random();
-      const treatment = rand > 0.7 ? "3 Unidades de AeroSmart Pro" : (rand > 0.3 ? "2 Unidades de AeroSmart Pro" : "1 Unidad de AeroSmart Pro");
+      const treatment = rand > 0.7 ? "3 Unidades de FreshJuice Pro" : (rand > 0.3 ? "2 Unidades de FreshJuice Pro" : "1 Unidad de FreshJuice Pro");
       
       setCurrentSale({ name, city, treatment });
       setIsVisible(true);
