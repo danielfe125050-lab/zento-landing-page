@@ -17,8 +17,8 @@ export const productData = {
     "/6.jpeg"
   ],
   variants: [
-    { id: "1-unit", name: "1 Exprimidor FreshJuice Pro", price: 89900, compareAtPrice: 159900, dropiId: "2126913" },
-    { id: "2-units", name: "Combo X2 (Para Ti y Para Regalar)", price: 159900, compareAtPrice: 319800, dropiId: "2126913" }
+    { id: "1-unit", name: "1 Exprimidor FreshJuice Pro", price: 89900, compareAtPrice: 159900, dropiId: "43293827334262" },
+    { id: "2-units", name: "Combo X2 (Para Ti y Para Regalar)", price: 159900, compareAtPrice: 319800, dropiId: "43293827367030" }
   ],
   howItWorks: [
     { step: "🔪", title: "Corta la Fruta", description: "Parte a la mitad cualquier cítrico: naranjas, limones, toronjas o mandarinas." },
