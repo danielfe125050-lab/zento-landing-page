@@ -107,7 +107,7 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
     try {
       // Registrar evento de compra si Pixel está activo - MOVIDO AL BLOQUE DE ÉXITO
 
-      const response = await fetch('https://grip-gym-pro-backend-production.up.railway.app/api/orders', {
+      const response = await fetch('https://ai-dropshipping-ruddy.vercel.app/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
