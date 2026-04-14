@@ -9,31 +9,32 @@ export default function ComparisonSection() {
       <div className="container max-w-5xl">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
           
-          {/* Text Content */}
+          {/* Text Content & Comparison Image */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="w-full md:w-1/2 text-center md:text-left mt-8"
+            className="w-full md:w-1/2"
           >
-            <h2 className="text-3xl md:text-5xl font-heading font-black mb-6 leading-tight uppercase italic">
-              ¿Te ha pasado <span className="text-primary">esto?</span>
-            </h2>
-            <div className="space-y-4 text-main font-bold text-lg mb-8 md:mb-0">
-               <div className="flex items-start gap-4 p-3 bg-red-50 rounded-xl">
-                  <div className="text-2xl mt-1 drop-shadow-sm">😫</div>
-                  <p className="text-gray-800">Terminas con jugo por todos lados, la cocina sucia y las manos pegajosas.</p>
-               </div>
-               <div className="flex items-start gap-4 p-3 bg-red-50 rounded-xl">
-                  <div className="text-2xl mt-1 drop-shadow-sm">💧</div>
-                  <p className="text-gray-800">Cuesta mucho esfuerzo físico exprimir a mano para sacar todo el jugo.</p>
-               </div>
-               <div className="flex items-start gap-4 p-3 bg-red-50 rounded-xl">
-                  <div className="text-2xl mt-1 drop-shadow-sm">🤯</div>
-                  <p className="text-gray-800">Odias los aparatos gigantes que tienen mil piezas y son imposibles de lavar.</p>
-               </div>
+            <div className="relative group mb-8">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary to-primary-hover rounded-3xl blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <img 
+                src="/4.jpeg" 
+                alt="Comparativa FreshJuice Pro" 
+                className="relative w-full h-auto rounded-3xl shadow-2xl border-4 border-white transform transition-transform group-hover:scale-[1.02] duration-500"
+              />
+              <div className="absolute top-4 left-4 bg-primary text-white font-black px-4 py-1.5 rounded-full text-xs shadow-lg uppercase tracking-widest">
+                VERDADERO VS IMITACIÓN
+              </div>
             </div>
+
+            <h2 className="text-3xl font-heading font-black mb-4 leading-tight uppercase italic text-center md:text-left">
+              ¿Sigues usando <span className="text-gray-400">exprimidores viejos?</span>
+            </h2>
+            <p className="text-gray-600 font-bold mb-0 text-center md:text-left">
+               No arriesgues tu dinero con imitaciones baratas que se rompen al primer uso. FreshJuice Pro™ es la única con motor de alto torque y batería de larga duración.
+            </p>
           </motion.div>
 
           {/* Table Content */}
