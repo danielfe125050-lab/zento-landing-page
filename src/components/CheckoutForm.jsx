@@ -132,11 +132,11 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
       } else {
         // Reducimos la fricción eliminando mensajes técnicos o bloqueantes
         console.error("Order rejected by server:", result.error);
-        alert("No pudimos procesar el pedido. Por favor verifica tus datos e intenta de nuevo.");
+        alert("¡Uy! Hubo un problema al procesar tu pedido. Por favor, revisa tus datos o contáctanos por WhatsApp para ayudarte.");
       }
     } catch (error) {
        console.error("Error submitting order:", error);
-       alert("Error de conexión. Verifica que el servidor de agentes esté corriendo.");
+       alert("Parece que hay un problema de conexión. Por favor, intenta de nuevo en unos segundos o escríbenos por WhatsApp.");
     } finally {
       setLoading(false);
     }
@@ -213,9 +213,8 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         <div className="relative">
           <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
           <input 
-            required
             type="email" 
-            placeholder="Correo Electrónico" 
+            placeholder="Correo Electrónico (Opcional)" 
             className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 pl-12 pr-4 outline-none transition-all"
             value={formData.email}
             onChange={(e) => setFormData({...formData, email: e.target.value})}
