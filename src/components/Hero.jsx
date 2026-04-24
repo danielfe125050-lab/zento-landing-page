@@ -135,27 +135,60 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
                 exit={{ x: -50, opacity: 0 }}
                 className="bg-white rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-12 shadow-2xl max-w-full sm:max-w-[550px] w-full border border-gray-100 overflow-hidden box-border mx-auto"
               >
-                <h2 className="text-4xl md:text-5xl font-heading font-black text-black mb-4 leading-tight">
-                  {productData.name}
-                </h2>
-
-                <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary font-black px-4 py-2 rounded-xl mb-6 shadow-sm">
-                  <Truck size={20} className="animate-bounce" />
-                  <span className="uppercase tracking-wide text-[13px] md:text-sm">PAGO CONTRA ENTREGA - PAGA AL RECIBIR</span>
-                </div>
-                
-                <div className="flex items-baseline gap-4 mb-8">
-                  <span className="text-2xl text-gray-400 line-through">
-                    {formatCurrency(activeBundle.compareAtPrice)}
+                <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+                  <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-primary bg-primary/5 px-3 py-1 rounded-full mb-3 uppercase">
+                    🏆 Producto más vendido en 2024
                   </span>
-                  <span className="text-4xl font-black text-black">
-                    {formatCurrency(finalPrice)}
-                  </span>
-                  {activeBundle.discountBadge && (
-                    <span className="bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
-                      {activeBundle.discountBadge}
+                  <h1 className="text-4xl md:text-6xl font-heading font-black text-black mb-3 leading-[1.1]">
+                    {productData.name}
+                  </h1>
+                  
+                  {/* Social Proof subido al Top */}
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <span className="text-sm font-bold text-gray-700 uppercase tracking-wide">
+                      4.9/5 (+12,500 Clientes)
                     </span>
-                  )}
+                  </div>
+
+                  {/* Beneficios Flash rápidos */}
+                  <div className="flex flex-wrap justify-center sm:justify-start gap-4 mb-8">
+                    <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-100 px-2.5 py-1.5 rounded-lg shadow-sm">
+                      <span className="text-lg">⚡</span>
+                      <span className="text-[10px] font-bold text-gray-600 uppercase">Inflado en 2m</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-100 px-2.5 py-1.5 rounded-lg shadow-sm">
+                      <span className="text-lg">🤏</span>
+                      <span className="text-[10px] font-bold text-gray-600 uppercase">Portátil</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-100 px-2.5 py-1.5 rounded-lg shadow-sm">
+                      <span className="text-lg">🛑</span>
+                      <span className="text-[10px] font-bold text-gray-600 uppercase">Automático</span>
+                    </div>
+                  </div>
+
+                  <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 text-green-700 font-black px-4 py-2 rounded-xl mb-6 shadow-sm w-fit">
+                    <Truck size={20} className="animate-bounce" />
+                    <span className="uppercase tracking-wide text-[12px] md:text-sm">PAGO CONTRA ENTREGA - PAGA AL RECIBIR</span>
+                  </div>
+                  
+                  <div className="flex items-baseline justify-center sm:justify-start gap-4 mb-8">
+                    <span className="text-2xl text-gray-400 line-through font-bold">
+                      {formatCurrency(activeBundle.compareAtPrice)}
+                    </span>
+                    <span className="text-5xl font-black text-black">
+                      {formatCurrency(finalPrice)}
+                    </span>
+                    <span className="bg-red-600 text-white text-xs font-black px-3 py-1 rounded-md uppercase animate-pulse">
+                      -{activeBundle.discountBadge || '45% OFF'}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Garantía Blindada Addon */}
@@ -194,30 +227,36 @@ export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVarian
 
 
                 <div className="mb-8">
-                  <p className="text-black font-heading font-bold mb-4">Selecciona tu paquete:</p>
-                  <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between mb-4">
+                    <p className="text-black font-heading font-black text-lg uppercase tracking-tight">Selecciona tu Pack de Ahorro:</p>
+                    <span className="text-[10px] font-black text-primary animate-pulse">OFERTA POR TIEMPO LIMITADO</span>
+                  </div>
+                  <div className="flex flex-col gap-4">
                     {bundles.map((bundle) => (
                       <button
                         key={bundle.id}
                         onClick={() => setSelectedVariantId(bundle.id)}
-                        className={`relative w-full text-left p-3 sm:p-4 rounded-2xl border-2 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-4 ${selectedVariantId === bundle.id ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-gray-300'}`}
+                        className={`relative w-full text-left p-4 rounded-2xl border-[3px] transition-all flex flex-col sm:flex-row items-center justify-between gap-4 ${selectedVariantId === bundle.id ? 'border-primary bg-primary/5 shadow-lg shadow-primary/10' : 'border-gray-100 bg-gray-50 hover:border-gray-200'}`}
                       >
                         {bundle.isPopular && (
-                          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider whitespace-nowrap">
-                            Más Popular
+                          <div className="absolute -top-3 left-6 bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg z-20 animate-bounce">
+                            ¡MÁS VENDIDO!
                           </div>
                         )}
-                        <div className="flex items-center gap-3 w-full sm:w-auto">
-                          <div className={`w-5 h-5 sm:w-6 sm:h-6 shrink-0 rounded-full border-2 flex items-center justify-center ${selectedVariantId === bundle.id ? 'border-primary' : 'border-gray-300'}`}>
-                            {selectedVariantId === bundle.id && <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-primary rounded-full"></div>}
+                        <div className="flex items-center gap-4 w-full">
+                          <div className={`w-6 h-6 shrink-0 rounded-full border-[3px] flex items-center justify-center transition-colors ${selectedVariantId === bundle.id ? 'border-primary' : 'border-gray-300'}`}>
+                            {selectedVariantId === bundle.id && <div className="w-3 h-3 bg-primary rounded-full"></div>}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h3 className="font-bold text-black text-base sm:text-lg truncate">{bundle.title}</h3>
-                            <p className="text-xs sm:text-sm text-gray-500 leading-tight truncate">{bundle.subtitle}</p>
+                            <h3 className={`font-black text-lg leading-tight ${selectedVariantId === bundle.id ? 'text-primary' : 'text-black'}`}>{bundle.title}</h3>
+                            <p className="text-xs text-gray-500 font-bold uppercase tracking-wide">{bundle.subtitle}</p>
                           </div>
-                        </div>
-                        <div className="text-left sm:text-right pl-8 sm:pl-0">
-                           <span className="font-black text-base sm:text-lg text-black">{formatCurrency(bundle.price)}</span>
+                          <div className="text-right">
+                             <span className={`block font-black text-xl ${selectedVariantId === bundle.id ? 'text-primary' : 'text-black'}`}>{formatCurrency(bundle.price)}</span>
+                             {bundle.compareAtPrice > bundle.price && (
+                               <span className="text-[10px] text-gray-400 line-through font-bold">{formatCurrency(bundle.compareAtPrice)}</span>
+                             )}
+                          </div>
                         </div>
                       </button>
                     ))}
