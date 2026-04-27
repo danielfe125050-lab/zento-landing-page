@@ -124,7 +124,7 @@ export default function CheckoutForm({ bundles = [], onCancel, initialBundleId }
       if (result.success) {
         if (window.fbq) {
           window.fbq('track', 'Purchase', { 
-            value: price, 
+            value: Number(cleanPrice), // Valor numérico limpio para que FB no arroje error
             currency: 'COP',
             content_name: bundleTitle,
             content_ids: [variantId]
