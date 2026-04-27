@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Loader2, Phone, MapPin, User, MessageSquare, ShieldCheck, Lock, Truck, ChevronDown } from 'lucide-react';
+import { CheckCircle2, Loader2, Phone, MapPin, User, MessageSquare, ShieldCheck, Lock, Truck, ChevronDown, ShoppingBag } from 'lucide-react';
 import { regions } from '../data/colombia';
-import { productData } from '../data/product';
 
 const SearchableSelect = ({ options, value, onChange, placeholder, disabled = false }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,12 +27,11 @@ const SearchableSelect = ({ options, value, onChange, placeholder, disabled = fa
         onChange={(e) => {
           setSearch(e.target.value);
           setIsOpen(true);
-          // Si el usuario escribe algo que coincide exactamente, lo seleccionamos
           const match = options.find(o => o.toLowerCase() === e.target.value.toLowerCase());
           if (match) onChange(match);
         }}
         onFocus={() => setIsOpen(true)}
-        className={`w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 px-4 outline-none transition-all pr-10 ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-text'}`}
+        className={`w-full bg-gray-50 border-2 border-transparent focus:border-neonRed focus:bg-white text-[#1a1a1a] placeholder-gray-400 rounded-xl py-4 px-4 outline-none transition-all pr-10 ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-text'}`}
         autoComplete="off"
       />
       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
@@ -59,7 +57,7 @@ const SearchableSelect = ({ options, value, onChange, placeholder, disabled = fa
                       setSearch(opt);
                       setIsOpen(false);
                     }}
-                    className={`px-4 py-3 hover:bg-primary/5 cursor-pointer text-sm font-medium border-b border-gray-50 last:border-0 transition-colors ${value === opt ? 'text-primary bg-primary/5' : 'text-main'}`}
+                    className={`px-4 py-3 hover:bg-gray-50 cursor-pointer text-sm font-medium border-b border-gray-50 last:border-0 transition-colors ${value === opt ? 'text-neonRed bg-neonRed/5' : 'text-gray-700'}`}
                   >
                     {opt}
                   </li>
@@ -75,7 +73,11 @@ const SearchableSelect = ({ options, value, onChange, placeholder, disabled = fa
   );
 };
 
-export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }) {
+export default function CheckoutForm({ bundles = [], onCancel, initialBundleId }) {
+  const [selectedBundleId, setSelectedBundleId] = useState(initialBundleId || bundles[0]?.id);
+  const activeBundle = bundles.find(b => b.id === selectedBundleId) || bundles[0];
+  const { id: variantId, title: bundleTitle, price } = activeBundle || {};
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -105,8 +107,6 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
     setLoading(true);
 
     try {
-      // Registrar evento de compra si Pixel está activo - MOVIDO AL BLOQUE DE ÉXITO
-
       const response = await fetch('https://ai-dropshipping-ruddy.vercel.app/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -130,7 +130,6 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         }
         setSuccess(true);
       } else {
-        // Reducimos la fricción eliminando mensajes técnicos o bloqueantes
         console.error("Order rejected by server:", result.error);
         alert("¡Uy! Hubo un problema al procesar tu pedido. Por favor, revisa tus datos o contáctanos por WhatsApp para ayudarte.");
       }
@@ -147,19 +146,19 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }} 
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white p-8 rounded-[32px] text-center shadow-2xl border-4 border-primary"
+        className="bg-white border border-gray-100 p-8 rounded-[32px] text-center shadow-2xl text-[#1a1a1a]"
       >
         <div className="flex justify-center mb-6">
-          <CheckCircle2 size={80} className="text-primary animate-bounce" />
+          <CheckCircle2 size={80} className="text-neonRed animate-bounce" />
         </div>
-        <h2 className="text-3xl font-black text-black mb-4">¡PEDIDO RECIBIDO!</h2>
-        <p className="text-gray-600 mb-8 text-lg">
-          Gracias por confiar en **FreshJuice Pro**. <br/> 
-          Nos pondremos en contacto contigo por WhatsApp para confirmar los detalles del envío.
+        <h2 className="text-3xl font-black text-[#1a1a1a] mb-4">¡PEDIDO RECIBIDO!</h2>
+        <p className="text-gray-600 mb-8 text-lg font-light leading-relaxed">
+          Gracias por confiar en <span className="font-bold text-[#1a1a1a]">OcularTech</span>. <br/> 
+          Nos pondremos en contacto contigo por WhatsApp para confirmar tu envío.
         </p>
         <button 
           onClick={() => window.location.reload()}
-          className="btn-primary w-full py-4 text-xl"
+          className="w-full bg-neonRed hover:bg-[#1a1a1a] text-white font-black py-4 rounded-full transition-all text-lg shadow-lg shadow-neonRed/20"
         >
           VOLVER AL INICIO
         </button>
@@ -168,20 +167,23 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
   }
 
   return (
-    <div className="bg-white p-5 sm:p-8 rounded-[32px] shadow-2xl border border-gray-100 w-full overflow-hidden">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl sm:text-2xl font-black text-black">CONFIRMA TU PEDIDO</h2>
-        <button onClick={onCancel} className="text-gray-400 hover:text-black">✖</button>
-      </div>
-
-      <div className="bg-gray-50 p-4 rounded-2xl mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-        <div className="w-full">
-          <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase">Paquete Seleccionado</p>
-          <p className="font-black text-black truncate w-full">{bundleTitle}</p>
-        </div>
-        <div className="text-left sm:text-right shrink-0">
-          <p className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase">Total a Pagar</p>
-          <p className="font-black text-primary text-xl">{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(price)}</p>
+    <div className="bg-white p-5 sm:p-8 rounded-[32px] shadow-2xl border border-gray-100 w-full overflow-hidden text-[#1a1a1a]">
+      <div className="flex flex-col items-center mb-8 text-center">
+        <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] w-full uppercase italic tracking-tighter mb-2">CONFIRMA TU PEDIDO</h2>
+        
+        {/* Order Summary Label (Simple replacement for the bundle selector) */}
+        <div className="bg-gray-50 border border-gray-100 rounded-2xl px-6 py-3 flex items-center gap-4 w-full justify-between">
+           <div className="flex items-center gap-3">
+              <ShoppingBag className="text-neonRed" size={18} />
+              <div className="text-left">
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Producto</p>
+                <p className="text-sm font-bold text-[#1a1a1a] leading-none">{bundleTitle}</p>
+              </div>
+           </div>
+           <div className="text-right border-l border-gray-200 pl-4">
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Precio</p>
+              <p className="text-lg font-black text-neonRed leading-none">{price}</p>
+           </div>
         </div>
       </div>
 
@@ -192,33 +194,34 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
             required
             type="text" 
             placeholder="Nombre Completo" 
-            className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 pl-12 pr-4 outline-none transition-all"
+            className="w-full bg-gray-50 border-2 border-transparent focus:border-neonRed focus:bg-white text-[#1a1a1a] placeholder-gray-400 rounded-xl py-4 pl-12 pr-4 outline-none transition-all"
             value={formData.fullName}
             onChange={(e) => setFormData({...formData, fullName: e.target.value})}
           />
         </div>
 
-        <div className="relative">
-          <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-          <input 
-            required
-            type="tel" 
-            placeholder="WhatsApp / Celular" 
-            className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 pl-12 pr-4 outline-none transition-all"
-            value={formData.phone}
-            onChange={(e) => setFormData({...formData, phone: e.target.value})}
-          />
-        </div>
-
-        <div className="relative">
-          <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-          <input 
-            type="email" 
-            placeholder="Correo Electrónico (Opcional)" 
-            className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 pl-12 pr-4 outline-none transition-all"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-          />
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="relative flex-1">
+            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+            <input 
+              required
+              type="tel" 
+              placeholder="WhatsApp / Celular" 
+              className="w-full bg-gray-50 border-2 border-transparent focus:border-neonRed focus:bg-white text-[#1a1a1a] placeholder-gray-400 rounded-xl py-4 pl-12 pr-4 outline-none transition-all"
+              value={formData.phone}
+              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+            />
+          </div>
+          <div className="relative flex-1">
+            <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+            <input 
+              type="email" 
+              placeholder="Correo Electrónico (Opcional)" 
+              className="w-full bg-gray-50 border-2 border-transparent focus:border-neonRed focus:bg-white text-[#1a1a1a] placeholder-gray-400 rounded-xl py-4 pl-12 pr-4 outline-none transition-all"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+            />
+          </div>
         </div>
 
         <div className="relative">
@@ -227,14 +230,13 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
             required
             type="text" 
             placeholder="Dirección Completa (Barrio y Complementos)" 
-            className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 pl-12 pr-4 outline-none transition-all"
+            className="w-full bg-gray-50 border-2 border-transparent focus:border-neonRed focus:bg-white text-[#1a1a1a] placeholder-gray-400 rounded-xl py-4 pl-12 pr-4 outline-none transition-all"
             value={formData.address}
             onChange={(e) => setFormData({...formData, address: e.target.value})}
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-           {/* Department Selector */}
            <SearchableSelect 
              placeholder="Departamento"
              options={departmentOptions}
@@ -242,7 +244,6 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
              onChange={(val) => setFormData({...formData, department: val, city: ''})}
            />
 
-           {/* City Selector */}
            <SearchableSelect 
              placeholder="Ciudad"
              options={cityOptions}
@@ -253,11 +254,11 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         </div>
 
         <div className="relative">
-          <MessageSquare className="absolute left-4 top-1/2 text-gray-400 mt-4" size={20} />
+          <MessageSquare className="absolute left-4 top-4 text-gray-400" size={20} />
           <textarea 
-            placeholder="Notas del pedido (Opcional: Ej: Dejar en portería, tallas, colores...)" 
-            rows="3"
-            className="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-xl py-4 pl-12 pr-4 outline-none transition-all resize-none"
+            placeholder="Notas del pedido (Opcional: Ej: Dejar en portería, etc.)" 
+            rows="2"
+            className="w-full bg-gray-50 border-2 border-transparent focus:border-neonRed focus:bg-white text-[#1a1a1a] placeholder-gray-400 rounded-xl py-4 pl-12 pr-4 outline-none transition-all resize-none"
             value={formData.notes}
             onChange={(e) => setFormData({...formData, notes: e.target.value})}
           />
@@ -266,38 +267,38 @@ export default function CheckoutForm({ variantId, bundleTitle, price, onCancel }
         <button 
           disabled={loading}
           type="submit" 
-          className="w-full btn-primary py-5 text-xl shadow-xl shadow-primary/20 flex items-center justify-center gap-3"
+          className="w-full bg-neonRed hover:bg-[#1a1a1a] text-white font-black py-5 rounded-full shadow-xl shadow-neonRed/20 flex items-center justify-center gap-3 active:scale-95 transition-all text-xl mt-4 uppercase tracking-tight italic"
         >
           {loading ? <Loader2 className="animate-spin" /> : 'CONFIRMAR PEDIDO'}
         </button>
         
-        <p className="text-center text-xs text-gray-400 font-bold uppercase mt-4">
+        <p className="text-center text-[10px] text-gray-400 font-black uppercase mt-4 tracking-[0.2em]">
           🚚 ENVÍO GRATIS Y PAGO CONTRA ENTREGA
         </p>
 
         {/* Trust & Urgency Boosters */}
-        <div className="mt-8 pt-6 border-t border-gray-100">
-           <div className="flex justify-center gap-4 mb-6">
-              <div className="flex flex-col items-center gap-1 opacity-60">
-                 <ShieldCheck size={20} className="text-primary" />
-                 <span className="text-[9px] font-bold uppercase">Garantía 30d</span>
+        <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col gap-6">
+           <div className="flex justify-center gap-8">
+              <div className="flex flex-col items-center gap-1.5 opacity-40">
+                 <ShieldCheck size={20} className="text-gray-800" />
+                 <span className="text-[8px] font-black uppercase text-gray-800">Garantía 30d</span>
               </div>
-              <div className="flex flex-col items-center gap-1 opacity-60">
-                 <Lock size={20} className="text-primary" />
-                 <span className="text-[9px] font-bold uppercase">Pago Seguro</span>
+              <div className="flex flex-col items-center gap-1.5 opacity-40">
+                 <Lock size={20} className="text-gray-800" />
+                 <span className="text-[8px] font-black uppercase text-gray-800">Pago Seguro</span>
               </div>
-              <div className="flex flex-col items-center gap-1 opacity-60">
-                 <Truck size={20} className="text-primary" />
-                 <span className="text-[9px] font-bold uppercase">Envío Gratis</span>
+              <div className="flex flex-col items-center gap-1.5 opacity-40">
+                 <Truck size={20} className="text-gray-800" />
+                 <span className="text-[8px] font-black uppercase text-gray-800">Envío Gratis</span>
               </div>
            </div>
            
            {/* Micro Testimonial */}
-           <div className="bg-gray-50 rounded-xl p-3 border border-primary/5 flex gap-3 items-center">
-              <img src="https://i.pravatar.cc/100?img=33" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" alt="User" />
+           <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100 flex gap-4 items-center">
+              <img src="https://i.pravatar.cc/100?img=33" className="w-12 h-12 rounded-full border-2 border-white shadow-sm" alt="User" />
               <div className="flex-1">
-                <p className="text-[11px] leading-tight text-gray-500 italic">"El envío fue súper rápido a Medellín y es de excelente calidad. ¡Pidan el combo x2!"</p>
-                <p className="text-[10px] font-bold mt-1 text-primary">— Juan P. (Verificado)</p>
+                <p className="text-xs leading-tight text-gray-600 italic">"El envío fue súper rápido a Medellín y es de excelente calidad. ¡Pidan el combo x2!"</p>
+                <p className="text-[10px] font-black mt-1 text-neonRed uppercase tracking-widest">— Juan P. (Verificado)</p>
               </div>
            </div>
         </div>

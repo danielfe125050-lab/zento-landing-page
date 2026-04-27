@@ -1,38 +1,32 @@
-import React, { useState } from 'react';
-import UrgencyBar from './components/UrgencyBar';
+import React, { useState, Suspense } from 'react';
 import Hero from './components/Hero';
-import Benefits from './components/Benefits';
-import EmotionalSection from './components/EmotionalSection';
-import HowItWorks from './components/HowItWorks';
-import FaqSection from './components/FaqSection';
-import Testimonials from './components/Testimonials';
-import ComparisonSection from './components/ComparisonSection';
-import StickyBuyBar from './components/StickyBuyBar';
-import WhatsAppButton from './components/WhatsAppButton';
-import SaleNotification from './components/SaleNotification';
-import GuaranteeSection from './components/GuaranteeSection';
-import ResultsSection from './components/ResultsSection';
-import BonusOffer from './components/BonusOffer';
-import LogisticsSection from './components/LogisticsSection';
-import UGCGallery from './components/UGCGallery';
-import ProductFeatures from './components/ProductFeatures';
 
-
+// Carga diferida para acelerar el inicio (Lazy Loading)
+const EmotionalSection = React.lazy(() => import('./components/EmotionalSection'));
+const HowItWorks = React.lazy(() => import('./components/HowItWorks'));
+const FAQSection = React.lazy(() => import('./components/FaqSection'));
+const ProductFeatures = React.lazy(() => import('./components/ProductFeatures'));
+const LegalModals = React.lazy(() => import('./components/LegalModals'));
+const VideoDemo = React.lazy(() => import('./components/VideoDemo'));
+const ReviewsSection = React.lazy(() => import('./components/ReviewsSection'));
 
 function App() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [selectedVariantId, setSelectedVariantId] = useState('1-unit'); // Default to 1 unit
+  const [selectedVariantId, setSelectedVariantId] = useState('43348686569590');
+  
+  // Legal Modals State
+  const [legalModal, setLegalModal] = useState({ isOpen: false, type: '' });
 
-  const handleOpenCheckout = (variantId) => {
-    if (variantId) setSelectedVariantId(variantId);
-    setIsCheckoutOpen(true);
-    // Scroll to top where the form is rendered (in Hero)
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleOpenLegal = (e, type) => {
+    e.preventDefault();
+    setLegalModal({ isOpen: true, type });
   };
 
+  const currentYear = new Date().getFullYear();
+
   return (
-    <div className="min-h-screen relative font-body scroll-smooth text-main bg-white overflow-hidden w-full max-w-full">
-      <UrgencyBar />
+    <div className="min-h-screen relative font-body scroll-smooth text-[#1a1a1a] bg-white overflow-hidden w-full max-w-full selection:bg-neonRed selection:text-white">
+      
       <Hero 
         isCheckoutOpen={isCheckoutOpen} 
         setIsCheckoutOpen={setIsCheckoutOpen}
@@ -40,34 +34,36 @@ function App() {
         setSelectedVariantId={setSelectedVariantId}
       />
 
-      <EmotionalSection />
-      <ProductFeatures />
-      <HowItWorks />
-      <Benefits />
-      <UGCGallery />
-
-      <FaqSection />
-      <ComparisonSection />
-      <GuaranteeSection />
+      {/* Boundary para el Lazy Loading */}
+      <Suspense fallback={<div className="h-20 flex items-center justify-center text-neonRed font-black animate-pulse uppercase tracking-[0.2em] text-xs">Cargando experiencia...</div>}>
+        <EmotionalSection />
+        <VideoDemo />
+        <ProductFeatures />
+        <HowItWorks />
+        <ReviewsSection />
+        <FAQSection />
+      </Suspense>
       
       {/* Footer */}
-      <footer className="relative z-10 bg-black pt-24 pb-32 lg:pb-12 text-center text-white px-4 border-t border-gray-800">
-        <h2 className="text-4xl md:text-5xl font-heading font-black mb-6">FreshJuice Pro</h2>
-        <p className="font-medium">© {new Date().getFullYear()} FreshJuice Pro. All rights reserved.</p>
-        <div className="flex flex-wrap justify-center gap-8 mt-8 text-sm font-bold uppercase tracking-widest opacity-80">
-          <a href="#" className="hover:opacity-60 transition-opacity">Privacy Policy</a>
-          <a href="#" className="hover:opacity-60 transition-opacity">Terms of Service</a>
-          <a href="#" className="hover:opacity-60 transition-opacity">Refund Policy</a>
+      <footer className="relative z-10 bg-white pt-24 pb-32 lg:pb-12 text-center text-[#1a1a1a] px-4 border-t border-gray-100">
+        <h2 className="text-4xl md:text-5xl font-heading font-black mb-6 italic tracking-tighter uppercase">Dropi Store</h2>
+        <p className="font-bold text-gray-400 text-xs uppercase tracking-widest">© {currentYear} Todos los derechos reservados.</p>
+        
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-12 mt-8 text-[10px] font-black uppercase tracking-[0.2em] opacity-40">
+          <a href="#" onClick={(e) => handleOpenLegal(e, 'envio')} className="hover:opacity-100 hover:text-neonRed transition-all">Políticas de Envío</a>
+          <a href="#" onClick={(e) => handleOpenLegal(e, 'terminos')} className="hover:opacity-100 hover:text-neonRed transition-all">Términos y Condiciones</a>
+          <a href="#" onClick={(e) => handleOpenLegal(e, 'privacidad')} className="hover:opacity-100 hover:text-neonRed transition-all">Privacidad</a>
+          <a href="#" onClick={(e) => handleOpenLegal(e, 'devoluciones')} className="hover:opacity-100 hover:text-neonRed transition-all">Devoluciones</a>
         </div>
       </footer>
 
-      <WhatsAppButton />
-      <SaleNotification />
-      <StickyBuyBar 
-        onOpenCheckout={handleOpenCheckout}
-        selectedVariantId={selectedVariantId}
-        setSelectedVariantId={setSelectedVariantId}
+      {/* Legal Modals Implementation */}
+      <LegalModals 
+        isOpen={legalModal.isOpen} 
+        type={legalModal.type} 
+        onClose={() => setLegalModal({ ...legalModal, isOpen: false })} 
       />
+
     </div>
   );
 }

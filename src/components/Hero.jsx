@@ -1,303 +1,241 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { productData } from '../data/product';
-import { Check, ShieldCheck, Truck } from 'lucide-react';
+import { Star, CheckCircle2, Truck, ShieldCheck, Award, MessageCircle } from 'lucide-react';
 import CheckoutForm from './CheckoutForm';
 
-export default function Hero({ isCheckoutOpen, setIsCheckoutOpen, selectedVariantId, setSelectedVariantId }) {
-  const [currentImageIdx, setCurrentImageIdx] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(15 * 60 + 24); // 15:24
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-
-    // Meta Pixel: Track ViewContent when product is viewed
-    if (window.fbq) {
-      window.fbq('track', 'ViewContent', {
-        content_name: productData.name,
-        content_category: 'Citrus Juicers',
-        content_ids: [productData.variants[0].dropiId],
-        content_type: 'product',
-        value: productData.variants[0].price,
-        currency: 'COP'
-      });
-    }
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatTime = (seconds) => {
-    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
-    const s = (seconds % 60).toString().padStart(2, '0');
-    return `${m}:${s}`;
-  };
+export default function Hero() {
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [selectedBundle, setSelectedBundle] = useState('1-unit');
+  const [activeImage, setActiveImage] = useState('video');
 
   const bundles = [
-    { id: '1-unit', title: '1 Exprimidor FreshJuice', subtitle: 'Ideal para la casa', price: 89900, compareAtPrice: 159900, quantity: 1, discountBadge: null },
-    { id: '2-units', title: 'Combo X2 (Para Ti y Para Regalar)', subtitle: 'Ahorro Máximo', price: 159900, compareAtPrice: 319800, quantity: 2, isPopular: true, discountBadge: 'OFERTA ESPECIAL' }
+    { 
+      id: '43348686569590', // Variante 1
+      title: '1 Masajeador Ocular', 
+      desc: 'Tratamiento personal completo',
+      price: '$189.900', 
+      oldPrice: '$259.900',
+      badge: 'Popular'
+    },
+    { 
+      id: '43348686602358', // Variante 2
+      title: 'Combo Pareja (Llevas 2)', 
+      desc: 'El mejor regalo para descansar',
+      price: '$319.900', 
+      oldPrice: '$519.800',
+      badge: 'Mejor Valor'
+    }
   ];
 
-  const activeBundle = bundles.find(b => b.id === selectedVariantId) || bundles[0];
-  const finalPrice = activeBundle.price;
-
-  const handleCheckout = (e) => {
-    e.preventDefault();
+  const handleCheckout = () => {
     setIsCheckoutOpen(true);
-    // Hacemos scroll suave al formulario si es necesario
-    const element = document.getElementById('checkout-area');
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const formatCurrency = (val) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(val);
+  const images = [
+    { id: 'video', type: 'video', src: '/video .mp4' },
+    { id: '1', type: 'image', src: '/1.jpeg' },
+    { id: '2', type: 'image', src: '/2.jpeg' },
+    { id: '3', type: 'image', src: '/3.jpeg' },
+    { id: '4', type: 'image', src: '/4.jpeg' },
+    { id: '5', type: 'image', src: '/5.jpeg' },
+    { id: '6', type: 'image', src: '/6.jpeg' }
+  ];
 
   return (
-    <section className="relative min-h-[800px] pt-2 md:pt-6 pb-24 overflow-hidden">
-      {/* Wavy Background Layer */}
-      <div className="absolute inset-0 z-0">
-        <div className="h-[70%] bg-gray-200 rounded-b-[100px] md:rounded-b-[200px]" style={{ borderRadius: '0 0 50% 50% / 0 0 20% 20%' }}></div>
-        <div className="absolute bottom-0 left-0 w-full h-[30%] bg-white"></div>
+    <div className="bg-white min-h-screen font-sans text-[#333]">
+      {/* 1. TOP ANNOUNCEMENT BANNER */}
+      <div className="w-full bg-[#1a1a1a] text-white text-[10px] sm:text-xs font-bold py-2 text-center uppercase tracking-widest px-4">
+        ❤️ Especial de Mes: ¡Lleva el regalo perfecto para tu mirada! 🌹
       </div>
 
-      <div className="w-full max-w-[100vw] overflow-x-hidden box-border pt-2 pb-12">
-        <div className="container relative z-10 mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 md:gap-16 items-center w-full max-w-full">
-        
-        {/* Left Side: Product Image Carousel */}
-        <div className="relative flex flex-col justify-center items-center w-full min-w-0">
-          <motion.div 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative w-full max-w-[500px] mb-6"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-black/5 rounded-full blur-3xl"></div>
-            
-            <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border border-gray-200 bg-white group">
-
-              <AnimatePresence mode="wait">
-                {productData.images[currentImageIdx].endsWith('.mp4') ? (
-                  <motion.video 
-                    key={currentImageIdx}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    src={productData.images[currentImageIdx]} 
-                    autoPlay loop muted playsInline
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <motion.img 
-                    key={currentImageIdx}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    src={productData.images[currentImageIdx]} 
-                    alt={`${productData.name} view ${currentImageIdx + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </AnimatePresence>
+      {/* 2. TRUST SYMBOLS BAR */}
+      <div className="w-full bg-neonRed text-white py-1.5 overflow-hidden border-b border-white/10">
+        <div className="flex justify-center items-center gap-4 lg:gap-12 px-4">
+          {[
+            { icon: <ShieldCheck size={14}/>, text: "Garantía" },
+            { icon: <Truck size={14}/>, text: "Envío Gratis" },
+            { icon: <Award size={14}/>, text: "Tecnología EMS" },
+            { icon: <MessageCircle size={14}/>, text: "Contra Entrega" }
+          ].map((item, i) => (
+            <div key={i} className="flex items-center gap-1 sm:gap-2 text-[9px] sm:text-[10px] font-black uppercase whitespace-nowrap">
+              {item.icon} <span className="hidden xs:inline">{item.text}</span>
             </div>
-          </motion.div>
-
-          <div className="flex gap-3 overflow-x-auto pb-2 max-w-[500px] w-full hide-scrollbar">
-            {productData.images.map((img, idx) => (
-              <button 
-                key={idx}
-                onClick={() => setCurrentImageIdx(idx)} 
-                className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all relative ${currentImageIdx === idx ? 'border-primary ring-2 ring-primary/20' : 'border-transparent opacity-60 hover:opacity-100'}`}
-              >
-                {img.endsWith('.mp4') ? (
-                  <video src={img} className="w-full h-full object-cover" />
-                ) : (
-                  <img src={img} className="w-full h-full object-cover" />
-                )}
-              </button>
-            ))}
-          </div>
+          ))}
         </div>
+      </div>
 
-        {/* Right Side: Product Card / Form Area */}
-        <div id="checkout-area" className="flex justify-center lg:justify-end min-h-[600px] items-start w-full min-w-0">
-          <AnimatePresence mode="wait">
-            {isCheckoutOpen ? (
-              <motion.div 
-                key="form"
-                initial={{ x: 100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -100, opacity: 0 }}
-                className="w-full max-w-full sm:max-w-[550px]"
-              >
-                <CheckoutForm 
-                   variantId={productData.variants.find(v => v.id === selectedVariantId)?.dropiId}
-                   bundleTitle={activeBundle.title}
-                   price={finalPrice}
-                   onCancel={() => setIsCheckoutOpen(false)}
-                />
-              </motion.div>
-            ) : (
-              <motion.div 
-                key="product"
-                initial={{ x: 50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -50, opacity: 0 }}
-                className="bg-white rounded-[32px] md:rounded-[40px] p-5 sm:p-8 md:p-12 shadow-2xl max-w-full sm:max-w-[550px] w-full border border-gray-100 overflow-hidden box-border mx-auto"
-              >
-                <h2 className="text-4xl md:text-5xl font-heading font-black text-black mb-4 leading-tight">
-                  {productData.name}
-                </h2>
+      <main className="container mx-auto px-4 lg:px-8 py-8 lg:py-12 max-w-7xl" id="checkout-area">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+          
+          {/* LEFT: MEDIA GALLERY */}
+          <div className="lg:col-span-7 flex flex-col gap-4">
+             <div className="relative aspect-square lg:aspect-auto lg:h-[600px] w-full rounded-2xl overflow-hidden bg-white shadow-xl border border-gray-200">
+               {activeImage === 'video' ? (
+                 <video src="/video .mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+               ) : (
+                 <img src={images.find(img => img.id === activeImage)?.src} className="w-full h-full object-contain bg-[#f3f3f3] animate-fade-in" alt="Product" />
+               )}
+             </div>
 
-                <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary font-black px-4 py-2 rounded-xl mb-6 shadow-sm">
-                  <Truck size={20} className="animate-bounce" />
-                  <span className="uppercase tracking-wide text-[13px] md:text-sm">PAGO CONTRA ENTREGA - PAGA AL RECIBIR</span>
-                </div>
-                
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="flex flex-col">
-                    <span className="text-lg text-gray-400 line-through leading-none">
-                      {formatCurrency(activeBundle.compareAtPrice)}
-                    </span>
-                    <span className="text-4xl font-black text-black">
-                      {formatCurrency(finalPrice)}
-                    </span>
-                  </div>
-                  <div className="bg-primary text-white px-3 py-1.5 rounded-xl font-black text-sm flex flex-col items-center justify-center shadow-lg shadow-primary/20 animate-pulse">
-                    <span className="text-[10px] uppercase leading-none opacity-80">Ahorras</span>
-                    <span className="text-lg leading-none">
-                      {Math.round(((activeBundle.compareAtPrice - activeBundle.price) / activeBundle.compareAtPrice) * 100)}%
-                    </span>
-                  </div>
-                  {activeBundle.discountBadge && (
-                    <span className="bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                      {activeBundle.discountBadge}
-                    </span>
-                  )}
-                </div>
-
-                {/* Garantía Blindada Addon */}
-                <div className="bg-primary/5 border-l-4 border-primary p-3 rounded-r-xl mb-6 flex items-start gap-3">
-                  <ShieldCheck className="text-primary shrink-0 mt-0.5" size={20} />
-                  <div>
-                    <h4 className="text-black font-bold text-sm leading-tight mb-1">Garantía Blindada 30 Días</h4>
-                    <p className="text-gray-500 text-xs leading-snug">Si no extrae el jugo maravillosamente como prometemos, te devolvemos el 100% de tu dinero. Compra sin riesgo.</p>
-                  </div>
-                </div>
-
-                {/* Urgencia y Escasez */}
-                <div className="bg-red-600/10 border border-red-600/20 rounded-xl p-4 mb-6">
-                  <div className="flex items-center justify-between mb-3 border-b border-red-600/10 pb-3">
-                     <div className="flex items-center gap-2 text-red-600 font-bold text-sm">
-                        <span className="animate-pulse">⏱️</span>
-                        <span>La oferta expira en:</span>
-                     </div>
-                     <div className="bg-red-600 text-white font-black px-3 py-1 rounded-lg tracking-widest shadow-inner">
-                        {formatTime(timeLeft)}
-                     </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="text-red-600">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-red-600 font-bold text-sm">🔥 ¡Atención! Solo quedan 11 unidades en bodega.</p>
-                      <div className="w-full bg-red-600/20 h-2 rounded-full mt-2 overflow-hidden">
-                        <div className="bg-red-600 h-full rounded-full w-[15%]"></div>
+             {/* THUMBNAILS */}
+             <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
+                {images.map((img) => (
+                  <button 
+                    key={img.id}
+                    onClick={() => setActiveImage(img.id)}
+                    className={`relative min-w-[70px] h-[70px] sm:min-w-[85px] sm:h-[85px] rounded-xl overflow-hidden border-2 transition-all ${activeImage === img.id ? 'border-neonRed ring-2 ring-neonRed/20' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                  >
+                    {img.type === 'video' ? (
+                      <div className="w-full h-full bg-black flex items-center justify-center">
+                         <div className="w-6 h-6 rounded-full border border-white flex items-center justify-center">
+                            <div className="w-0 h-0 border-t-[4px] border-t-transparent border-l-[7px] border-l-white border-b-[4px] border-b-transparent translate-x-0.5"></div>
+                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-
-
-                <div className="mb-8">
-                  <p className="text-black font-heading font-bold mb-4">Selecciona tu paquete:</p>
-                  <div className="flex flex-col gap-3">
-                    {bundles.map((bundle) => (
-                      <button
-                        key={bundle.id}
-                        onClick={() => setSelectedVariantId(bundle.id)}
-                        className={`relative w-full text-left p-3 sm:p-4 rounded-2xl border-2 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-4 ${selectedVariantId === bundle.id ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-gray-300'}`}
-                      >
-                        {bundle.isPopular && (
-                          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider whitespace-nowrap">
-                            Más Popular
-                          </div>
-                        )}
-                        <div className="flex items-center gap-3 w-full sm:w-auto">
-                          <div className={`w-5 h-5 sm:w-6 sm:h-6 shrink-0 rounded-full border-2 flex items-center justify-center ${selectedVariantId === bundle.id ? 'border-primary' : 'border-gray-300'}`}>
-                            {selectedVariantId === bundle.id && <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-primary rounded-full"></div>}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h3 className="font-bold text-black text-base sm:text-lg truncate">{bundle.title}</h3>
-                            <p className="text-xs sm:text-sm text-gray-500 leading-tight truncate">{bundle.subtitle}</p>
-                          </div>
-                        </div>
-                        <div className="text-left sm:text-right pl-8 sm:pl-0">
-                           <span className="font-black text-base sm:text-lg text-black">{formatCurrency(bundle.price)}</span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mb-6 relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary to-primary-hover rounded-[50px] blur opacity-50 animate-pulse"></div>
-                  <button onClick={handleCheckout} className="relative bg-primary hover:bg-primary-hover text-white transition-all w-full text-xl py-5 rounded-[50px] shadow-2xl flex flex-col items-center justify-center border-b-[6px] border-black/20 hover:border-b-2 hover:-translate-y-1 active:border-b-0 active:translate-y-1">
-                    <span className="font-black tracking-wider uppercase flex items-center gap-2 text-2xl drop-shadow-md">
-                       <Truck size={28} className="animate-bounce" /> CLIC AQUÍ, PAGA EN CASA
-                    </span>
-                    <span className="text-xs font-bold tracking-widest opacity-90 mt-1 uppercase bg-black/20 px-4 py-1 rounded-full text-white mt-2">
-                       Envío Gratis A Todo Colombia
-                    </span>
+                    ) : (
+                      <img src={img.src} loading="lazy" decoding="async" className="w-full h-full object-cover" alt="Thumb" />
+                    )}
                   </button>
-                </div>
+                ))}
+             </div>
+          </div>
 
-                {/* Sello Pago Contra Entrega Local */}
-                <div className="mt-4 mb-2 text-center border border-dashed border-gray-200 rounded-xl py-3 bg-gray-50/50">
-                  <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2">No arriesgues tu dinero. Paga al recibir con:</p>
-                  <div className="flex justify-center items-center gap-4 grayscale opacity-60">
-                    <span className="font-heading font-black text-sm text-blue-900 border border-blue-900/20 px-2 flex items-center justify-center rounded">SERVIENTREGA</span>
-                    <span className="font-heading font-black text-sm text-red-700 border border-red-700/20 px-2 flex items-center justify-center rounded">INTER RAPIDÍSIMO</span>
+          {/* RIGHT: PRODUCT INFO & BUNDLES */}
+          <div className="lg:col-span-5 flex flex-col">
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                 <div className="flex">
+                   {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-[#ffb800] text-[#ffb800]" />)}
+                 </div>
+                 <span className="text-[10px] font-bold text-gray-400 underline uppercase tracking-widest">1,482 RESEÑAS VERIFICADAS</span>
+              </div>
+              <h1 className="text-3xl lg:text-4xl font-black text-[#1a1a1a] leading-tight mb-2 uppercase italic tracking-tighter">
+                 OCULARTECH PRO™ <br/> <span className="text-neonRed not-italic">MASAJEADOR EMS + LUZ ROJA</span>
+              </h1>
+            </div>
+
+            <ul className="space-y-3 mb-8">
+              {[
+                "Reduce ojeras y bolsas de forma inteligente",
+                "Disminuye líneas de expresión con Luz Roja",
+                "Masaje EMS que activa la circulación sanguínea",
+                "Ideal para fatiga ocular por uso de pantallas",
+                "Diseño ajustable, cómodo y portátil"
+              ].map((text, i) => (
+                <li key={i} className="flex items-center gap-3 text-sm font-medium text-gray-700">
+                  <CheckCircle2 size={18} className="text-neonRed shrink-0" />
+                  {text}
+                </li>
+              ))}
+            </ul>
+
+            {/* BUNDLE SELECTOR */}
+            <div className="mb-8 p-6 bg-white rounded-3xl border-2 border-gray-100 shadow-sm relative">
+              <div className="flex items-center justify-center gap-2 mb-6">
+                 <div className="h-px w-full bg-gray-200"></div>
+                 <span className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] whitespace-nowrap">SELECCIONA Y AHORRA</span>
+                 <div className="h-px w-full bg-gray-200"></div>
+              </div>
+
+              <div className="space-y-3">
+                {bundles.map((bundle) => (
+                  <button 
+                    key={bundle.id}
+                    onClick={() => setSelectedBundle(bundle.id)}
+                    className={`w-full flex items-center justify-between p-4 rounded-2xl border-2 transition-all ${selectedBundle === bundle.id ? 'border-neonRed bg-neonRed/5 ring-1 ring-neonRed' : 'border-gray-100 hover:border-gray-200 bg-gray-50/50'}`}
+                  >
+                    <div className="flex items-center gap-3">
+                       <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedBundle === bundle.id ? 'border-neonRed bg-white' : 'border-gray-300 bg-white'}`}>
+                          {selectedBundle === bundle.id && <div className="w-2.5 h-2.5 rounded-full bg-neonRed" />}
+                       </div>
+                       <div className="text-left">
+                          <p className="text-sm font-black text-[#1a1a1a]">{bundle.title}</p>
+                          <p className="text-[10px] text-gray-500 font-medium uppercase tracking-wider">{bundle.desc}</p>
+                       </div>
+                    </div>
+                    <div className="text-right">
+                       <p className="text-lg font-black text-neonRed leading-none">{bundle.price}</p>
+                       <p className="text-[10px] text-gray-400 line-through font-bold mt-1">{bundle.oldPrice}</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA AREA */}
+            <div className="mt-auto space-y-4">
+               {/* TRUSTPILOT LOGO MOCKUP */}
+               <div className="flex justify-center items-center gap-1 mb-2">
+                  <span className="text-[10px] font-black text-gray-400 uppercase italic">"EXCELENTE"</span>
+                  <div className="flex gap-0.5">
+                    {[1,2,3,4,5].map(i => <div key={i} className="w-3 h-3 bg-[#00b67a] flex items-center justify-center shadow-sm"><Star size={8} className="fill-white text-white" /></div>)}
                   </div>
-                </div>
-                
-                <div className="flex justify-center gap-6 mt-6 border-t border-gray-100 pt-6">
-                   <div className="flex flex-col items-center gap-2">
-                     <ShieldCheck size={24} className="text-primary" />
-                     <span className="text-[10px] font-bold text-gray-500 uppercase text-center">Pago<br/>Seguro</span>
-                   </div>
-                   <div className="flex flex-col items-center gap-2">
-                     <Truck size={24} className="text-primary" />
-                     <span className="text-[10px] font-bold text-gray-500 uppercase text-center">Envío<br/>Nacional</span>
-                   </div>
-                   <div className="flex flex-col items-center gap-2">
-                     <Check size={24} className="text-primary" />
-                     <span className="text-[10px] font-bold text-gray-500 uppercase text-center">Calidad<br/>Garantizada</span>
-                   </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-      </div>
-      
-      {/* Vistos En Banner */}
-      <div className="relative z-10 w-full bg-surface-light border-y border-gray-200 mt-20 py-8">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">El producto estrella recomendado por</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale">
-            {/* Fake logos usando texto robusto como placeholder */}
-            <h3 className="text-2xl font-black font-heading">SALUD HOY</h3>
-            <h3 className="text-2xl font-black font-heading">CASA & IDEAS</h3>
-            <h3 className="text-2xl font-black font-heading">COCINA FÁCIL</h3>
-            <h3 className="text-2xl font-black font-heading">FIT LIFE</h3>
+                  <span className="text-[10px] font-bold text-gray-600">Trustpilot</span>
+               </div>
+
+               <button 
+                 onClick={handleCheckout}
+                 className="w-full bg-neonRed hover:bg-[#1a1a1a] text-white font-black py-5 px-8 rounded-full text-xl shadow-[0_15px_30px_rgba(255,0,60,0.3)] transition-all flex flex-col items-center justify-center uppercase tracking-tighter hover:scale-[1.02] active:scale-[0.98]"
+               >
+                 <span>PEDIR CONTRA ENTREGA</span>
+                 <span className="text-[10px] opacity-80 tracking-[0.2em] mt-1 font-bold">¡ENVÍO GRATIS HOY!</span>
+               </button>
+
+               <div className="flex justify-center items-center gap-6 sm:gap-10 py-6 border-t border-gray-100">
+                  <div className="flex flex-col items-center gap-1.5 grayscale opacity-70">
+                     <ShieldCheck size={22} className="text-gray-600" />
+                     <span className="text-[8px] font-black text-gray-500 uppercase tracking-widest text-center">30 Días Garantía</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-1.5 grayscale opacity-70">
+                     <Truck size={22} className="text-gray-600" />
+                     <span className="text-[8px] font-black text-gray-500 uppercase tracking-widest text-center">Envío Gratis</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-1.5 grayscale opacity-70">
+                     <Award size={22} className="text-gray-600" />
+                     <span className="text-[8px] font-black text-gray-500 uppercase tracking-widest text-center">Clínicamente Probado</span>
+                  </div>
+               </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </main>
+
+      {/* MODAL CHECKOUT */}
+      <AnimatePresence>
+        {isCheckoutOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/90 backdrop-blur-md"
+              onClick={() => setIsCheckoutOpen(false)}
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-2xl bg-white h-screen sm:h-auto sm:rounded-[2.5rem] shadow-2xl overflow-hidden"
+            >
+              <div className="max-h-full sm:max-h-[90vh] overflow-y-auto no-scrollbar pt-4 sm:pt-0">
+                <div className="absolute top-4 right-6 z-50">
+                   <button 
+                     onClick={() => setIsCheckoutOpen(false)} 
+                     className="text-gray-400 hover:text-neonRed bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center text-2xl transition-colors"
+                     aria-label="Cerrar"
+                   >
+                     &times;
+                   </button>
+                </div>
+                <CheckoutForm 
+                  onCancel={() => setIsCheckoutOpen(false)} 
+                  bundles={bundles}
+                  initialBundleId={selectedBundle}
+                />
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

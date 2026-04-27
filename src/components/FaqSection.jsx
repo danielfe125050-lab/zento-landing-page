@@ -1,72 +1,128 @@
 import React, { useState } from 'react';
-import { ChevronDown, Volume2, Wrench, Sun, ShieldOff, ShieldAlert, ShieldCheck } from 'lucide-react';
-import { productData } from '../data/product';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plus, Minus, Star, ShieldCheck } from 'lucide-react';
 
-export default function FaqSection() {
-  const [openIdx, setOpenIdx] = useState(0);
+const faqs = [
+  {
+    question: "¿Es seguro para mis ojos y mi piel?",
+    answer: "¡Totalmente! OcularTech Pro™ utiliza tecnología de microcorrientes EMS de baja intensidad y fototerapia LED de grado cosmético. Ha sido diseñado específicamente para la delicada zona del contorno de ojos y es seguro para todo tipo de piel."
+  },
+  {
+    question: "¿Cuándo empezaré a ver resultados?",
+    answer: "Muchos usuarios notan una desinflamación inmediata y una sensación de descanso tras la primera sesión de 10 minutos. Para resultados permanentes en ojeras y líneas de expresión, recomendamos un uso constante una vez al día durante 2 a 4 semanas."
+  },
+  {
+    question: "¿Cómo funciona la garantía de 30 días?",
+    answer: "Estamos tan seguros de que te encantará que si no ves resultados en los primeros 30 días, te devolvemos el 100% de tu dinero. Solo escríbenos y procesaremos tu devolución sin preguntas."
+  },
+  {
+    question: "¿Hacen envíos a toda Colombia?",
+    answer: "Sí, tenemos cobertura nacional gratuita. El envío tarda de 2 a 5 días hábiles dependiendo de tu ubicación y puedes pagar en efectivo al recibir el producto en tu casa."
+  },
+  {
+    question: "¿Puedo usarlo con lentes de contacto?",
+    answer: "Recomendamos retirar los lentes de contacto antes de usar el masajeador para evitar cualquier incomodidad debido a la termoterapia (calor suave) y para permitir que el masaje sea más efectivo."
+  }
+];
 
-  // Mapeamos los iconos a la data basados en la imagen
-  const faqIcons = [Volume2, Wrench, Sun, ShieldOff, ShieldCheck];
+export default function FAQSection() {
+  const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="relative py-20 bg-surface">
-      {/* Fondo curvo superior */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0 transform -translate-y-full">
-        <svg fill="#f7f7f7" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[60px] md:h-[120px]">
-          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
-          <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-23.84V0Z" opacity=".5"></path>
-          <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#f7f7f7"></path>
-        </svg>
-      </div>
-
-      <div className="bg-white py-16 text-main relative z-10">
-        <div className="container max-w-3xl">
-          <h2 className="text-3xl font-extrabold mb-12 text-center text-main">Preguntas frecuentes</h2>
-          
-          <div className="space-y-0">
-            {productData.faqs.map((faq, idx) => {
-               const Icon = faqIcons[idx] || Volume2;
-               return (
-                <motion.div 
-                  key={idx} 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`border-b border-white/20 transition-all duration-300 ${openIdx === idx ? 'bg-white/5' : 'hover:bg-white/5'}`}
-                >
-                  <button 
-                    className="w-full px-6 py-5 text-left flex justify-between items-center font-bold text-sm sm:text-base text-main-muted hover:text-main"
-                    onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)}
-                  >
-                    <div className="flex items-center gap-4">
-                      <Icon size={18} className="text-primary" />
-                      {faq.question}
-                    </div>
-                    <ChevronDown className={`transition-transform duration-300 ${openIdx === idx ? 'rotate-180 text-primary' : 'text-main-muted'}`} size={18} />
-                  </button>
-                  
-                  <div 
-                    className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${openIdx === idx ? 'max-h-40 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}
-                  >
-                    <p className="text-main-muted pl-8">{faq.answer}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+    <section className="py-20 bg-white" id="faq">
+      <div className="container mx-auto px-6 max-w-3xl">
+        
+        {/* TOP TRUST ICONS */}
+        <div className="flex justify-around items-center mb-16 gap-4">
+           <div className="flex flex-col items-center text-center gap-2">
+              <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                 <ShieldCheck className="text-gray-400" size={24} />
+              </div>
+              <p className="text-[10px] font-black uppercase text-gray-500 leading-tight">Garantía<br/>30 Días</p>
+           </div>
+           <div className="flex flex-col items-center text-center gap-2">
+              <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                 <Star className="text-gray-400" size={24} />
+              </div>
+              <p className="text-[10px] font-black uppercase text-gray-500 leading-tight">Clínicamente<br/>Probado</p>
+           </div>
+           <div className="flex flex-col items-center text-center gap-2">
+              <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                 <Star className="text-gray-400" size={24} />
+              </div>
+              <p className="text-[10px] font-black uppercase text-gray-500 leading-tight">Alta<br/>Calidad</p>
+           </div>
         </div>
-      </div>
 
-      {/* Fondo curvo inferior */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0 transform translate-y-full rotate-180">
-         <svg fill="#f7f7f7" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[60px] md:h-[120px]">
-          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
-          <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-23.84V0Z" opacity=".5"></path>
-          <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#f7f7f7"></path>
-        </svg>
+        {/* TESTIMONIAL CARD */}
+        <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.05)] mb-12 flex gap-4 items-start">
+           <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-gray-100">
+              <img src="https://i.pravatar.cc/100?img=32" alt="Reviewer" />
+           </div>
+           <div>
+              <p className="text-sm italic text-gray-600 mb-3">
+                "Sufría de ojeras profundas por el trabajo y la falta de sueño. OcularTech cambió mi rutina: en 10 minutos mis ojos se ven más brillantes y descansados. ¡Es el mejor regalo que me he hecho!"
+              </p>
+              <div className="flex items-center gap-2">
+                 <span className="text-xs font-black text-gray-800">Mariana V.</span>
+                 <span className="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3" /> Compra Verificada
+                 </span>
+              </div>
+           </div>
+        </div>
+
+        {/* FAQ ACCORDION */}
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div key={index} className="border-b border-gray-100 last:border-0 pb-4">
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
+                className="w-full flex justify-between items-center py-4 text-left gap-4"
+              >
+                <span className="text-base font-black text-gray-800 leading-tight">
+                  {faq.question}
+                </span>
+                <div className="bg-gray-50 p-2 rounded-full text-gray-400">
+                  {openIndex === index ? <Minus size={16} /> : <Plus size={16} />}
+                </div>
+              </button>
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-gray-500 text-sm leading-relaxed pb-4">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+
+        {/* BOTTOM GUARANTEE ONLY (Payments removed for COD) */}
+        <div className="mt-20 pt-10 border-t border-gray-50 flex flex-col items-center gap-6">
+           <div className="flex items-center gap-2 text-gray-400">
+              <ShieldCheck size={16} />
+              <span className="text-[11px] font-bold uppercase tracking-widest">Garantía de Satisfacción de 30 Días</span>
+           </div>
+        </div>
+
       </div>
     </section>
+  );
+}
+
+function CheckCircle({ className }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 20 20">
+      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+    </svg>
   );
 }
