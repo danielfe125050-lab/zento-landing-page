@@ -107,6 +107,8 @@ export default function CheckoutForm({ bundles = [], onCancel, initialBundleId }
     setLoading(true);
 
     try {
+      const cleanPrice = price.replace(/\D/g, ''); // Convierte "$189.900" a "189900"
+      
       const response = await fetch('https://ai-dropshipping-ruddy.vercel.app/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -114,7 +116,7 @@ export default function CheckoutForm({ bundles = [], onCancel, initialBundleId }
           ...formData,
           variantId,
           bundleTitle,
-          price
+          price: cleanPrice
         })
       });
 
